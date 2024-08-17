@@ -1,7 +1,6 @@
-import Checkbox from "expo-checkbox";
-import { StyleSheet, Text, View } from "react-native";
-
-// Change it so it uses the icons created in Figma
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import Colors from "../../assets/Colors";
 
 export default function CheckBox({
   text,
@@ -11,18 +10,26 @@ export default function CheckBox({
   value,
   onValueChange,
   color,
-  disabled = false,
-  margin = 8,
+  marginRight = 10,
 }) {
   return (
     <View style={styles.container}>
-      <Checkbox
-        style={{ margin: margin }}
-        value={value}
-        onValueChange={onValueChange}
-        color={color}
-        disabled={disabled}
-      />
+      <Pressable style={{ marginRight: marginRight }} onPress={onValueChange}>
+        {!value ? (
+          <Ionicons name="square" size={20} color={color} />
+        ) : (
+          <View style={{ flexDirection: "row" }}>
+            <Ionicons name="square" size={20} color={color} />
+            <View style={{ position: "absolute", left: 0 }}>
+              <Ionicons
+                name="checkmark"
+                size={20}
+                color={Colors.secondaryLight}
+              />
+            </View>
+          </View>
+        )}
+      </Pressable>
       <Text
         style={{ color: textColor, fontSize: textSize, fontFamily: textFont }}
       >
@@ -42,13 +49,15 @@ const styles = StyleSheet.create({
 // Remember me CheckBox
 // const [isChecked, setChecked] = useState(false);
 
-// <CheckBox
-//   color={Colors.secondaryLight}
-//   // color={isChecked ? Colors.pastelGreen : Colors.secondaryLight}
-//   text={"Remember me"}
-//   textSize={15}
-//   textColor={Colors.secondaryLight}
-//   textFont={"HelveticaNeue-MediumItalic"}
-//   value={isChecked}
-//   onValueChange={setChecked}
-// />;
+{
+  /* <CheckBox
+  color={Colors.textBoxGrey}
+  // color={isChecked ? Colors.pastelGreen : Colors.textBoxGrey}
+  text={"Remember me"}
+  textSize={14}
+  textColor={Colors.secondaryLight}
+  textFont={"HelveticaNeue-MediumItalic"}
+  value={isChecked}
+  onValueChange={() => setChecked(!isChecked)}
+/> */
+}

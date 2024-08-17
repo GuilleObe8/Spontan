@@ -1,17 +1,11 @@
-import { StyleSheet, Text, View, LogBox, Pressable } from "react-native";
-import { StatusBar } from "expo-status-bar";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import Colors from "./assets/Colors";
-import Logo from "./src/components/Logo";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
-import { useEffect, useState } from "react";
-import CloseButton from "./src/components/CloseButton";
-import RoundedTextButton from "./src/components/RoundedTextButton";
-import Slogan from "./src/components/Slogan";
-import TextBox from "./src/components/TextBox";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import CheckBox from "./src/components/CheckBox";
+import { StatusBar } from "expo-status-bar";
+import { useEffect } from "react";
+import { View } from "react-native";
+import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import Colors from "./assets/Colors";
+import Login from "./src/screens/Login";
 
 // maxWidth: 480 is a good value
 
@@ -44,20 +38,13 @@ export default function App() {
   }
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={{ flex: 1, backgroundColor: Colors.backgroundBlack }}>
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
-        <SafeAreaView style={styles.container}></SafeAreaView>
+        <SafeAreaView style={{ flex: 1 }}>
+          <Login />
+        </SafeAreaView>
       </SafeAreaProvider>
     </View>
   );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: Colors.backgroundBlack,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});

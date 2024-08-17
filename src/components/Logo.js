@@ -1,13 +1,18 @@
 import { Text, StyleSheet } from "react-native";
 import Colors from "../../assets/Colors";
 
-export default function Logo({ fontSize = 36 }) {
-  return <Text style={[styles.logo, { fontSize: fontSize }]}>Spontan</Text>;
+export default function Logo({ fontSize = 36, marginTop = 24 }) {
+  return (
+    <Text style={[styles.logo, { marginTop: marginTop, fontSize: fontSize }]}>
+      Spontan
+    </Text>
+  );
 }
 
 const styles = StyleSheet.create({
   logo: {
     color: Colors.mainLight,
     fontFamily: "HelveticaNeue-BoldItalic",
+    textAlign: "center",
   },
 });

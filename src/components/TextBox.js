@@ -14,15 +14,17 @@ export default function TextBox({
   secureTextEntry = false,
   rightIcon,
   validate,
-  errorMessage,
-  errorColor = Colors.pastelRed,
 }) {
   return (
-    <View style={styles.container}>
+    <View>
       <Text style={styles.label}>{labelText}</Text>
       <View style={styles.input}>
         <TextInput
-          style={styles.textInput}
+          style={
+            rightIcon
+              ? [styles.textInput, { paddingRight: 40 }]
+              : styles.textInput
+          }
           // placeholder={
           //   placeholder
           //     ? placeholder
@@ -43,25 +45,11 @@ export default function TextBox({
         />
         <View style={styles.rightIcon}>{rightIcon}</View>
       </View>
-      <View>
-        {errorMessage && ( // If errorMessage is false it doesn't display anything
-          <Text style={[styles.errorMessage, { color: errorColor }]}>
-            {errorMessage}
-          </Text>
-        )}
-      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    borderColor: "pink",
-    borderWidth: 2,
-    width: "100%",
-    paddingHorizontal: 20,
-    // overflow: "hidden",
-  },
   label: {
     color: Colors.mainLight,
     fontFamily: "HelveticaNeue-MediumItalic",
@@ -75,23 +63,21 @@ const styles = StyleSheet.create({
     height: 32,
     borderRadius: 8,
     backgroundColor: Colors.textBoxGrey,
-    paddingLeft: 10,
+    paddingHorizontal: 10,
     fontSize: 15,
     fontFamily: "HelveticaNeue-LightItalic",
     color: Colors.secondaryLight,
+    overflow: "scroll",
   },
   rightIcon: {
     position: "absolute",
     right: 10,
   },
-  errorMessage: {
-    marginTop: 8,
-    fontFamily: "HelveticaNeue-LightItalic",
-    fontSize: 14,
-  },
 });
 
 // Email TextBox
+// import Ionicons from '@expo/vector-icons/Ionicons';
+
 // const [email, setEmail] = useState();
 // const [emailError, setEmailError] = useState();
 

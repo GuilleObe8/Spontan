@@ -5,26 +5,37 @@ export default function RoundedTextButton({
   onPress,
   color = Colors.lightGrey,
   text,
+  textSize = 15,
+  paddingHorizontal = 26,
 }) {
   return (
     <Pressable
       onPress={onPress}
       style={[styles.button, { backgroundColor: color }]}
     >
-      <Text style={styles.buttonText}>{text}</Text>
+      <Text
+        style={[
+          styles.buttonText,
+          {
+            paddingHorizontal: paddingHorizontal,
+            fontSize: textSize,
+            lineHeight: 2 * textSize,
+          },
+          // { fontSize: textSize },
+        ]}
+      >
+        {text}
+      </Text>
     </Pressable>
   );
 }
 
 const styles = StyleSheet.create({
   button: {
-    paddingHorizontal: 16,
     borderRadius: 16,
     elevation: 3,
   },
   buttonText: {
-    fontSize: 11,
-    lineHeight: 22,
     color: Colors.backgroundBlack,
     fontFamily: "HelveticaNeue-BoldItalic",
   },
