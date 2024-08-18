@@ -60,7 +60,7 @@ const styles = StyleSheet.create({
     justifyContent: "center",
   },
   textInput: {
-    height: 32,
+    height: 28,
     borderRadius: 8,
     backgroundColor: Colors.textBoxGrey,
     paddingHorizontal: 10,

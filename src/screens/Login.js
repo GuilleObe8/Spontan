@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
 import Colors from "../../assets/Colors";
 import CheckBox from "../components/CheckBox";
 import Logo from "../components/Logo";
@@ -9,11 +9,11 @@ import Slogan from "../components/Slogan";
 import TextBox from "../components/TextBox";
 
 export default function Login() {
-  const [email, setEmail] = useState();
-  const [emailError, setEmailError] = useState();
+  const [email, setEmail] = useState("");
+  const [emailError, setEmailError] = useState(false);
 
-  const [password, setPassword] = useState();
-  const [passwordError, setPasswordError] = useState();
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
   const [isChecked, setChecked] = useState(false);
@@ -24,24 +24,28 @@ export default function Login() {
         <Logo />
         <Slogan />
       </View>
-      <View style={styles.inputContainer}>
+      <ScrollView
+        bounces={false}
+        contentContainerStyle={{ paddingBottom: 60 }}
+        style={styles.inputContainer}
+      >
         <TextBox
           labelText={"Tag or email"}
-          placeholder={"e.g. mail@mail.com"}
+          // placeholder={"e.g. mail@mail.com"}
           onChangeText={setEmail}
           keyboardType={"email-address"}
           autoComplete={"email"}
           validate={() => {
-            if (email.length < 6)
+            if (email.length < 10)
               setEmailError("The email address you entered is incorrect.");
             else setEmailError(false);
           }}
         />
-        <View style={{ marginVertical: 10 }} />
-        {/* <View>{!emailError && <View style={{ marginVertical: 13 }} />}</View> */}
+        <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Password"}
           onChangeText={setPassword}
+          autoComplete={"current-password"}
           rightIcon={
             <Pressable onPress={() => setShowPassword(!showPassword)}>
               {!showPassword ? (
@@ -62,8 +66,7 @@ export default function Login() {
             else setPasswordError(false);
           }}
         />
-        <View style={{ marginVertical: 7 }} />
-        {/* <View>{!passwordError && <View style={{ marginVertical: 13 }} />}</View> */}
+        <View style={{ marginVertical: 8 }} />
         <CheckBox
           color={Colors.textBoxGrey}
           text={"Remember me"}
@@ -115,8 +118,8 @@ export default function Login() {
               style={[
                 styles.bottomText,
                 {
-                  marginLeft: 4,
-                  color: "rgba(212, 240, 252, 0.7)",
+                  marginLeft: 3,
+                  color: Colors.pastelBlueTransparent,
                 },
               ]}
             >
@@ -129,15 +132,14 @@ export default function Login() {
             style={[
               styles.bottomText,
               {
-                marginTop: 4,
-                color: "rgba(253, 211, 213, 0.7)",
+                color: Colors.pastelPinkTransparent,
               },
             ]}
           >
             Forgot password?
           </Text>
         </Pressable>
-      </View>
+      </ScrollView>
     </View>
   );
 }
@@ -157,9 +159,8 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 30,
     marginTop: 32,
-    marginBottom: 12,
+    marginBottom: 16, // "4%"
     elevation: 4,
-    overflow: "scroll",
   },
   errorMessage: {
     marginTop: 4,

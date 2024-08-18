@@ -6,8 +6,7 @@ import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Colors from "./assets/Colors";
 import Login from "./src/screens/Login";
-
-// maxWidth: 480 is a good value
+import Register from "./src/screens/Register";
 
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
@@ -42,7 +41,7 @@ export default function App() {
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <Login />
+          <Register />
         </SafeAreaView>
       </SafeAreaProvider>
     </View>
