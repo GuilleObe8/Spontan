@@ -1,6 +1,7 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Colors from "../../assets/Colors";
 import Logo from "../components/Logo";
 import RoundedTextButton from "../components/RoundedTextButton";
@@ -29,16 +30,15 @@ export default function Register() {
   const [showPassword2, setShowPassword2] = useState(false);
 
   return (
-    <View style={styles.wrapper}>
+    <KeyboardAwareScrollView
+      bounces={false} // for iOS
+      contentContainerStyle={styles.wrapper}
+    >
       <View>
         <Logo />
         <Slogan />
       </View>
-      <ScrollView
-        bounces={false}
-        contentContainerStyle={{ paddingBottom: 60 }}
-        style={styles.inputContainer}
-      >
+      <View style={styles.inputContainer}>
         <TextBox
           labelText={"First name"}
           onChangeText={setFirstName}
@@ -222,8 +222,8 @@ export default function Register() {
             </Text>
           </Pressable>
         </View>
-      </ScrollView>
-    </View>
+      </View>
+    </KeyboardAwareScrollView>
   );
 }
 
@@ -231,10 +231,12 @@ const styles = StyleSheet.create({
   wrapper: {
     // borderColor: "pink",
     // borderWidth: 2,
-    flex: 1,
+    flexGrow: 1,
     alignItems: "center",
   },
   inputContainer: {
+    // borderColor: "purple",
+    // borderWidth: 2,
     flex: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",

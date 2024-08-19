@@ -1,7 +1,7 @@
 import { Text, StyleSheet } from "react-native";
 import Colors from "../../assets/Colors";
 
-export default function Slogan({ fontSize = 28, marginTop = 30 }) {
+export default function Slogan({ fontSize = 26, marginTop = 30 }) {
   return (
     <Text
       style={[

@@ -3,21 +3,14 @@ import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Colors from "../../assets/Colors";
-import CheckBox from "../components/CheckBox";
 import Logo from "../components/Logo";
 import RoundedTextButton from "../components/RoundedTextButton";
 import Slogan from "../components/Slogan";
 import TextBox from "../components/TextBox";
 
-export default function Login() {
+export default function ForgotPassword() {
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
-
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [showPassword, setShowPassword] = useState(false);
-
-  const [isChecked, setChecked] = useState(false);
 
   return (
     <KeyboardAwareScrollView
@@ -29,9 +22,29 @@ export default function Login() {
         <Slogan />
       </View>
       <View style={styles.inputContainer}>
+        <Text
+          style={{
+            color: Colors.mainLight,
+            fontFamily: "HelveticaNeue-MediumItalic",
+            fontSize: 17,
+            marginBottom: 4,
+          }}
+        >
+          Forgot your password?
+        </Text>
+        <Text
+          style={{
+            color: Colors.secondaryLight,
+            fontFamily: "HelveticaNeue-LightItalic",
+            fontSize: 15,
+          }}
+        >
+          Write down your email address and we will send you the instructions to
+          change it
+        </Text>
+        <View style={{ marginVertical: 8 }} />
         <TextBox
-          labelText={"Tag or email"}
-          // placeholder={"e.g. mail@mail.com"}
+          labelText={"Email"}
           onChangeText={setEmail}
           keyboardType={"email-address"}
           autoComplete={"email"}
@@ -41,41 +54,7 @@ export default function Login() {
             else setEmailError(false);
           }}
         />
-        <View style={{ marginVertical: 8 }} />
-        <TextBox
-          labelText={"Password"}
-          onChangeText={setPassword}
-          autoComplete={"current-password"}
-          rightIcon={
-            <Pressable onPress={() => setShowPassword(!showPassword)}>
-              {!showPassword ? (
-                <Ionicons name="eye" size={20} color={Colors.secondaryLight} />
-              ) : (
-                <Ionicons
-                  name="eye-off"
-                  size={20}
-                  color={Colors.secondaryLight}
-                />
-              )}
-            </Pressable>
-          }
-          secureTextEntry={!showPassword} // Default secure set to true
-          validate={() => {
-            if (password.length > 10)
-              setPasswordError("The password you entered is incorrect.");
-            else setPasswordError(false);
-          }}
-        />
-        <View style={{ marginVertical: 8 }} />
-        <CheckBox
-          color={Colors.textBoxGrey}
-          text={"Remember me"}
-          textSize={14}
-          textColor={Colors.secondaryLight}
-          textFont={"HelveticaNeue-MediumItalic"}
-          value={isChecked}
-          onValueChange={() => setChecked(!isChecked)}
-        />
+
         <View>
           {emailError && (
             <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
@@ -83,20 +62,16 @@ export default function Login() {
             </Text>
           )}
         </View>
-        <View>
-          {passwordError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {passwordError}
-            </Text>
-          )}
-        </View>
+
         <View
           style={[
             styles.button,
-            { marginTop: emailError || passwordError ? 14 : 30 },
+            {
+              marginTop: emailError ? 14 : 30,
+            },
           ]}
         >
-          <RoundedTextButton text={"Log In"} color={Colors.pastelGreen} />
+          <RoundedTextButton text={"Send Email"} color={Colors.pastelPink} />
         </View>
         <View style={styles.registerWrapper}>
           <Text
@@ -107,7 +82,7 @@ export default function Login() {
               },
             ]}
           >
-            Don't have an account?
+            Back to
           </Text>
           <Pressable
           //   onPress={() => {
@@ -119,26 +94,14 @@ export default function Login() {
                 styles.bottomText,
                 {
                   marginLeft: 3,
-                  color: Colors.pastelBlueTransparent,
+                  color: Colors.pastelGreenTransparent,
                 },
               ]}
             >
-              Register
+              Log In
             </Text>
           </Pressable>
         </View>
-        <Pressable>
-          <Text
-            style={[
-              styles.bottomText,
-              {
-                color: Colors.pastelPinkTransparent,
-              },
-            ]}
-          >
-            Forgot password?
-          </Text>
-        </Pressable>
       </View>
     </KeyboardAwareScrollView>
   );

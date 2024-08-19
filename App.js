@@ -5,8 +5,7 @@ import { useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
 import Colors from "./assets/Colors";
-import Login from "./src/screens/Login";
-import Register from "./src/screens/Register";
+import ForgotPassword from "./src/screens/ForgotPassword";
 
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
@@ -41,7 +40,7 @@ export default function App() {
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <Register />
+          <ForgotPassword />
         </SafeAreaView>
       </SafeAreaProvider>
     </View>
