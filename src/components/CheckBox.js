@@ -1,6 +1,6 @@
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Colors from "../../assets/Colors";
+import Colors from "@assets/Colors";
 
 export default function CheckBox({
   text,
@@ -31,7 +31,13 @@ export default function CheckBox({
         )}
       </Pressable>
       <Text
-        style={{ color: textColor, fontSize: textSize, fontFamily: textFont }}
+        style={{
+          color: textColor,
+          fontSize: textSize,
+          fontFamily: textFont,
+          includeFontPadding: false,
+          textAlignVertical: "center",
+        }}
       >
         {text}
       </Text>

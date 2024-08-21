@@ -14,6 +14,7 @@ const Colors = {
   lightGrey: "#8f8f8f",
   mainLight: "#f8f8f8",
   secondaryLight: "#a0a0a0",
+  secondaryLightTransparent: "rgba(160, 160, 160, 0.7)",
   tertiaryLight: "#6d6d6d",
 };
 

@@ -2,12 +2,12 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Colors from "../../assets/Colors";
-import CheckBox from "../components/CheckBox";
-import Logo from "../components/Logo";
-import RoundedTextButton from "../components/RoundedTextButton";
-import Slogan from "../components/Slogan";
-import TextBox from "../components/TextBox";
+import Colors from "@assets/Colors";
+import CheckBox from "@components/CheckBox";
+import Logo from "@components/Logo";
+import RoundedTextButton from "@components/RoundedTextButton";
+import Slogan from "@components/Slogan";
+import TextBox from "@components/TextBox";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -36,7 +36,7 @@ export default function Login() {
           keyboardType={"email-address"}
           autoComplete={"email"}
           validate={() => {
-            if (email.length < 10)
+            if (email.length < 1)
               setEmailError("The email address you entered is incorrect.");
             else setEmailError(false);
           }}
@@ -61,7 +61,7 @@ export default function Login() {
           }
           secureTextEntry={!showPassword} // Default secure set to true
           validate={() => {
-            if (password.length > 10)
+            if (password.length < 2)
               setPasswordError("The password you entered is incorrect.");
             else setPasswordError(false);
           }}
@@ -77,17 +77,11 @@ export default function Login() {
           onValueChange={() => setChecked(!isChecked)}
         />
         <View>
-          {emailError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {emailError}
-            </Text>
-          )}
+          {emailError && <Text style={styles.errorMessage}>{emailError}</Text>}
         </View>
         <View>
           {passwordError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {passwordError}
-            </Text>
+            <Text style={styles.errorMessage}>{passwordError}</Text>
           )}
         </View>
         <View
@@ -165,9 +159,13 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   errorMessage: {
-    marginTop: 4,
+    color: Colors.pastelRed,
     fontFamily: "HelveticaNeue-LightItalic",
     fontSize: 13,
+    lineHeight: 18,
+    includeFontPadding: false,
+    textAlignVertical: "center",
+    marginTop: 8,
   },
   button: {
     alignSelf: "center",
@@ -179,8 +177,11 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   bottomText: {
-    fontSize: 12,
     fontFamily: "HelveticaNeue-BoldItalic",
+    fontSize: 12,
     alignSelf: "center",
+    lineHeight: 20,
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
 });

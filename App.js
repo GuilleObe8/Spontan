@@ -1,11 +1,14 @@
+import Colors from "@assets/Colors";
+import Activity from "@components/Activity";
+import ForgotPassword from "@screens/ForgotPassword";
+import Login from "@screens/Login";
+import Register from "@screens/Register";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { View } from "react-native";
 import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
-import Colors from "./assets/Colors";
-import ForgotPassword from "./src/screens/ForgotPassword";
 
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
@@ -15,14 +18,14 @@ SplashScreen.preventAutoHideAsync();
 export default function App() {
   const [loaded, error] = useFonts({
     // prettier-ignore
-    "HelveticaNeue": require("./assets/fonts/HelveticaNeue.otf"),
-    "HelveticaNeue-Bold": require("./assets/fonts/HelveticaNeue-Bold.otf"),
-    "HelveticaNeue-BoldItalic": require("./assets/fonts/HelveticaNeue-BoldItalic.otf"),
-    "HelveticaNeue-Italic": require("./assets/fonts/HelveticaNeue-Italic.otf"),
-    "HelveticaNeue-Light": require("./assets/fonts/HelveticaNeue-Light.otf"),
-    "HelveticaNeue-LightItalic": require("./assets/fonts/HelveticaNeue-LightItalic.otf"),
-    "HelveticaNeue-Medium": require("./assets/fonts/HelveticaNeue-Medium.otf"),
-    "HelveticaNeue-MediumItalic": require("./assets/fonts/HelveticaNeue-MediumItalic.otf"),
+    "HelveticaNeue": require("@fonts/HelveticaNeue.otf"),
+    "HelveticaNeue-Bold": require("@fonts/HelveticaNeue-Bold.otf"),
+    "HelveticaNeue-BoldItalic": require("@fonts/HelveticaNeue-BoldItalic.otf"),
+    "HelveticaNeue-Italic": require("@fonts/HelveticaNeue-Italic.otf"),
+    "HelveticaNeue-Light": require("@fonts/HelveticaNeue-Light.otf"),
+    "HelveticaNeue-LightItalic": require("@fonts/HelveticaNeue-LightItalic.otf"),
+    "HelveticaNeue-Medium": require("@fonts/HelveticaNeue-Medium.otf"),
+    "HelveticaNeue-MediumItalic": require("@fonts/HelveticaNeue-MediumItalic.otf"),
   });
 
   useEffect(() => {
@@ -40,7 +43,12 @@ export default function App() {
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
         <SafeAreaView style={{ flex: 1 }}>
-          <ForgotPassword />
+          {/* <Login /> */}
+          {/* <Register /> */}
+          {/* <ForgotPassword /> */}
+          <Activity type="received" />
+          <View style={{ marginVertical: 8 }} />
+          <Activity type="sent" />
         </SafeAreaView>
       </SafeAreaProvider>
     </View>

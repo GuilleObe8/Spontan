@@ -2,11 +2,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Colors from "../../assets/Colors";
-import Logo from "../components/Logo";
-import RoundedTextButton from "../components/RoundedTextButton";
-import Slogan from "../components/Slogan";
-import TextBox from "../components/TextBox";
+import Colors from "@assets/Colors";
+import Logo from "@components/Logo";
+import RoundedTextButton from "@components/RoundedTextButton";
+import Slogan from "@components/Slogan";
+import TextBox from "@components/TextBox";
 
 export default function ForgotPassword() {
   const [email, setEmail] = useState("");
@@ -27,7 +27,10 @@ export default function ForgotPassword() {
             color: Colors.mainLight,
             fontFamily: "HelveticaNeue-MediumItalic",
             fontSize: 17,
-            marginBottom: 4,
+            lineHeight: 20,
+            includeFontPadding: false,
+            textAlignVertical: "center",
+            marginBottom: 6,
           }}
         >
           Forgot your password?
@@ -37,6 +40,9 @@ export default function ForgotPassword() {
             color: Colors.secondaryLight,
             fontFamily: "HelveticaNeue-LightItalic",
             fontSize: 15,
+            lineHeight: 20,
+            includeFontPadding: false,
+            textAlignVertical: "center",
           }}
         >
           Write down your email address and we will send you the instructions to
@@ -56,11 +62,7 @@ export default function ForgotPassword() {
         />
 
         <View>
-          {emailError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {emailError}
-            </Text>
-          )}
+          {emailError && <Text style={styles.errorMessage}>{emailError}</Text>}
         </View>
 
         <View
@@ -128,9 +130,13 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   errorMessage: {
-    marginTop: 4,
+    color: Colors.pastelRed,
     fontFamily: "HelveticaNeue-LightItalic",
     fontSize: 13,
+    lineHeight: 18,
+    includeFontPadding: false,
+    textAlignVertical: "center",
+    marginTop: 8,
   },
   button: {
     alignSelf: "center",
@@ -142,8 +148,11 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   bottomText: {
-    fontSize: 12,
     fontFamily: "HelveticaNeue-BoldItalic",
+    fontSize: 12,
     alignSelf: "center",
+    lineHeight: 20,
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
 });

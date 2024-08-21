@@ -1,5 +1,5 @@
 import { StyleSheet, Text, TextInput, View } from "react-native";
-import Colors from "../../assets/Colors";
+import Colors from "@assets/Colors";
 
 // Useful video: https://www.youtube.com/watch?v=HFVhEephjWc
 
@@ -55,6 +55,9 @@ const styles = StyleSheet.create({
     fontFamily: "HelveticaNeue-MediumItalic",
     fontSize: 17,
     marginBottom: 6,
+    lineHeight: 28,
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
   input: {
     justifyContent: "center",
@@ -65,6 +68,8 @@ const styles = StyleSheet.create({
     backgroundColor: Colors.textBoxGrey,
     paddingHorizontal: 10,
     fontSize: 15,
+    includeFontPadding: false,
+    textAlignVertical: "center",
     fontFamily: "HelveticaNeue-LightItalic",
     color: Colors.secondaryLight,
     overflow: "scroll",

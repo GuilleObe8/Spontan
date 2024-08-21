@@ -2,11 +2,11 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
-import Colors from "../../assets/Colors";
-import Logo from "../components/Logo";
-import RoundedTextButton from "../components/RoundedTextButton";
-import Slogan from "../components/Slogan";
-import TextBox from "../components/TextBox";
+import Colors from "@assets/Colors";
+import Logo from "@components/Logo";
+import RoundedTextButton from "@components/RoundedTextButton";
+import Slogan from "@components/Slogan";
+import TextBox from "@components/TextBox";
 
 export default function Register() {
   const [firstName, setFirstName] = useState("");
@@ -104,7 +104,7 @@ export default function Register() {
           }
           secureTextEntry={!showPassword1}
           validate={() => {
-            if (password1.length > 10)
+            if (password1.length < 2)
               setPasswordError1("The password you entered is incorrect.");
             else setPasswordError1(false);
           }}
@@ -135,44 +135,28 @@ export default function Register() {
         />
         <View>
           {firstNameError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {firstNameError}
-            </Text>
+            <Text style={styles.errorMessage}>{firstNameError}</Text>
           )}
         </View>
         <View>
           {lastNameError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {lastNameError}
-            </Text>
+            <Text style={styles.errorMessage}>{lastNameError}</Text>
           )}
         </View>
         <View>
-          {tagError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {tagError}
-            </Text>
-          )}
+          {tagError && <Text style={styles.errorMessage}>{tagError}</Text>}
         </View>
         <View>
-          {emailError && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {emailError}
-            </Text>
-          )}
+          {emailError && <Text style={styles.errorMessage}>{emailError}</Text>}
         </View>
         <View>
           {passwordError1 && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {passwordError1}
-            </Text>
+            <Text style={styles.errorMessage}>{passwordError1}</Text>
           )}
         </View>
         <View>
           {passwordError2 && (
-            <Text style={[styles.errorMessage, { color: Colors.pastelRed }]}>
-              {passwordError2}
-            </Text>
+            <Text style={styles.errorMessage}>{passwordError2}</Text>
           )}
         </View>
         <View
@@ -248,9 +232,13 @@ const styles = StyleSheet.create({
     elevation: 4,
   },
   errorMessage: {
-    marginTop: 4,
+    color: Colors.pastelRed,
     fontFamily: "HelveticaNeue-LightItalic",
     fontSize: 13,
+    lineHeight: 18,
+    includeFontPadding: false,
+    textAlignVertical: "center",
+    marginTop: 8,
   },
   button: {
     alignSelf: "center",
@@ -262,8 +250,11 @@ const styles = StyleSheet.create({
     marginTop: 14,
   },
   bottomText: {
-    fontSize: 12,
     fontFamily: "HelveticaNeue-BoldItalic",
+    fontSize: 12,
     alignSelf: "center",
+    lineHeight: 20,
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
 });
