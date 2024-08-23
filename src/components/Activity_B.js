@@ -1,14 +1,14 @@
 import Colors from "@assets/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Dimensions, StyleSheet, Text, View } from "react-native";
-import RoundedTextButton from "./RoundedTextButton";
+import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
 import ProgressIndicator from "./ProgressIndicator";
-
-const { width, height } = Dimensions.get("window");
+import RoundedTextButton from "./RoundedTextButton";
 
 // Test with very long title and description
 
-export default function Activity({
+export default function Activity_B({
+  width = "100%",
   type, // "received", "sent"
   tag = "@tag",
   category = "category",
@@ -21,8 +21,12 @@ export default function Activity({
   answeredPeople = 3,
   numPeople = 7,
 }) {
+  const [yes, setYes] = useState(false);
+  const [no, setNo] = useState(false);
+  const [chat, setChat] = useState(false);
+
   return (
-    <View style={styles.container}>
+    <View style={[styles.container, { width: width }]}>
       <View style={styles.topView}>
         {type === "received" ? (
           <Text style={styles.topText}>{tag}</Text>
@@ -78,18 +82,37 @@ export default function Activity({
           </View>
           <View style={styles.horizontalView}>
             <RoundedTextButton
+              onPress={() => {
+                setYes(!yes);
+                setNo(false);
+                setChat(false);
+              }}
               text={"Yes!"}
-              color={Colors.pastelGreen}
+              color={
+                no || chat ? Colors.pastelGreenTransparent : Colors.pastelGreen
+              }
               textSize={12}
               paddingHorizontal={16}
             />
             <RoundedTextButton
+              onPress={() => {
+                setYes(false);
+                setNo(!no);
+                setChat(false);
+              }}
               text={"No"}
-              color={Colors.pastelPink}
+              color={
+                yes || chat ? Colors.pastelPinkTransparent : Colors.pastelPink
+              }
               textSize={12}
               paddingHorizontal={16}
             />
             <RoundedTextButton
+              onPress={() => {
+                setYes(false);
+                setNo(false);
+                setChat(!chat);
+              }}
               text={" "}
               textSize={12}
               icon={
@@ -100,7 +123,9 @@ export default function Activity({
                   style={{ position: "absolute" }}
                 />
               }
-              color={Colors.pastelBlue}
+              color={
+                yes || no ? Colors.pastelBlueTransparent : Colors.pastelBlue
+              }
               paddingHorizontal={24}
             />
           </View>
@@ -135,15 +160,11 @@ export default function Activity({
 const styles = StyleSheet.create({
   container: {
     flexShrink: 1,
-    // height: 200,
-    // aspectRatio: 16 / 10,
-    width: "92%",
     maxWidth: 560,
-    alignSelf: "center",
-    backgroundColor: Colors.backgroundGrey,
     borderRadius: 8,
     padding: 20,
     elevation: 4,
+    backgroundColor: Colors.backgroundGrey,
   },
   topView: {
     flexDirection: "row",

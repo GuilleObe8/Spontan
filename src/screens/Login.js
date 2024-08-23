@@ -1,13 +1,21 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Colors from "@assets/Colors";
+import Activity_C from "@components/Activity_C";
 import CheckBox from "@components/CheckBox";
 import Logo from "@components/Logo";
 import RoundedTextButton from "@components/RoundedTextButton";
 import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState } from "react";
+import {
+  Dimensions,
+  Pressable,
+  ScrollView,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 
 export default function Login() {
   const [email, setEmail] = useState("");
@@ -18,6 +26,8 @@ export default function Login() {
   const [showPassword, setShowPassword] = useState(false);
 
   const [isChecked, setChecked] = useState(false);
+
+  let screenWidth = Dimensions.get("window").width;
 
   return (
     <KeyboardAwareScrollView
@@ -134,21 +144,32 @@ export default function Login() {
           </Text>
         </Pressable>
       </View>
+      <ScrollView
+        horizontal={true}
+        showsHorizontalScrollIndicator={false}
+        style={styles.horizontalContainer}
+        contentContainerStyle={{ paddingBottom: 16 }} // 4%
+        contentOffset={{ x: screenWidth * 0.92 * 1.5 + 12 }}
+      >
+        <Activity_C width={0.92 * screenWidth} type="sent" />
+        <View style={{ marginHorizontal: 4 }} />
+        <Activity_C width={0.92 * screenWidth} type="received" />
+        <View style={{ marginHorizontal: 4 }} />
+        <Activity_C width={0.92 * screenWidth} type="sent" />
+        <View style={{ marginHorizontal: 4 }} />
+        <Activity_C width={0.92 * screenWidth} type="received" />
+      </ScrollView>
     </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
   wrapper: {
-    // borderColor: "pink",
-    // borderWidth: 2,
     flexGrow: 1,
     alignItems: "center",
   },
   inputContainer: {
-    // borderColor: "purple",
-    // borderWidth: 2,
-    flex: 1,
+    flexGrow: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
@@ -183,5 +204,10 @@ const styles = StyleSheet.create({
     lineHeight: 20,
     includeFontPadding: false,
     textAlignVertical: "center",
+  },
+  horizontalContainer: {
+    flexGrow: 0,
+    width: "92%",
+    maxWidth: 560,
   },
 });

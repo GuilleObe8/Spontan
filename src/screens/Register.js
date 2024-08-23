@@ -213,14 +213,10 @@ export default function Register() {
 
 const styles = StyleSheet.create({
   wrapper: {
-    // borderColor: "pink",
-    // borderWidth: 2,
     flexGrow: 1,
     alignItems: "center",
   },
   inputContainer: {
-    // borderColor: "purple",
-    // borderWidth: 2,
     flex: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",

@@ -1,5 +1,6 @@
 import Colors from "@assets/Colors";
-import Activity from "@components/Activity";
+import Icon from "@assets/Icon";
+import Activity_test from "@components/Activity_test";
 import ForgotPassword from "@screens/ForgotPassword";
 import Login from "@screens/Login";
 import Register from "@screens/Register";
@@ -46,9 +47,8 @@ export default function App() {
           {/* <Login /> */}
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
-          <Activity type="received" />
-          <View style={{ marginVertical: 8 }} />
-          <Activity type="sent" />
+          <Activity_test />
+          {/* <Icon /> */}
         </SafeAreaView>
       </SafeAreaProvider>
     </View>

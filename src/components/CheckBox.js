@@ -51,19 +51,3 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
 });
-
-// Remember me CheckBox
-// const [isChecked, setChecked] = useState(false);
-
-{
-  /* <CheckBox
-  color={Colors.textBoxGrey}
-  // color={isChecked ? Colors.pastelGreen : Colors.textBoxGrey}
-  text={"Remember me"}
-  textSize={14}
-  textColor={Colors.secondaryLight}
-  textFont={"HelveticaNeue-MediumItalic"}
-  value={isChecked}
-  onValueChange={() => setChecked(!isChecked)}
-/> */
-}
