@@ -10,8 +10,6 @@ export default function Slogan({ fontSize = 26, marginTop = 30 }) {
           fontSize: fontSize,
           lineHeight: fontSize,
           marginTop: marginTop,
-          includeFontPadding: false,
-          textAlignVertical: "center",
         },
       ]}
     >
@@ -25,5 +23,7 @@ const styles = StyleSheet.create({
     color: Colors.mainLight,
     fontFamily: "HelveticaNeue-MediumItalic",
     textAlign: "center",
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
 });

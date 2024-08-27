@@ -26,23 +26,7 @@ export default function Activity_A({
   const [chat, setChat] = useState(false);
 
   return (
-    <View
-      style={[
-        styles.container,
-        {
-          width: width,
-          borderColor: yes
-            ? Colors.pastelGreen
-            : no
-            ? Colors.pastelPink
-            : chat
-            ? Colors.pastelBlue
-            : Colors.backgroundGrey,
-          borderWidth: yes || no || chat ? 2 : 0,
-          padding: yes || no || chat ? 18 : 20,
-        },
-      ]}
-    >
+    <View style={[styles.container, { width: width }]}>
       <View style={styles.topView}>
         {type === "received" ? (
           <Text style={styles.topText}>{tag}</Text>
@@ -104,9 +88,7 @@ export default function Activity_A({
                 setChat(false);
               }}
               text={"Yes!"}
-              color={
-                no || chat ? Colors.pastelGreenTransparent : Colors.pastelGreen
-              }
+              color={no || chat ? Colors.lightGrey : Colors.pastelGreen}
               textSize={12}
               paddingHorizontal={16}
             />
@@ -117,9 +99,7 @@ export default function Activity_A({
                 setChat(false);
               }}
               text={"No"}
-              color={
-                yes || chat ? Colors.pastelPinkTransparent : Colors.pastelPink
-              }
+              color={yes || chat ? Colors.lightGrey : Colors.pastelPink}
               textSize={12}
               paddingHorizontal={16}
             />
@@ -139,9 +119,7 @@ export default function Activity_A({
                   style={{ position: "absolute" }}
                 />
               }
-              color={
-                yes || no ? Colors.pastelBlueTransparent : Colors.pastelBlue
-              }
+              color={yes || no ? Colors.lightGrey : Colors.pastelBlue}
               paddingHorizontal={24}
             />
           </View>
@@ -178,6 +156,7 @@ const styles = StyleSheet.create({
     flexShrink: 1,
     maxWidth: 560,
     borderRadius: 8,
+    padding: 20,
     elevation: 4,
     backgroundColor: Colors.backgroundGrey,
   },

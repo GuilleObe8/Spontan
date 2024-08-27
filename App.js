@@ -1,6 +1,6 @@
 import Colors from "@assets/Colors";
-import Icon from "@assets/Icon";
-import Activity_test from "@components/Activity_test";
+import { NavigationContainer } from "@react-navigation/native";
+import MainNavigator from "@routes/MainNavigator";
 import ForgotPassword from "@screens/ForgotPassword";
 import Login from "@screens/Login";
 import Register from "@screens/Register";
@@ -9,7 +9,7 @@ import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { View } from "react-native";
-import { SafeAreaProvider, SafeAreaView } from "react-native-safe-area-context";
+import { SafeAreaProvider } from "react-native-safe-area-context";
 
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
@@ -43,13 +43,12 @@ export default function App() {
     <View style={{ flex: 1, backgroundColor: Colors.backgroundBlack }}>
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
-        <SafeAreaView style={{ flex: 1 }}>
+        <NavigationContainer>
           {/* <Login /> */}
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
-          <Activity_test />
-          {/* <Icon /> */}
-        </SafeAreaView>
+          <MainNavigator />
+        </NavigationContainer>
       </SafeAreaProvider>
     </View>
   );

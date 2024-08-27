@@ -6,7 +6,7 @@
       "@fonts/*": ["./assets/fonts/*"],
       "@components/*": ["./src/components/*"],
       "@screens/*": ["./src/screens/*"],
-      "@stacks/*": ["./src/stacks/*"]
+      "@routes/*": ["./src/routes/*"]
     }
   }
 }

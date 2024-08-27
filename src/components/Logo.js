@@ -9,8 +9,6 @@ export default function Logo({ fontSize = 36, marginTop = 24 }) {
         {
           marginTop: marginTop,
           fontSize: fontSize,
-          includeFontPadding: false,
-          textAlignVertical: "center",
         },
       ]}
     >
@@ -24,5 +22,7 @@ const styles = StyleSheet.create({
     color: Colors.mainLight,
     fontFamily: "HelveticaNeue-BoldItalic",
     textAlign: "center",
+    includeFontPadding: false,
+    textAlignVertical: "center",
   },
 });

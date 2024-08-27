@@ -1,21 +1,31 @@
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Colors from "@assets/Colors";
 import Logo from "@components/Logo";
 import RoundedTextButton from "@components/RoundedTextButton";
 import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
+import { useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function ForgotPassword() {
+  const insets = useSafeAreaInsets();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
 
   return (
     <KeyboardAwareScrollView
       bounces={false} // for iOS
-      contentContainerStyle={styles.wrapper}
+      contentContainerStyle={[
+        styles.container,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      ]}
     >
       <View>
         <Logo />
@@ -75,7 +85,7 @@ export default function ForgotPassword() {
         >
           <RoundedTextButton text={"Send Email"} color={Colors.pastelPink} />
         </View>
-        <View style={styles.registerWrapper}>
+        <View style={styles.bottomTextContainer}>
           <Text
             style={[
               styles.bottomText,
@@ -110,7 +120,8 @@ export default function ForgotPassword() {
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
+  container: {
+    backgroundColor: Colors.backgroundBlack,
     flexGrow: 1,
     alignItems: "center",
   },
@@ -138,7 +149,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     flexWrap: "wrap",
   },
-  registerWrapper: {
+  bottomTextContainer: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 14,

@@ -1,5 +1,5 @@
 import Colors from "@assets/Colors";
-import Activity_C from "@components/Activity_C";
+import Activity_A from "@components/Activity_A";
 import CheckBox from "@components/CheckBox";
 import Logo from "@components/Logo";
 import RoundedTextButton from "@components/RoundedTextButton";
@@ -16,8 +16,11 @@ import {
   View,
 } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Login() {
+  const insets = useSafeAreaInsets();
+
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
 
@@ -32,7 +35,15 @@ export default function Login() {
   return (
     <KeyboardAwareScrollView
       bounces={false} // for iOS
-      contentContainerStyle={styles.wrapper}
+      contentContainerStyle={[
+        styles.container,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      ]}
     >
       <View>
         <Logo />
@@ -102,7 +113,7 @@ export default function Login() {
         >
           <RoundedTextButton text={"Log In"} color={Colors.pastelGreen} />
         </View>
-        <View style={styles.registerWrapper}>
+        <View style={styles.bottomTextContainer}>
           <Text
             style={[
               styles.bottomText,
@@ -151,20 +162,21 @@ export default function Login() {
         contentContainerStyle={{ paddingBottom: 16 }} // 4%
         contentOffset={{ x: screenWidth * 0.92 * 1.5 + 12 }}
       >
-        <Activity_C width={0.92 * screenWidth} type="sent" />
+        <Activity_A width={0.92 * screenWidth} type="sent" />
         <View style={{ marginHorizontal: 4 }} />
-        <Activity_C width={0.92 * screenWidth} type="received" />
+        <Activity_A width={0.92 * screenWidth} type="received" />
         <View style={{ marginHorizontal: 4 }} />
-        <Activity_C width={0.92 * screenWidth} type="sent" />
+        <Activity_A width={0.92 * screenWidth} type="sent" />
         <View style={{ marginHorizontal: 4 }} />
-        <Activity_C width={0.92 * screenWidth} type="received" />
+        <Activity_A width={0.92 * screenWidth} type="received" />
       </ScrollView>
     </KeyboardAwareScrollView>
   );
 }
 
 const styles = StyleSheet.create({
-  wrapper: {
+  container: {
+    backgroundColor: Colors.backgroundBlack,
     flexGrow: 1,
     alignItems: "center",
   },
@@ -192,7 +204,7 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     flexWrap: "wrap",
   },
-  registerWrapper: {
+  bottomTextContainer: {
     flexDirection: "row",
     justifyContent: "center",
     marginTop: 14,
