@@ -1,5 +1,5 @@
-import { Text, StyleSheet } from "react-native";
 import Colors from "@assets/Colors";
+import { StyleSheet, Text } from "react-native";
 
 export default function Logo({ fontSize = 36, marginTop = 24 }) {
   return (

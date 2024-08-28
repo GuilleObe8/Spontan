@@ -1,5 +1,5 @@
 import Colors from "@assets/Colors";
-import { StyleSheet, Pressable, View } from "react-native";
+import { Pressable, StyleSheet, View } from "react-native";
 
 export default function ProgressIndicator({
   onPress,

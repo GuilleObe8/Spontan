@@ -1,6 +1,6 @@
-import { View, Text, StyleSheet } from "react-native";
-import Colors from "./Colors";
+import { StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Colors from "./Colors";
 
 export default function Icon() {
   const insets = useSafeAreaInsets();

@@ -1,6 +1,6 @@
+import Colors from "@assets/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { Pressable, StyleSheet, Text, View } from "react-native";
-import Colors from "@assets/Colors";
 
 export default function CheckBox({
   text,

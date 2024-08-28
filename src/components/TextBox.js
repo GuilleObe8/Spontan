@@ -1,5 +1,5 @@
-import { StyleSheet, Text, TextInput, View } from "react-native";
 import Colors from "@assets/Colors";
+import { StyleSheet, Text, TextInput, View } from "react-native";
 
 // Useful video: https://www.youtube.com/watch?v=HFVhEephjWc
 

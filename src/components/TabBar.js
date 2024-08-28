@@ -1,33 +1,30 @@
 import Colors from "@assets/Colors";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 
-// Check separators spacing when fontFamily changes
-
-export default function TabBar({ state, navigation, gap = 20 }) {
-  let i = 0;
-
+export default function TabBar({ state, navigation, marginBottom }) {
   return (
-    <View style={[styles.container, { paddingBottom: 20, gap: gap }]}>
-      {state.routes.map((route, index) => {
-        const isFocused = state.index === index;
+    <View>
+      <View
+        style={[styles.container, { marginBottom: marginBottom, zIndex: 1 }]}
+      >
+        {state.routes.map((route, index) => {
+          const isFocused = state.index === index;
 
-        const onPress = () => {
-          const event = navigation.emit({
-            type: "tabPress",
-            target: route.key,
-            canPreventDefault: true,
-          });
+          const onPress = () => {
+            const event = navigation.emit({
+              type: "tabPress",
+              target: route.key,
+              canPreventDefault: true,
+            });
 
-          if (!isFocused && !event.defaultPrevented) {
-            navigation.navigate(route.name, route.params);
-          }
-        };
+            if (!isFocused && !event.defaultPrevented) {
+              navigation.navigate(route.name, route.params);
+            }
+          };
 
-        i++;
-
-        return (
-          <View key={route.name} style={[styles.container, { gap: gap }]}>
+          return (
             <Pressable
+              key={route.name}
               accessibilityRole="button"
               accessibilityState={isFocused ? { selected: true } : {}}
               onPress={onPress}
@@ -39,26 +36,23 @@ export default function TabBar({ state, navigation, gap = 20 }) {
                     fontFamily: isFocused
                       ? "HelveticaNeue-MediumItalic"
                       : "HelveticaNeue-Italic",
-                    fontSize: 24,
+                    // fontSize: isFocused ? 23.5 : 24,
                   },
                 ]}
               >
                 {route.name}
               </Text>
             </Pressable>
-            {i !== 3 && (
-              <Text
-                style={[
-                  styles.text,
-                  { fontFamily: "HelveticaNeue-Italic", fontSize: 24 },
-                ]}
-              >
-                |
-              </Text>
-            )}
-          </View>
-        );
-      })}
+          );
+        })}
+      </View>
+      <View style={[styles.container, { position: "absolute" }]}>
+        <Text style={styles.hiddenText}>friends</Text>
+        <Text style={[styles.text, { fontSize: 18 }]}>|</Text>
+        <Text style={styles.hiddenText}>main</Text>
+        <Text style={[styles.text, { fontSize: 18 }]}>|</Text>
+        <Text style={styles.hiddenText}>activities</Text>
+      </View>
     </View>
   );
 }
@@ -66,12 +60,22 @@ export default function TabBar({ state, navigation, gap = 20 }) {
 const styles = StyleSheet.create({
   container: {
     flexDirection: "row",
-    justifyContent: "center",
+    width: "100%",
+    justifyContent: "space-between",
     alignItems: "center",
   },
   text: {
     color: Colors.mainLight,
     includeFontPadding: false,
     textAlignVertical: "center",
+    fontFamily: "HelveticaNeue-Italic",
+    fontSize: 24,
+  },
+  hiddenText: {
+    color: Colors.backgroundBlack,
+    includeFontPadding: false,
+    textAlignVertical: "center",
+    fontFamily: "HelveticaNeue-Italic",
+    fontSize: 24,
   },
 });
