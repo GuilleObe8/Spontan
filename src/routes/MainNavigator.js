@@ -1,11 +1,14 @@
 import Colors from "@assets/Colors";
-import Icon from "@assets/Icon";
+import AddButton from "@components/AddButton";
 import Logo from "@components/Logo";
 import TabBar from "@components/TabBar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
 import { useNavigation } from "@react-navigation/native";
+import Activities from "@screens/Activities";
+import Friends from "@screens/Friends";
 import Main from "@screens/Main";
+import { useRef } from "react";
 import { Pressable, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -13,7 +16,10 @@ const Tab = createMaterialTopTabNavigator();
 
 export default function MainNavigator() {
   const insets = useSafeAreaInsets();
+
   const navigation = useNavigation();
+
+  const scrollRef = useRef(null);
 
   return (
     <View
@@ -29,27 +35,37 @@ export default function MainNavigator() {
     >
       <View style={styles.topContainer}>
         <Pressable style={{ flex: 1 }}>
-          <Ionicons name="menu" size={24} color={Colors.secondaryLight} />
+          <Ionicons name="menu" size={26} color={Colors.secondaryLight} />
         </Pressable>
         <Pressable
           style={{ position: "center" }}
-          onPress={() => navigation.navigate("main")}
+          onPress={() => {
+            navigation.navigate("main");
+            scrollRef.current.scrollTo({
+              y: 0,
+              animated: true,
+            });
+          }}
         >
-          <Logo fontSize={32} marginTop={0} />
+          <Logo marginTop={0} />
         </Pressable>
         <View style={{ flex: 1 }} />
       </View>
       <Tab.Navigator
         style={styles.navigatorContainer}
         sceneContainerStyle={styles.screenContainer}
-        tabBar={(props) => <TabBar {...props} marginBottom={12} />}
-        initialRouteName="main"
+        tabBar={(props) => <TabBar {...props} marginBottom={20} />}
+        initialRouteName="friends" // main
         backBehavior="initialRoute"
       >
-        <Tab.Screen name="friends" component={Icon} />
-        <Tab.Screen name="main" component={Main} />
-        <Tab.Screen name="activities" component={Icon} />
+        <Tab.Screen name="friends" component={Friends} />
+        <Tab.Screen
+          name="main"
+          children={() => <Main scrollRef={scrollRef} />}
+        />
+        <Tab.Screen name="activities" component={Activities} />
       </Tab.Navigator>
+      <AddButton />
     </View>
   );
 }
@@ -69,13 +85,14 @@ const styles = StyleSheet.create({
   },
   navigatorContainer: {
     backgroundColor: Colors.backgroundBlack,
-    marginTop: 20,
+    marginTop: 24,
     width: "92%",
     maxWidth: 560,
   },
   screenContainer: {
     backgroundColor: Colors.backgroundBlack,
-    borderRadius: 8,
-    marginBottom: 16, //4%
+
+    marginBottom: 44,
+    paddingBottom: 4,
   },
 });

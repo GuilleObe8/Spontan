@@ -10,6 +10,7 @@ const Colors = {
   pastelBlueTransparent: "rgba(212, 240, 252, 0.7)",
   pastelYellow: "#fef0cd",
   pastelPurple: "#eddef6",
+  pastelPurpleTransparent: "rgba(237, 222, 246, 0.7)",
   pastelRed: "#f97278",
   lightGrey: "#8f8f8f",
   mainLight: "#f8f8f8",

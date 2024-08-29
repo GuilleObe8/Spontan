@@ -69,13 +69,13 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-Italic",
-    fontSize: 24,
+    fontSize: 26,
   },
   hiddenText: {
     color: Colors.backgroundBlack,
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-Italic",
-    fontSize: 24,
+    fontSize: 26,
   },
 });

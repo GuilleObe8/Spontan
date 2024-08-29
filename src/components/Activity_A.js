@@ -12,7 +12,7 @@ export default function Activity_A({
   type, // "received", "sent"
   tag = "@tag",
   category = "category",
-  publishTime = "00:00",
+  remainingTime = "00:00",
   title = "Gym",
   description = "Join me at the gym tomorrow at 15:00!",
   date = "Tomorrow",
@@ -36,7 +36,7 @@ export default function Activity_A({
           <Text>Add type!</Text>
         )}
         <Text style={styles.topText}>{category}</Text>
-        <Text style={styles.topText}>{publishTime}</Text>
+        <Text style={styles.topText}>{remainingTime}</Text>
       </View>
       <View>
         <Text style={styles.titleText}>{title}</Text>
