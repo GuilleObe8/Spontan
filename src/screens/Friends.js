@@ -11,7 +11,7 @@ usersArray = [
     lastName: "Collin",
     email: "anna@collin.com",
     picture: "", // URL to database
-    pendingRequest: false,
+    pendingAccept: "none",
     friends: true,
     activityData: {
       numberOfInvites: 3,
@@ -25,7 +25,7 @@ usersArray = [
     lastName: "Peñas",
     email: "tony21@mail.es",
     picture: "", // URL to database
-    pendingRequest: true,
+    pendingAccept: "received",
     friends: false,
     activityData: {
       numberOfInvites: 1,
@@ -39,7 +39,7 @@ usersArray = [
     lastName: "Grasso",
     email: "daniel_g@address.it",
     picture: "", // URL to database
-    pendingRequest: true,
+    pendingAccept: "received",
     friends: false,
     activityData: {
       numberOfInvites: 7,
@@ -53,7 +53,7 @@ usersArray = [
     lastName: "Sun",
     email: "mariana.sun@mail.com",
     picture: "", // URL to database
-    pendingRequest: false,
+    pendingAccept: "none",
     friends: false,
     activityData: {
       numberOfInvites: 2,
@@ -67,7 +67,7 @@ usersArray = [
     lastName: "Bello",
     email: "emmabello@member.com",
     picture: "", // URL to database
-    pendingRequest: false,
+    pendingAccept: "none",
     friends: true,
     activityData: {
       numberOfInvites: 6,
@@ -81,7 +81,7 @@ usersArray = [
     lastName: "Salampasi",
     email: "asalampasi@address.se",
     picture: "", // URL to database
-    pendingRequest: true,
+    pendingAccept: "sent",
     friends: false,
     activityData: {
       numberOfInvites: 3,
@@ -100,13 +100,19 @@ export default function Friends() {
       contentContainerStyle={styles.container}
     >
       <View style={styles.inputContainer}>
-        <User pendingRequest={false} friends={false} />
+        <User pendingAccept={"none"} friends={false} />
         <View style={styles.separator} />
-        <User pendingRequest={false} friends={true} />
+        <User pendingAccept={"none"} friends={true} />
         <View style={styles.separator} />
-        <User pendingRequest={true} friends={false} />
+        <User pendingAccept={"received"} friends={false} />
         <View style={styles.separator} />
-        <User pendingRequest={true} friends={true} />
+        <User pendingAccept={"received"} friends={false} />
+        <View style={styles.separator} />
+        <User pendingAccept={"sent"} friends={false} />
+        <View style={styles.separator} />
+        <User pendingAccept={"received"} friends={true} />
+        <View style={styles.separator} />
+        <User pendingAccept={"sent"} friends={true} />
         <View style={styles.separator} />
       </View>
       {/* <View style={{ marginVertical: 8 }} />

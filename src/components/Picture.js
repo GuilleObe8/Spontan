@@ -5,7 +5,7 @@ export default function Picture({
   src = {
     uri: "https://upload.wikimedia.org/wikipedia/commons/1/18/React_Native_Logo.png",
   },
-  size = 40,
+  size = 46,
 }) {
   return (
     <Image

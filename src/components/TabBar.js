@@ -33,10 +33,11 @@ export default function TabBar({ state, navigation, marginBottom }) {
                 style={[
                   styles.text,
                   {
+                    // fontSize: isFocused ? 23.5 : 24,
                     fontFamily: isFocused
                       ? "HelveticaNeue-MediumItalic"
                       : "HelveticaNeue-Italic",
-                    // fontSize: isFocused ? 23.5 : 24,
+                    // textDecorationLine: isFocused ? "underline" : "none",
                   },
                 ]}
               >
