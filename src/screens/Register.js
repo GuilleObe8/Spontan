@@ -35,6 +35,7 @@ export default function Register() {
   return (
     <KeyboardAwareScrollView
       bounces={false} // for iOS
+      // enableOnAndroid={true} // for Android
       contentContainerStyle={[
         styles.container,
         {

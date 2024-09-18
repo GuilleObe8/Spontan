@@ -9,7 +9,8 @@ import Activities from "@screens/Activities";
 import Friends from "@screens/Friends";
 import Main from "@screens/Main";
 import { useRef } from "react";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, Platform } from "react-native";
+import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Tab = createMaterialTopTabNavigator();
@@ -22,8 +23,10 @@ export default function MainNavigator() {
   const scrollRef = useRef(null);
 
   return (
-    <View
-      style={[
+    <KeyboardAwareScrollView
+      bounces={false} // for iOS
+      // enableOnAndroid={true} // for Android
+      contentContainerStyle={[
         styles.container,
         {
           paddingTop: insets.top,
@@ -33,6 +36,17 @@ export default function MainNavigator() {
         },
       ]}
     >
+      {/* <View
+      style={[
+        styles.container,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      ]}
+    > */}
       <View style={styles.topContainer}>
         <Pressable style={{ flex: 1 }}>
           <Ionicons name="menu" size={26} color={Colors.secondaryLight} />
@@ -66,7 +80,8 @@ export default function MainNavigator() {
         <Tab.Screen name="activities" component={Activities} />
       </Tab.Navigator>
       <AddButton />
-    </View>
+      {/* </View> */}
+    </KeyboardAwareScrollView>
   );
 }
 const styles = StyleSheet.create({
@@ -95,7 +110,8 @@ const styles = StyleSheet.create({
     // borderColor: "orange",
     // borderWidth: 1,
     backgroundColor: Colors.backgroundBlack,
-    marginBottom: 44,
+    // marginBottom: 44,
+    marginBottom: Platform.OS === "ios" ? 22 : 44,
     paddingBottom: 4,
   },
 });

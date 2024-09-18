@@ -17,6 +17,7 @@ export default function ForgotPassword() {
   return (
     <KeyboardAwareScrollView
       bounces={false} // for iOS
+      // enableOnAndroid={true} // for Android
       contentContainerStyle={[
         styles.container,
         {

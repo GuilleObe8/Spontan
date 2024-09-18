@@ -1,15 +1,12 @@
 import Colors from "@assets/Colors";
-import DashedLine from "@components/DashedLine";
 import TextBox from "@components/TextBox";
 import User from "@components/User";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useScrollToTop } from "@react-navigation/native";
 import { useRef, useState } from "react";
-import { ScrollView, StyleSheet, View } from "react-native";
+import { FlatList, ScrollView, StyleSheet, View } from "react-native";
 
-// TODO: KeyboardAwareScrollView with the text input
-
-usersArray = [
+const usersData = [
   {
     tag: "anna",
     firstName: "Anna",
@@ -97,7 +94,14 @@ usersArray = [
 ];
 
 export default function Friends() {
-  const [email, setEmail] = useState("");
+  const [usersArray, setUsersArray] = useState(usersData);
+  const updateUserState = ({ tag, prop, value }) => {
+    setUsersArray(
+      usersArray.map((user) =>
+        user.tag === tag ? { ...user, [prop]: value } : user
+      )
+    );
+  };
 
   const topRef = useRef(null);
   const bottomRef = useRef(null);
@@ -111,31 +115,32 @@ export default function Friends() {
         flexShrink: 1,
       }}
     >
-      <ScrollView
-        style={styles.inputContainer}
-        contentContainerStyle={{ padding: 20 }}
-        ref={topRef}
-      >
-        <User pendingAccept={"none"} friends={false} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"none"} friends={true} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"received"} friends={false} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"received"} friends={false} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"sent"} friends={false} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"received"} friends={true} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"sent"} friends={true} />
-      </ScrollView>
+      <View style={styles.inputContainer}>
+        <FlatList
+          data={usersArray.filter(
+            (user) => user.friends === true || user.pendingAccept === "received"
+          )}
+          renderItem={({ item }) => {
+            console.log("Rendered user:", item.tag);
+            return (
+              <User
+                tag={item.tag}
+                firstName={item.firstName}
+                lastName={item.lastName}
+                email={item.email}
+                picture={item.picture}
+                pendingAccept={item.pendingAccept}
+                friends={item.friends}
+                activityData={item.activityData}
+              />
+            );
+          }}
+          ItemSeparatorComponent={<View style={styles.separator} />}
+          ref={topRef}
+        />
+      </View>
       <View style={{ marginVertical: 8 }} />
-      <ScrollView
-        style={styles.inputContainer}
-        contentContainerStyle={{ padding: 20 }}
-        ref={bottomRef}
-      >
+      <View style={styles.inputContainer}>
         <TextBox
           labelText={"Add new friends"}
           placeholder={"Search friends by name or tag"}
@@ -147,15 +152,33 @@ export default function Friends() {
             />
           }
         />
-        <View style={styles.separator} />
-        <User pendingAccept={"received"} friends={false} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"sent"} friends={false} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"received"} friends={true} />
-        <DashedLine marginVertical={20} />
-        <User pendingAccept={"sent"} friends={true} />
-      </ScrollView>
+        <View
+          style={[
+            styles.separator,
+            { marginVertical: 14, borderStyle: "solid" },
+          ]}
+        />
+        <FlatList
+          data={usersArray.filter((user) => user.friends === false)}
+          renderItem={({ item }) => {
+            console.log("Rendered user:", item.tag);
+            return (
+              <User
+                tag={item.tag}
+                firstName={item.firstName}
+                lastName={item.lastName}
+                email={item.email}
+                picture={item.picture}
+                pendingAccept={item.pendingAccept}
+                friends={item.friends}
+                activityData={item.activityData}
+              />
+            );
+          }}
+          ItemSeparatorComponent={<View style={styles.separator} />}
+          ref={bottomRef}
+        />
+      </View>
       {/* <View style={{ marginVertical: 4 }} /> */}
     </View>
   );
@@ -168,10 +191,12 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: Colors.backgroundGrey,
     overflow: "hidden",
+    padding: 20,
   },
   separator: {
-    marginVertical: 14,
+    marginVertical: 20,
     borderBottomWidth: StyleSheet.hairlineWidth,
     borderBottomColor: Colors.secondaryLightTransparent,
+    borderStyle: "dashed",
   },
 });

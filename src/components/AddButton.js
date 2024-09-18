@@ -1,7 +1,7 @@
 import Colors from "@assets/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
-import { Pressable, StyleSheet, View } from "react-native";
+import { Pressable, StyleSheet, View, Platform } from "react-native";
 
 export default function AddButton() {
   return (
@@ -31,6 +31,7 @@ export default function AddButton() {
 const styles = StyleSheet.create({
   container: {
     position: "absolute",
-    bottom: 8,
+    // bottom: 8,
+    bottom: Platform.OS === "ios" ? 22 : 10,
   },
 });
