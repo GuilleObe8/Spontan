@@ -84,14 +84,17 @@ const styles = StyleSheet.create({
     maxWidth: 560,
   },
   navigatorContainer: {
+    // borderColor: "pink",
+    // borderWidth: 1,
     backgroundColor: Colors.backgroundBlack,
     marginTop: 24,
     width: "92%",
     maxWidth: 560,
   },
   screenContainer: {
+    // borderColor: "orange",
+    // borderWidth: 1,
     backgroundColor: Colors.backgroundBlack,
-
     marginBottom: 44,
     paddingBottom: 4,
   },

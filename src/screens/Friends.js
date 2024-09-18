@@ -1,8 +1,13 @@
 import Colors from "@assets/Colors";
+import DashedLine from "@components/DashedLine";
+import TextBox from "@components/TextBox";
 import User from "@components/User";
-import { useState } from "react";
-import { StyleSheet, View } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useScrollToTop } from "@react-navigation/native";
+import { useRef, useState } from "react";
+import { ScrollView, StyleSheet, View } from "react-native";
+
+// TODO: KeyboardAwareScrollView with the text input
 
 usersArray = [
   {
@@ -94,52 +99,79 @@ usersArray = [
 export default function Friends() {
   const [email, setEmail] = useState("");
 
+  const topRef = useRef(null);
+  const bottomRef = useRef(null);
+  useScrollToTop(topRef);
+  useScrollToTop(bottomRef);
+
   return (
-    <KeyboardAwareScrollView
-      bounces={false} // for iOS
-      contentContainerStyle={styles.container}
+    <View
+      style={{
+        flexGrow: 1,
+        flexShrink: 1,
+      }}
     >
-      <View style={styles.inputContainer}>
+      <ScrollView
+        style={styles.inputContainer}
+        contentContainerStyle={{ padding: 20 }}
+        ref={topRef}
+      >
         <User pendingAccept={"none"} friends={false} />
-        <View style={styles.separator} />
+        <DashedLine marginVertical={20} />
         <User pendingAccept={"none"} friends={true} />
-        <View style={styles.separator} />
+        <DashedLine marginVertical={20} />
         <User pendingAccept={"received"} friends={false} />
-        <View style={styles.separator} />
+        <DashedLine marginVertical={20} />
         <User pendingAccept={"received"} friends={false} />
-        <View style={styles.separator} />
+        <DashedLine marginVertical={20} />
         <User pendingAccept={"sent"} friends={false} />
-        <View style={styles.separator} />
+        <DashedLine marginVertical={20} />
         <User pendingAccept={"received"} friends={true} />
-        <View style={styles.separator} />
+        <DashedLine marginVertical={20} />
         <User pendingAccept={"sent"} friends={true} />
+      </ScrollView>
+      <View style={{ marginVertical: 8 }} />
+      <ScrollView
+        style={styles.inputContainer}
+        contentContainerStyle={{ padding: 20 }}
+        ref={bottomRef}
+      >
+        <TextBox
+          labelText={"Add new friends"}
+          placeholder={"Search friends by name or tag"}
+          leftIcon={
+            <Ionicons
+              name="search-outline"
+              size={18}
+              color={Colors.tertiaryLight}
+            />
+          }
+        />
         <View style={styles.separator} />
-      </View>
-      {/* <View style={{ marginVertical: 8 }} />
-      <View style={styles.inputContainer}></View> */}
-      <View style={{ marginVertical: 4 }} />
-    </KeyboardAwareScrollView>
+        <User pendingAccept={"received"} friends={false} />
+        <DashedLine marginVertical={20} />
+        <User pendingAccept={"sent"} friends={false} />
+        <DashedLine marginVertical={20} />
+        <User pendingAccept={"received"} friends={true} />
+        <DashedLine marginVertical={20} />
+        <User pendingAccept={"sent"} friends={true} />
+      </ScrollView>
+      {/* <View style={{ marginVertical: 4 }} /> */}
+    </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    backgroundColor: Colors.backgroundBlack,
-    flexGrow: 1,
-    alignItems: "center",
-  },
   inputContainer: {
-    flexGrow: 1,
-    width: "100%",
-    backgroundColor: Colors.backgroundGrey,
+    flex: 1,
     borderRadius: 8,
-    padding: 20,
     elevation: 4,
+    backgroundColor: Colors.backgroundGrey,
+    overflow: "hidden",
   },
   separator: {
-    marginVertical: 20,
+    marginVertical: 14,
     borderBottomWidth: StyleSheet.hairlineWidth,
-    width: "100%",
     borderBottomColor: Colors.secondaryLightTransparent,
   },
 });

@@ -20,7 +20,7 @@ export default function Main({ scrollRef }) {
         styles.container,
         { justifyContent: activitiesCount !== 0 ? "flex-start" : "center" },
       ]}
-      showsVerticalScrollIndicator={false}
+      // showsVerticalScrollIndicator={false}
       ref={ref}
     >
       {activitiesCount !== 0 ? (
@@ -32,7 +32,7 @@ export default function Main({ scrollRef }) {
           <Activity_A type="received" />
           <View style={{ marginVertical: 8 }} />
           <Activity_B type="received" />
-          <View style={{ marginVertical: 4 }} />
+          {/* <View style={{ marginVertical: 4 }} /> */}
         </View>
       ) : (
         <Text style={styles.text}>

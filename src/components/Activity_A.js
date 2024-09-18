@@ -153,8 +153,6 @@ export default function Activity_A({
 
 const styles = StyleSheet.create({
   container: {
-    flexShrink: 1,
-    maxWidth: 560,
     borderRadius: 8,
     padding: 20,
     elevation: 4,

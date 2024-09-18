@@ -12,17 +12,28 @@ export default function TextBox({
   autoComplete = "off", // additional-name, address-line1, address-line2, birthdate-day, birthdate-full, birthdate-month, birthdate-year, cc-csc, cc-exp, cc-exp-day, cc-exp-month, cc-exp-year, cc-number, country, current-password, email, family-name, given-name, honorific-prefix, honorific-suffix, name, new-password, off, one-time-code, postal-code, street-address, tel, username
   autoCorrect = false,
   secureTextEntry = false,
+  leftIcon,
+  paddingLeft = 36,
   rightIcon,
+  paddingRight = 40,
   validate,
 }) {
   return (
     <View>
       <Text style={styles.label}>{labelText}</Text>
       <View style={styles.input}>
+        <View style={styles.leftIcon}>{leftIcon}</View>
         <TextInput
           style={
-            rightIcon
-              ? [styles.textInput, { paddingRight: 40 }]
+            rightIcon && leftIcon
+              ? [
+                  styles.textInput,
+                  { paddingLeft: paddingLeft, paddingRight: paddingRight },
+                ]
+              : leftIcon
+              ? [styles.textInput, { paddingLeft: paddingLeft }]
+              : rightIcon
+              ? [styles.textInput, { paddingRight: paddingRight }]
               : styles.textInput
           }
           // placeholder={
@@ -74,8 +85,14 @@ const styles = StyleSheet.create({
     color: Colors.secondaryLight,
     overflow: "scroll",
   },
+  leftIcon: {
+    position: "absolute",
+    left: 10,
+    zIndex: 1,
+  },
   rightIcon: {
     position: "absolute",
     right: 10,
+    zIndex: 1,
   },
 });

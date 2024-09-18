@@ -19,7 +19,7 @@ export default function Activities() {
         styles.container,
         { justifyContent: activitiesCount !== 0 ? "flex-start" : "center" },
       ]}
-      showsVerticalScrollIndicator={false}
+      // showsVerticalScrollIndicator={false}
       ref={ref}
     >
       {activitiesCount !== 0 ? (
@@ -31,7 +31,7 @@ export default function Activities() {
           <Activity_A type="sent" />
           <View style={{ marginVertical: 8 }} />
           <Activity_B type="sent" />
-          <View style={{ marginVertical: 4 }} />
+          {/* <View style={{ marginVertical: 4 }} /> */}
         </View>
       ) : (
         <View style={styles.horizontalContainer}>

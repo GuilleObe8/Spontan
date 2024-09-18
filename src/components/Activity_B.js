@@ -169,8 +169,6 @@ export default function Activity_B({
 
 const styles = StyleSheet.create({
   container: {
-    flexShrink: 1,
-    maxWidth: 560,
     borderRadius: 8,
     elevation: 4,
     backgroundColor: Colors.backgroundGrey,
