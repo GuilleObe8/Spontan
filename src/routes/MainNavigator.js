@@ -69,7 +69,7 @@ export default function MainNavigator() {
         style={styles.navigatorContainer}
         sceneContainerStyle={styles.screenContainer}
         tabBar={(props) => <TabBar {...props} marginBottom={20} />}
-        initialRouteName="friends" // main
+        initialRouteName="main"
         backBehavior="initialRoute"
       >
         <Tab.Screen name="friends" component={Friends} />

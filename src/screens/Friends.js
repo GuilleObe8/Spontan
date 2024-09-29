@@ -116,34 +116,9 @@ export default function Friends() {
       }}
     >
       <View style={styles.inputContainer}>
-        <FlatList
-          data={usersArray.filter(
-            (user) => user.friends === true || user.pendingAccept === "received"
-          )}
-          renderItem={({ item }) => {
-            console.log("Rendered user:", item.tag);
-            return (
-              <User
-                tag={item.tag}
-                firstName={item.firstName}
-                lastName={item.lastName}
-                email={item.email}
-                picture={item.picture}
-                pendingAccept={item.pendingAccept}
-                friends={item.friends}
-                activityData={item.activityData}
-              />
-            );
-          }}
-          ItemSeparatorComponent={<View style={styles.separator} />}
-          ref={topRef}
-        />
-      </View>
-      <View style={{ marginVertical: 8 }} />
-      <View style={styles.inputContainer}>
         <TextBox
           labelText={"Add new friends"}
-          placeholder={"Search friends by name or tag"}
+          placeholder={"Search users by name or tag"}
           leftIcon={
             <Ionicons
               name="search-outline"
@@ -177,6 +152,31 @@ export default function Friends() {
           }}
           ItemSeparatorComponent={<View style={styles.separator} />}
           ref={bottomRef}
+        />
+      </View>
+      <View style={{ marginVertical: 8 }} />
+      <View style={styles.inputContainer}>
+        <FlatList
+          data={usersArray.filter(
+            (user) => user.friends === true || user.pendingAccept === "received"
+          )}
+          renderItem={({ item }) => {
+            console.log("Rendered user:", item.tag);
+            return (
+              <User
+                tag={item.tag}
+                firstName={item.firstName}
+                lastName={item.lastName}
+                email={item.email}
+                picture={item.picture}
+                pendingAccept={item.pendingAccept}
+                friends={item.friends}
+                activityData={item.activityData}
+              />
+            );
+          }}
+          ItemSeparatorComponent={<View style={styles.separator} />}
+          ref={topRef}
         />
       </View>
       {/* <View style={{ marginVertical: 4 }} /> */}

@@ -1,5 +1,12 @@
 import Colors from "@assets/Colors";
+import { useEffect } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Animated, {
+  interpolate,
+  useAnimatedStyle,
+  useSharedValue,
+  withSpring,
+} from "react-native-reanimated";
 
 export default function TabBar({ state, navigation, marginBottom }) {
   return (
@@ -9,6 +16,22 @@ export default function TabBar({ state, navigation, marginBottom }) {
       >
         {state.routes.map((route, index) => {
           const isFocused = state.index === index;
+
+          const scale = useSharedValue(0);
+
+          useEffect(() => {
+            scale.value = withSpring(
+              typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused,
+              { duration: 150, dampingRatio: 0.8 }
+            );
+          }, [scale, isFocused]);
+
+          const animatedTextStyle = useAnimatedStyle(() => {
+            const scaleValue = interpolate(scale.value, [0, 1], [0.9, 1]);
+            return {
+              transform: [{ scale: scaleValue }],
+            };
+          });
 
           const onPress = () => {
             const event = navigation.emit({
@@ -29,20 +52,25 @@ export default function TabBar({ state, navigation, marginBottom }) {
               accessibilityState={isFocused ? { selected: true } : {}}
               onPress={onPress}
             >
-              <Text
+              <Animated.View
                 style={[
-                  styles.text,
-                  {
-                    // fontSize: isFocused ? 23.5 : 24,
-                    fontFamily: isFocused
-                      ? "HelveticaNeue-MediumItalic"
-                      : "HelveticaNeue-Italic",
-                    // textDecorationLine: isFocused ? "underline" : "none",
-                  },
+                  animatedTextStyle,
+                  { backgroundColor: Colors.backgroundBlack },
                 ]}
               >
-                {route.name}
-              </Text>
+                <Text
+                  style={[
+                    styles.text,
+                    {
+                      fontFamily: isFocused
+                        ? "HelveticaNeue-MediumItalic"
+                        : "HelveticaNeue-Italic",
+                    },
+                  ]}
+                >
+                  {route.name}
+                </Text>
+              </Animated.View>
             </Pressable>
           );
         })}
@@ -70,13 +98,14 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-Italic",
-    fontSize: 26,
+    fontSize: 25,
+    paddingHorizontal: 5,
   },
   hiddenText: {
     color: Colors.backgroundBlack,
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-Italic",
-    fontSize: 26,
+    fontSize: 25,
   },
 });
