@@ -23,20 +23,20 @@ export default function MainNavigator() {
   const scrollRef = useRef(null);
 
   return (
-    <KeyboardAwareScrollView
-      bounces={false} // for iOS
-      // enableOnAndroid={true} // for Android
-      contentContainerStyle={[
-        styles.container,
-        {
-          paddingTop: insets.top,
-          paddingBottom: insets.bottom,
-          paddingLeft: insets.left,
-          paddingRight: insets.right,
-        },
-      ]}
-    >
-      {/* <View
+    // <KeyboardAwareScrollView
+    //   bounces={false} // for iOS
+    //   // enableOnAndroid={true} // for Android
+    //   contentContainerStyle={[
+    //     styles.container,
+    //     {
+    //       paddingTop: insets.top,
+    //       paddingBottom: insets.bottom,
+    //       paddingLeft: insets.left,
+    //       paddingRight: insets.right,
+    //     },
+    //   ]}
+    // >
+    <View
       style={[
         styles.container,
         {
@@ -46,7 +46,7 @@ export default function MainNavigator() {
           paddingRight: insets.right,
         },
       ]}
-    > */}
+    >
       <View style={styles.topContainer}>
         <Pressable style={{ flex: 1 }}>
           <Ionicons name="menu" size={26} color={Colors.secondaryLight} />
@@ -80,8 +80,8 @@ export default function MainNavigator() {
         <Tab.Screen name="activities" component={Activities} />
       </Tab.Navigator>
       <AddButton />
-      {/* </View> */}
-    </KeyboardAwareScrollView>
+    </View>
+    //  </KeyboardAwareScrollView>
   );
 }
 const styles = StyleSheet.create({

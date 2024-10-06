@@ -1,6 +1,7 @@
 import Colors from "@assets/Colors";
 import { NavigationContainer } from "@react-navigation/native";
 import MainNavigator from "@routes/MainNavigator";
+import AddFriends from "@screens/AddFriends";
 import ForgotPassword from "@screens/ForgotPassword";
 import Login from "@screens/Login";
 import Register from "@screens/Register";
@@ -50,6 +51,7 @@ export default function App() {
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
           <MainNavigator />
+          {/* <AddFriends /> */}
         </NavigationContainer>
       </SafeAreaProvider>
     </View>

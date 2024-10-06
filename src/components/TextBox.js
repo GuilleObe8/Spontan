@@ -20,7 +20,7 @@ export default function TextBox({
 }) {
   return (
     <View>
-      <Text style={styles.label}>{labelText}</Text>
+      {labelText ? <Text style={styles.label}>{labelText}</Text> : null}
       <View style={styles.input}>
         <View style={styles.leftIcon}>{leftIcon}</View>
         <TextInput
@@ -78,7 +78,7 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     backgroundColor: Colors.textBoxGrey,
     paddingHorizontal: 10,
-    fontSize: 15,
+    fontSize: 13,
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-LightItalic",

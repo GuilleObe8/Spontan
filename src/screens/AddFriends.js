@@ -2,9 +2,9 @@ import Colors from "@assets/Colors";
 import TextBox from "@components/TextBox";
 import User from "@components/User";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useScrollToTop } from "@react-navigation/native";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const usersData = [
   {
@@ -93,7 +93,9 @@ const usersData = [
   },
 ];
 
-export default function Friends() {
+export default function AddFriends() {
+  const insets = useSafeAreaInsets();
+
   const [usersArray, setUsersArray] = useState(usersData);
   const updateUserState = ({ tag, prop, value }) => {
     setUsersArray(
@@ -103,70 +105,89 @@ export default function Friends() {
     );
   };
 
-  const ref = useRef(null);
-  useScrollToTop(ref);
-
   return (
-    <View style={styles.container}>
-      <View style={styles.horizontalContainer}>
-        <Text style={styles.mainText}>Current friends</Text>
-        <Pressable onPress={() => {}}>
-          <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
-            <Text style={styles.secondaryText}>Add new friends</Text>
-            <Ionicons // only display if friends request
-              name="ellipse"
-              size={6}
-              color={Colors.pastelRed}
+    <View
+      style={[
+        styles.container,
+        {
+          paddingTop: insets.top,
+          paddingBottom: insets.bottom,
+          paddingLeft: insets.left,
+          paddingRight: insets.right,
+        },
+      ]}
+    >
+      <View style={styles.inputContainer}>
+        <View style={styles.horizontalContainer}>
+          <Text style={styles.mainText}>Add new friends</Text>
+          <Pressable onPress={() => {}}>
+            <View
+              style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
+            >
+              <Ionicons
+                name="chevron-forward-outline"
+                size={24}
+                color={Colors.secondaryLight}
+              />
+            </View>
+          </Pressable>
+        </View>
+        <TextBox
+          placeholder={"Search users by name or tag"}
+          leftIcon={
+            <Ionicons
+              name="search-outline"
+              size={15}
+              color={Colors.tertiaryLight}
             />
-          </View>
-        </Pressable>
+          }
+        />
+        <View
+          style={[
+            styles.separator,
+            { marginVertical: 14, borderStyle: "solid" },
+          ]}
+        />
+        <FlatList
+          data={usersArray.filter((user) => user.friends === false)}
+          // data={usersArray}
+          renderItem={({ item }) => {
+            return (
+              <User
+                tag={item.tag}
+                firstName={item.firstName}
+                lastName={item.lastName}
+                email={item.email}
+                picture={item.picture}
+                pendingAccept={item.pendingAccept}
+                friends={item.friends}
+                activityData={item.activityData}
+              />
+            );
+          }}
+          ItemSeparatorComponent={<View style={styles.separator} />}
+        />
       </View>
-      <TextBox
-        placeholder={"Search users by name or tag"}
-        leftIcon={
-          <Ionicons
-            name="search-outline"
-            size={15}
-            color={Colors.tertiaryLight}
-          />
-        }
-      />
-      <View
-        style={[styles.separator, { marginVertical: 14, borderStyle: "solid" }]}
-      />
-      <FlatList
-        data={usersArray.filter((user) => user.friends === true)}
-        // data={usersArray}
-        renderItem={({ item }) => {
-          return (
-            <User
-              tag={item.tag}
-              firstName={item.firstName}
-              lastName={item.lastName}
-              email={item.email}
-              picture={item.picture}
-              pendingAccept={item.pendingAccept}
-              friends={item.friends}
-              activityData={item.activityData}
-            />
-          );
-        }}
-        ItemSeparatorComponent={<View style={styles.separator} />}
-        ref={ref}
-      />
     </View>
-    // <View style={{ marginVertical: 4 }} />
   );
 }
 
 const styles = StyleSheet.create({
   container: {
+    backgroundColor: Colors.backgroundBlack,
+    flexGrow: 1,
+    alignItems: "center",
+  },
+  inputContainer: {
     flex: 1,
-    borderRadius: 8,
-    elevation: 4,
     backgroundColor: Colors.backgroundGrey,
-    overflow: "hidden",
+    width: "92%",
+    maxWidth: 560,
+    borderRadius: 8,
     padding: 20,
+    marginVertical: 16, // "4%"
+    elevation: 4,
+    overflow: "hidden",
   },
   horizontalContainer: {
     flexDirection: "row",

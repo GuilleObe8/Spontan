@@ -98,7 +98,7 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-Italic",
-    fontSize: 25,
+    fontSize: 28,
     paddingHorizontal: 5,
   },
   hiddenText: {
@@ -106,6 +106,6 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     textAlignVertical: "center",
     fontFamily: "HelveticaNeue-Italic",
-    fontSize: 25,
+    fontSize: 28,
   },
 });

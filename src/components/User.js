@@ -48,7 +48,7 @@ export default function User({
       {friendsState &&
         acceptState === "none" && ( // Current friend
           <CloseButton
-            size={14}
+            size={16}
             onPress={() => {
               setFriendsState(false);
               setAcceptState("none");
