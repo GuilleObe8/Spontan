@@ -4,49 +4,72 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 
 export default function CheckBox({
   text,
+  description,
   textColor,
+  descriptionColor,
   textSize,
+  descriptionSize,
   textFont,
+  descriptionFont,
   value,
   onValueChange,
-  color,
-  marginRight = 10,
+  color = Colors.textBoxGrey,
+  marginLeft = 10,
+  descriptionMarginTop = 4,
 }) {
   return (
-    <View style={styles.container}>
-      <Pressable style={{ marginRight: marginRight }} onPress={onValueChange}>
-        {!value ? (
-          <Ionicons name="square" size={20} color={color} />
-        ) : (
-          <View style={{ flexDirection: "row" }}>
+    <View>
+      <View style={styles.horizontalContainer}>
+        <Pressable onPress={onValueChange}>
+          {!value ? (
             <Ionicons name="square" size={20} color={color} />
-            <View style={{ position: "absolute", left: 0 }}>
-              <Ionicons
-                name="checkmark"
-                size={20}
-                color={Colors.secondaryLight}
-              />
+          ) : (
+            <View style={{ flexDirection: "row" }}>
+              <Ionicons name="square" size={20} color={color} />
+              <View style={{ position: "absolute", left: 0 }}>
+                <Ionicons
+                  name="checkmark"
+                  size={20}
+                  color={Colors.secondaryLight}
+                />
+              </View>
             </View>
-          </View>
-        )}
-      </Pressable>
-      <Text
-        style={{
-          color: textColor,
-          fontSize: textSize,
-          fontFamily: textFont,
-          includeFontPadding: false,
-          textAlignVertical: "center",
-        }}
-      >
-        {text}
-      </Text>
+          )}
+        </Pressable>
+        <Text
+          style={{
+            marginLeft: marginLeft,
+            color: textColor,
+            fontSize: textSize,
+            fontFamily: textFont,
+            includeFontPadding: false,
+            textAlignVertical: "center",
+          }}
+        >
+          {text}
+        </Text>
+      </View>
+      {description ? (
+        <Text
+          style={{
+            marginLeft: marginLeft + 20,
+            marginTop: descriptionMarginTop,
+            color: descriptionColor,
+            fontSize: descriptionSize,
+            fontFamily: descriptionFont,
+            includeFontPadding: false,
+            textAlignVertical: "center",
+          }}
+        >
+          {description}
+        </Text>
+      ) : null}
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
+  horizontalContainer: {
     flexDirection: "row",
     alignItems: "center",
   },

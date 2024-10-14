@@ -90,7 +90,6 @@ export default function Login() {
         />
         <View style={{ marginVertical: 8 }} />
         <CheckBox
-          color={Colors.textBoxGrey}
           text={"Remember me"}
           textSize={14}
           textColor={Colors.secondaryLight}

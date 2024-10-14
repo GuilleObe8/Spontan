@@ -7,12 +7,14 @@ export default function RoundedTextButton({
   text,
   icon,
   textSize = 15,
+  textColor = Colors.backgroundBlack,
   paddingHorizontal = 26,
+  elevation = 3,
 }) {
   return (
     <Pressable
       onPress={onPress}
-      style={[styles.button, { backgroundColor: color }]}
+      style={{ borderRadius: 16, elevation: elevation, backgroundColor: color }}
     >
       <View style={styles.container}>
         <Text
@@ -22,6 +24,7 @@ export default function RoundedTextButton({
               paddingHorizontal: paddingHorizontal,
               fontSize: textSize,
               lineHeight: 2 * textSize,
+              color: textColor,
             },
           ]}
         >
@@ -34,16 +37,11 @@ export default function RoundedTextButton({
 }
 
 const styles = StyleSheet.create({
-  button: {
-    borderRadius: 16,
-    elevation: 3,
-  },
   container: {
     justifyContent: "center",
     alignItems: "center",
   },
   buttonText: {
-    color: Colors.backgroundBlack,
     fontFamily: "HelveticaNeue-BoldItalic",
     includeFontPadding: false,
     textAlignVertical: "center",

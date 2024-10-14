@@ -2,9 +2,11 @@ import Colors from "@assets/Colors";
 import { NavigationContainer } from "@react-navigation/native";
 import MainNavigator from "@routes/MainNavigator";
 import AddFriends from "@screens/AddFriends";
+import EditProfile from "@screens/EditProfile";
 import ForgotPassword from "@screens/ForgotPassword";
 import Login from "@screens/Login";
 import Register from "@screens/Register";
+import Settings from "@screens/Settings";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
 import { StatusBar } from "expo-status-bar";
@@ -52,6 +54,8 @@ export default function App() {
           {/* <ForgotPassword /> */}
           <MainNavigator />
           {/* <AddFriends /> */}
+          {/* <Settings /> */}
+          {/* <EditProfile /> */}
         </NavigationContainer>
       </SafeAreaProvider>
     </View>

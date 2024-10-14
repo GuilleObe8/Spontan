@@ -16,6 +16,8 @@ export default function User({
   activityData = {
     numberOfInvites: 3,
     numberOfAccepted: 1,
+    numberOfProposed: 0,
+    favCategory: "🥊 Work out",
     totalResponseTime: 232, // seconds
   },
 }) {

@@ -18,6 +18,8 @@ const usersData = [
     activityData: {
       numberOfInvites: 3,
       numberOfAccepted: 1,
+      numberOfProposed: 0,
+      favCategory: "🥊 Work out",
       totalResponseTime: 232, // seconds
     },
   },
@@ -32,6 +34,7 @@ const usersData = [
     activityData: {
       numberOfInvites: 1,
       numberOfAccepted: 0,
+      numberOfProposed: 1,
       totalResponseTime: 14, // seconds
     },
   },
@@ -46,6 +49,7 @@ const usersData = [
     activityData: {
       numberOfInvites: 7,
       numberOfAccepted: 4,
+      numberOfProposed: 3,
       totalResponseTime: 183, // seconds
     },
   },
@@ -60,6 +64,7 @@ const usersData = [
     activityData: {
       numberOfInvites: 2,
       numberOfAccepted: 2,
+      numberOfProposed: 0,
       totalResponseTime: 37, // seconds
     },
   },
@@ -74,6 +79,7 @@ const usersData = [
     activityData: {
       numberOfInvites: 6,
       numberOfAccepted: 2,
+      numberOfProposed: 3,
       totalResponseTime: 476, // seconds
     },
   },
@@ -88,6 +94,7 @@ const usersData = [
     activityData: {
       numberOfInvites: 3,
       numberOfAccepted: 2,
+      numberOfProposed: 1,
       totalResponseTime: 65, // seconds
     },
   },

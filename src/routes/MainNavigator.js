@@ -48,11 +48,16 @@ export default function MainNavigator() {
       ]}
     >
       <View style={styles.topContainer}>
-        <Pressable style={{ flex: 1 }}>
+        <Pressable
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        >
           <Ionicons name="menu" size={26} color={Colors.secondaryLight} />
         </Pressable>
         <Pressable
-          style={{ position: "center" }}
           onPress={() => {
             navigation.navigate("main");
             scrollRef.current.scrollTo({
@@ -63,7 +68,9 @@ export default function MainNavigator() {
         >
           <Logo marginTop={0} />
         </Pressable>
-        <View style={{ flex: 1 }} />
+        <View
+          style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
+        />
       </View>
       <Tab.Navigator
         style={styles.navigatorContainer}
