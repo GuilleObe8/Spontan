@@ -10,7 +10,8 @@ export default function ProgressIndicator({
   answeredPeople,
   numPeople,
 }) {
-  const progressWidth = (answeredPeople * width) / numPeople;
+  const progressWidth =
+    answeredPeople <= numPeople ? (answeredPeople * width) / numPeople : null;
 
   return (
     <Pressable

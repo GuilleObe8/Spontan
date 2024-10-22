@@ -26,7 +26,7 @@ export default function Activities() {
         <View style={{ alignItems: "center" }}>
           <Activity_A type="sent" />
           <View style={{ marginVertical: 8 }} />
-          <Activity_A type="sent" width="92%" />
+          <Activity_A type="sent" />
           <View style={{ marginVertical: 8 }} />
           <Activity_A type="sent" />
           <View style={{ marginVertical: 8 }} />

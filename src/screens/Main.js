@@ -27,7 +27,7 @@ export default function Main({ scrollRef }) {
         <View style={{ alignItems: "center" }}>
           <Activity_A type="received" />
           <View style={{ marginVertical: 8 }} />
-          <Activity_A type="received" width="92%" />
+          <Activity_A type="received" />
           <View style={{ marginVertical: 8 }} />
           <Activity_A type="received" />
           <View style={{ marginVertical: 8 }} />

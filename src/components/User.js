@@ -1,9 +1,9 @@
-import { View, StyleSheet, Text } from "react-native";
-import Picture from "./Picture";
-import CloseButton from "./CloseButton";
-import RoundedTextButton from "./RoundedTextButton";
 import Colors from "@assets/Colors";
-import { Fragment, useState } from "react";
+import { useState } from "react";
+import { StyleSheet, Text, View } from "react-native";
+import CloseButton from "./CloseButton";
+import Picture from "./Picture";
+import RoundedTextButton from "./RoundedTextButton";
 
 export default function User({
   tag = "anna",
@@ -113,6 +113,72 @@ export default function User({
             Error!
           </Text>
         )}
+    </View>
+  );
+}
+
+export function InviteUser({
+  tag = "anna",
+  firstName = "Anna",
+  lastName = "Collin",
+  email = "anna@collin.com",
+  picture = "", // URL to database
+  invited = false,
+  activityData = {
+    numberOfInvites: 3,
+    numberOfAccepted: 1,
+    numberOfProposed: 0,
+    favCategory: "🥊 Work out",
+    totalResponseTime: 232, // seconds
+  },
+}) {
+  const [invitedState, setInvitedState] = useState(invited);
+
+  return (
+    <View
+      style={[styles.horizontalContainer, { justifyContent: "space-between" }]}
+    >
+      <View style={[styles.horizontalContainer, { gap: 10 }]}>
+        <Picture />
+        <View style={{ gap: 4 }}>
+          <Text
+            style={[
+              styles.text,
+              {
+                fontFamily: "HelveticaNeue-Medium",
+                color: Colors.mainLight,
+              },
+            ]}
+          >
+            {tag}
+          </Text>
+          <Text style={styles.text}>
+            {firstName} {lastName}
+          </Text>
+        </View>
+      </View>
+      {!invitedState && ( // Not invited friend
+        <RoundedTextButton
+          textSize={12}
+          paddingHorizontal={16}
+          onPress={() => {
+            setInvitedState(!invitedState);
+          }}
+          color={Colors.pastelPurple}
+          text={"Invite"}
+        />
+      )}
+      {invitedState && ( // Invited friend
+        <RoundedTextButton
+          textSize={12}
+          paddingHorizontal={16}
+          onPress={() => {
+            setInvitedState(!invitedState);
+          }}
+          color={Colors.lightGrey}
+          text={"Delete"}
+        />
+      )}
     </View>
   );
 }

@@ -1,11 +1,15 @@
 import Colors from "@assets/Colors";
 import { NavigationContainer } from "@react-navigation/native";
 import MainNavigator from "@routes/MainNavigator";
+import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
 import EditProfile from "@screens/EditProfile";
 import ForgotPassword from "@screens/ForgotPassword";
+import InviteFriends from "@screens/InviteFriends";
 import Login from "@screens/Login";
+import ProfileDetail from "@screens/ProfileDetail";
 import Register from "@screens/Register";
+import SendActivity from "@screens/SendActivity";
 import Settings from "@screens/Settings";
 import { useFonts } from "expo-font";
 import * as SplashScreen from "expo-splash-screen";
@@ -52,10 +56,14 @@ export default function App() {
           {/* <Login /> */}
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
-          <MainNavigator />
+          {/* <MainNavigator /> */}
           {/* <AddFriends /> */}
           {/* <Settings /> */}
           {/* <EditProfile /> */}
+          {/* <InviteFriends /> */}
+          {/* <ActivityDetail type={"received"} /> */}
+          {/* <ProfileDetail /> */}
+          <SendActivity />
         </NavigationContainer>
       </SafeAreaProvider>
     </View>

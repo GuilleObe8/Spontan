@@ -54,26 +54,26 @@ export default function Profile({
           activityData.numberOfInvites
         )}
       </Text>
-      <Text style={[styles.text, { fontSize: 16, marginTop: 14 }]}>
+      <Text style={[styles.text, { fontSize: 16, marginTop: 16 }]}>
         Attended activities in the last 30 days:
       </Text>
       <Text style={[styles.text, { color: Colors.pastelGreen, marginTop: 2 }]}>
         {activityData.numberOfAccepted}/{activityData.numberOfInvites}
       </Text>
-      <Text style={[styles.text, { fontSize: 16, marginTop: 14 }]}>
+      <Text style={[styles.text, { fontSize: 16, marginTop: 16 }]}>
         Proposed activities in the last 30 days:
       </Text>
       <Text style={[styles.text, { color: Colors.pastelBlue, marginTop: 2 }]}>
         {activityData.numberOfProposed}
       </Text>
-      <Text style={[styles.text, { fontSize: 16, marginTop: 14 }]}>
+      <Text style={[styles.text, { fontSize: 16, marginTop: 16 }]}>
         Favorite category:
       </Text>
       <Text style={[styles.text, { color: Colors.pastelPurple, marginTop: 2 }]}>
         {activityData.favCategory}
       </Text>
       {type === "other" ? (
-        <View style={{ alignItems: "center", marginTop: 14, gap: 6 }}>
+        <View style={{ alignItems: "center", marginTop: 16, gap: 10 }}>
           <Text style={[styles.text, { fontSize: 16 }]}>
             Friends in common:
           </Text>
@@ -85,7 +85,10 @@ export default function Profile({
             <CommonFriend />
           </View>
           <Text
-            style={[styles.text, { fontSize: 14, color: Colors.pastelPink }]}
+            style={[
+              styles.text,
+              { fontSize: 13, color: Colors.secondaryLight },
+            ]}
           >
             and 3 others {/* and 3 more? */}
           </Text>
@@ -99,7 +102,7 @@ function CommonFriend() {
   return (
     <View style={{ alignItems: "center", gap: 1 }}>
       <Picture size={42} />
-      <Text style={[styles.text, { fontSize: 14 }]}>tag</Text>
+      <Text style={[styles.text, { fontSize: 13 }]}>tag</Text>
     </View>
   );
 }

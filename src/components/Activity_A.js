@@ -27,7 +27,7 @@ export default function Activity_A({
 
   return (
     <View style={[styles.container, { width: width }]}>
-      <View style={styles.topView}>
+      <View style={styles.topInfoView}>
         {type === "received" ? (
           <Text style={styles.topText}>{tag}</Text>
         ) : type === "sent" ? (
@@ -158,7 +158,7 @@ const styles = StyleSheet.create({
     elevation: 4,
     backgroundColor: Colors.backgroundGrey,
   },
-  topView: {
+  topInfoView: {
     flexDirection: "row",
     justifyContent: "space-between",
     marginBottom: 10,
