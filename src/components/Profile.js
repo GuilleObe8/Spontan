@@ -14,7 +14,7 @@ export default function Profile({
     numberOfInvites: 3,
     numberOfAccepted: 1,
     numberOfProposed: 0,
-    favCategory: "🥊 Work out",
+    favCategory: "Work out",
     totalResponseTime: 232, // seconds
   },
 }) {

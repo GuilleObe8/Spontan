@@ -128,15 +128,11 @@ export default function AddFriends() {
         <View style={styles.horizontalContainer}>
           <Text style={styles.mainText}>Add new friends</Text>
           <Pressable onPress={() => {}}>
-            <View
-              style={{ flexDirection: "row", alignItems: "center", gap: 5 }}
-            >
-              <Ionicons
-                name="chevron-forward-outline"
-                size={24}
-                color={Colors.secondaryLight}
-              />
-            </View>
+            <Ionicons
+              name="chevron-forward-outline"
+              size={24}
+              color={Colors.secondaryLight}
+            />
           </Pressable>
         </View>
         <TextBox

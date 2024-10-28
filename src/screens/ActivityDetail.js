@@ -77,7 +77,7 @@ export default function ActivityDetail({
             {"\n"}proposed an activity!
           </Text>
         </View>
-        <View style={[styles.separator, { borderStyle: "dashed" }]} />
+        <View style={styles.separator} />
 
         <View>
           <View style={styles.topInfoView}>

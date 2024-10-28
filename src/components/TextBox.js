@@ -17,6 +17,8 @@ export default function TextBox({
   rightIcon,
   paddingRight = 40,
   validate,
+  width,
+  maxLength,
 }) {
   return (
     <View>
@@ -28,13 +30,17 @@ export default function TextBox({
             rightIcon && leftIcon
               ? [
                   styles.textInput,
-                  { paddingLeft: paddingLeft, paddingRight: paddingRight },
+                  {
+                    paddingLeft: paddingLeft,
+                    paddingRight: paddingRight,
+                    width: width,
+                  },
                 ]
               : leftIcon
-              ? [styles.textInput, { paddingLeft: paddingLeft }]
+              ? [styles.textInput, { paddingLeft: paddingLeft, width: width }]
               : rightIcon
-              ? [styles.textInput, { paddingRight: paddingRight }]
-              : styles.textInput
+              ? [styles.textInput, { paddingRight: paddingRight, width: width }]
+              : [styles.textInput, { width: width }]
           }
           // placeholder={
           //   placeholder
@@ -53,6 +59,7 @@ export default function TextBox({
           autoCorrect={autoCorrect}
           secureTextEntry={secureTextEntry}
           onEndEditing={validate} // When finish editing (when click outside the TextInput or press enter), use the function validate to check if the value introduced follows the expected format
+          maxLength={maxLength}
         />
         <View style={styles.rightIcon}>{rightIcon}</View>
       </View>

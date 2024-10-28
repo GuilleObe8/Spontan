@@ -4,7 +4,7 @@ import TextBox from "@components/TextBox";
 import { InviteUser } from "@components/User";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { FlatList, StyleSheet, Text, View } from "react-native";
+import { FlatList, StyleSheet, Text, View, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // TODO: - make slide up work and display on top of MainNavigator
@@ -149,7 +149,16 @@ export default function InviteFriends() {
 
       <View style={styles.inputContainer}>
         <View style={styles.slider} />
-        <Text style={styles.mainText}>Invite friends</Text>
+        <View style={[styles.horizontalContainer, { marginBottom: 10 }]}>
+          <Text style={styles.mainText}>Invite friends</Text>
+          <Pressable onPress={() => {}}>
+            <Ionicons
+              name="chevron-forward-outline"
+              size={24}
+              color={Colors.secondaryLight}
+            />
+          </Pressable>
+        </View>
         <TextBox
           placeholder={"Search users by name or tag"}
           leftIcon={
@@ -223,12 +232,16 @@ const styles = StyleSheet.create({
     marginBottom: 20,
   },
   mainText: {
-    marginBottom: 10,
     color: Colors.mainLight,
     fontFamily: "HelveticaNeue-BoldItalic",
     fontSize: 24,
     includeFontPadding: false,
     textAlignVertical: "center",
+  },
+  horizontalContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
   },
   separator: {
     marginVertical: 16,
