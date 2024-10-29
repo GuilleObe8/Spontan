@@ -30,7 +30,10 @@ export default function Login() {
 
   const [isChecked, setChecked] = useState(false);
 
-  let screenWidth = Dimensions.get("window").width;
+  let screenWidth =
+    Dimensions.get("window").width > 560
+      ? 560 * 1.08
+      : Dimensions.get("window").width;
 
   return (
     <KeyboardAwareScrollView

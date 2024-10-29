@@ -52,7 +52,7 @@ export default function EditProfile() {
         >
           <Ionicons
             name="close-outline"
-            size={26}
+            size={24}
             color={Colors.secondaryLight}
           />
         </Pressable>
@@ -62,7 +62,7 @@ export default function EditProfile() {
         >
           <Ionicons
             name="checkmark-outline"
-            size={26}
+            size={24}
             color={Colors.secondaryLight}
           />
         </Pressable>

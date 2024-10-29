@@ -26,7 +26,7 @@ export default function ProfileDetail() {
       <View style={styles.topContainer}>
         <Ionicons
           name="menu"
-          size={26}
+          size={24}
           color={Colors.secondaryLight}
           style={{
             flex: 1,

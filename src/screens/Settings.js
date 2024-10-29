@@ -36,7 +36,7 @@ export default function Settings() {
         >
           <Ionicons
             name="arrow-forward-outline"
-            size={26}
+            size={24}
             color={Colors.secondaryLight}
           />
         </Pressable>

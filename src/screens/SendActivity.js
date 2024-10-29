@@ -1,4 +1,5 @@
 import Colors from "@assets/Colors";
+import AddButton from "@components/AddButton";
 import CheckBox from "@components/CheckBox";
 import Logo from "@components/Logo";
 import Picture from "@components/Picture";
@@ -86,7 +87,7 @@ export default function SendActivity() {
       <View style={styles.topContainer}>
         <Ionicons
           name="menu"
-          size={26}
+          size={24}
           color={Colors.secondaryLight}
           style={{
             flex: 1,
@@ -343,7 +344,11 @@ export default function SendActivity() {
           Invite friends
         </Text>
         <View style={{ flexDirection: "row", gap: 8 }}>
-          <AddFriendsButton />
+          <AddButton
+            circleSize={42}
+            crossSize={28}
+            crossColor={Colors.backgroundGrey}
+          />
           <AddedFriend />
           <AddedFriend />
           <AddedFriend />
@@ -401,34 +406,6 @@ function AddedFriend() {
       >
         tag
       </Text>
-    </View>
-  );
-}
-
-function AddFriendsButton({ size = 41 }) {
-  return (
-    <View>
-      <Pressable>
-        <View
-          style={{
-            width: size,
-            height: size,
-            borderRadius: size / 2,
-            backgroundColor: Colors.pastelPurple,
-            zIndex: 0,
-          }}
-        />
-        <Ionicons
-          name="add-outline"
-          size={size}
-          color={Colors.backgroundGrey}
-          style={{
-            position: "absolute",
-            bottom: 0,
-            left: 0,
-          }}
-        />
-      </Pressable>
     </View>
   );
 }

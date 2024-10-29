@@ -55,7 +55,7 @@ export default function MainNavigator() {
             justifyContent: "flex-start",
           }}
         >
-          <Ionicons name="menu" size={26} color={Colors.secondaryLight} />
+          <Ionicons name="menu" size={24} color={Colors.secondaryLight} />
         </Pressable>
         <Pressable
           onPress={() => {
@@ -86,7 +86,13 @@ export default function MainNavigator() {
         />
         <Tab.Screen name="activities" component={Activities} />
       </Tab.Navigator>
-      <AddButton />
+      <AddButton
+        style={{
+          position: "absolute",
+          // bottom: 8,
+          bottom: Platform.OS === "ios" ? 28 : 16,
+        }}
+      />
     </View>
     //  </KeyboardAwareScrollView>
   );

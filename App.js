@@ -1,5 +1,8 @@
+import "./gesture-handler";
+
 import Colors from "@assets/Colors";
 import { NavigationContainer } from "@react-navigation/native";
+import LoginNavigator from "@routes/LoginNavigator";
 import MainNavigator from "@routes/MainNavigator";
 import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
@@ -53,6 +56,8 @@ export default function App() {
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
         <NavigationContainer>
+          <LoginNavigator />
+
           {/* <Login /> */}
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
@@ -63,7 +68,7 @@ export default function App() {
           {/* <InviteFriends /> */}
           {/* <ActivityDetail type={"received"} /> */}
           {/* <ProfileDetail /> */}
-          <SendActivity />
+          {/* <SendActivity /> */}
         </NavigationContainer>
       </SafeAreaProvider>
     </View>

@@ -132,7 +132,7 @@ export default function InviteFriends() {
       <View style={styles.topContainer}>
         <Ionicons
           name="menu"
-          size={26}
+          size={24}
           color={Colors.secondaryLight}
           style={{
             flex: 1,
@@ -153,7 +153,7 @@ export default function InviteFriends() {
           <Text style={styles.mainText}>Invite friends</Text>
           <Pressable onPress={() => {}}>
             <Ionicons
-              name="chevron-forward-outline"
+              name="checkmark-outline"
               size={24}
               color={Colors.secondaryLight}
             />

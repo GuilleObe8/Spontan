@@ -130,6 +130,7 @@ export default function AddFriends() {
           <Pressable onPress={() => {}}>
             <Ionicons
               name="chevron-forward-outline"
+              // name="arrow-forward-outline"
               size={24}
               color={Colors.secondaryLight}
             />
