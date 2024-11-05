@@ -7,10 +7,11 @@ export default function AddButton({
   crossSize = 38,
   crossColor = Colors.backgroundBlack,
   style = {},
+  onPress,
 }) {
   return (
     <View style={style}>
-      <Pressable>
+      <Pressable onPress={onPress}>
         <View
           style={{
             width: circleSize,

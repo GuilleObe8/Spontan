@@ -6,6 +6,8 @@ import { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
+// TODO: - Change so it slides from the side
+
 const usersData = [
   {
     tag: "anna",
@@ -19,7 +21,7 @@ const usersData = [
       numberOfInvites: 3,
       numberOfAccepted: 1,
       numberOfProposed: 0,
-      favCategory: "🥊 Work out",
+      favCategory: "Sport",
       totalResponseTime: 232, // seconds
     },
   },
@@ -35,6 +37,7 @@ const usersData = [
       numberOfInvites: 1,
       numberOfAccepted: 0,
       numberOfProposed: 1,
+      favCategory: "Nature",
       totalResponseTime: 14, // seconds
     },
   },
@@ -50,6 +53,7 @@ const usersData = [
       numberOfInvites: 7,
       numberOfAccepted: 4,
       numberOfProposed: 3,
+      favCategory: "Food",
       totalResponseTime: 183, // seconds
     },
   },
@@ -65,6 +69,7 @@ const usersData = [
       numberOfInvites: 2,
       numberOfAccepted: 2,
       numberOfProposed: 0,
+      favCategory: "Drinks",
       totalResponseTime: 37, // seconds
     },
   },
@@ -80,6 +85,7 @@ const usersData = [
       numberOfInvites: 6,
       numberOfAccepted: 2,
       numberOfProposed: 3,
+      favCategory: "Cinema",
       totalResponseTime: 476, // seconds
     },
   },
@@ -95,12 +101,13 @@ const usersData = [
       numberOfInvites: 3,
       numberOfAccepted: 2,
       numberOfProposed: 1,
+      favCategory: "Sport",
       totalResponseTime: 65, // seconds
     },
   },
 ];
 
-export default function AddFriends() {
+export default function AddFriends({ navigation }) {
   const insets = useSafeAreaInsets();
 
   const [usersArray, setUsersArray] = useState(usersData);
@@ -127,7 +134,11 @@ export default function AddFriends() {
       <View style={styles.inputContainer}>
         <View style={styles.horizontalContainer}>
           <Text style={styles.mainText}>Add new friends</Text>
-          <Pressable onPress={() => {}}>
+          <Pressable
+            onPress={() => {
+              navigation.navigate("topTabNavigator");
+            }}
+          >
             <Ionicons
               name="chevron-forward-outline"
               // name="arrow-forward-outline"

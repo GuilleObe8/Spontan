@@ -1,31 +1,33 @@
 import Colors from "@assets/Colors";
 import Logo from "@components/Logo";
 import Picture from "@components/Picture";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
 import ProgressIndicator from "@components/ProgressIndicator";
 import RoundedTextButton from "@components/RoundedTextButton";
+import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState } from "react";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of MainNavigator
+// TODO: - make slide up work and display on top of TopTabNavigator
+//       - add a timetable prop (?)
 
-export default function ActivityDetail({
-  type, // "received", "sent"
-  tag = "@tag",
-  firstName = "Anna",
-  lastName = "Collin",
-  category = "category",
-  remainingTime = "00:00",
-  title = "Gym",
-  description = "Join me at the gym tomorrow at 15:00!",
-  date = "Tomorrow",
-  activityTime = "15:00 - 16:00",
-  place = "SATS Solna",
-  timetable,
-  answeredPeople = 3,
-  numPeople = 7,
-}) {
+export default function ActivityDetail({ route, navigation }) {
+  const {
+    type,
+    tag,
+    firstName,
+    lastName,
+    category,
+    remainingTime,
+    title,
+    description,
+    date,
+    activityTime,
+    place,
+    answeredPeople,
+    numPeople,
+  } = route.params;
+
   const insets = useSafeAreaInsets();
 
   const [yes, setYes] = useState(false);
@@ -64,8 +66,21 @@ export default function ActivityDetail({
       {/* ^ This code should be deleted in the final version */}
 
       <View style={styles.inputContainer}>
-        <View style={styles.slider} />
-        <View style={[styles.horizontalView, { gap: 20 }]}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("topTabNavigator");
+          }}
+          style={styles.slider}
+        />
+        <Pressable
+          style={[styles.horizontalView, { gap: 20 }]}
+          onPress={() => {
+            navigation.navigate("profileDetail", {});
+          }}
+          // onPress={() => {
+          //   console.log(`user "${tag}" clicked`);
+          // }}
+        >
           <Picture size={60} />
           <Text
             style={[
@@ -76,7 +91,7 @@ export default function ActivityDetail({
             {firstName} {lastName}
             {"\n"}proposed an activity!
           </Text>
-        </View>
+        </Pressable>
         <View style={styles.separator} />
 
         <View>

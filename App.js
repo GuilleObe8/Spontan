@@ -1,9 +1,9 @@
 import "./gesture-handler";
 
 import Colors from "@assets/Colors";
-import { NavigationContainer } from "@react-navigation/native";
-import LoginNavigator from "@routes/LoginNavigator";
-import MainNavigator from "@routes/MainNavigator";
+import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import StackNavigator from "@routes/StackNavigator";
+import TopTabNavigator from "@routes/TopTabNavigator";
 import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
 import EditProfile from "@screens/EditProfile";
@@ -27,6 +27,14 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 // LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
 
 SplashScreen.preventAutoHideAsync();
+
+const navTheme = {
+  ...DefaultTheme,
+  colors: {
+    ...DefaultTheme.colors,
+    background: Colors.backgroundBlack,
+  },
+};
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -55,13 +63,13 @@ export default function App() {
     <View style={{ flex: 1, backgroundColor: Colors.backgroundBlack }}>
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
-        <NavigationContainer>
-          <LoginNavigator />
+        <NavigationContainer theme={navTheme}>
+          <StackNavigator />
 
           {/* <Login /> */}
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
-          {/* <MainNavigator /> */}
+          {/* <TopTabNavigator /> */}
           {/* <AddFriends /> */}
           {/* <Settings /> */}
           {/* <EditProfile /> */}

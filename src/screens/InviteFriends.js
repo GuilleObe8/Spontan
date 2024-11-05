@@ -4,10 +4,10 @@ import TextBox from "@components/TextBox";
 import { InviteUser } from "@components/User";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import { FlatList, StyleSheet, Text, View, Pressable } from "react-native";
+import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of MainNavigator
+// TODO: - make slide up work and display on top of TopTabNavigatorgator
 //       - check exports in User.js
 
 const usersData = [
@@ -23,7 +23,7 @@ const usersData = [
       numberOfInvites: 3,
       numberOfAccepted: 1,
       numberOfProposed: 0,
-      favCategory: "🥊 Work out",
+      favCategory: "Sport",
       totalResponseTime: 232, // seconds
     },
   },
@@ -39,6 +39,7 @@ const usersData = [
       numberOfInvites: 1,
       numberOfAccepted: 0,
       numberOfProposed: 1,
+      favCategory: "Nature",
       totalResponseTime: 14, // seconds
     },
   },
@@ -54,6 +55,7 @@ const usersData = [
       numberOfInvites: 7,
       numberOfAccepted: 4,
       numberOfProposed: 3,
+      favCategory: "Food",
       totalResponseTime: 183, // seconds
     },
   },
@@ -69,6 +71,7 @@ const usersData = [
       numberOfInvites: 2,
       numberOfAccepted: 2,
       numberOfProposed: 0,
+      favCategory: "Drinks",
       totalResponseTime: 37, // seconds
     },
   },
@@ -84,6 +87,7 @@ const usersData = [
       numberOfInvites: 6,
       numberOfAccepted: 2,
       numberOfProposed: 3,
+      favCategory: "Cinema",
       totalResponseTime: 476, // seconds
     },
   },
@@ -99,12 +103,13 @@ const usersData = [
       numberOfInvites: 3,
       numberOfAccepted: 2,
       numberOfProposed: 1,
+      favCategory: "Sport",
       totalResponseTime: 65, // seconds
     },
   },
 ];
 
-export default function InviteFriends() {
+export default function InviteFriends({ navigation }) {
   const insets = useSafeAreaInsets();
 
   const [usersArray, setUsersArray] = useState(usersData);
@@ -148,14 +153,23 @@ export default function InviteFriends() {
       {/* ^ This code should be deleted in the final version */}
 
       <View style={styles.inputContainer}>
-        <View style={styles.slider} />
+        <Pressable
+          onPress={() => {
+            navigation.navigate("topTabNavigator");
+          }}
+          style={styles.slider}
+        />
         <View style={[styles.horizontalContainer, { marginBottom: 10 }]}>
           <Text style={styles.mainText}>Invite friends</Text>
           <Pressable onPress={() => {}}>
             <Ionicons
-              name="checkmark-outline"
+              // name="checkmark-outline"
+              name="chevron-forward-outline"
               size={24}
               color={Colors.secondaryLight}
+              onPress={() => {
+                navigation.goBack();
+              }}
             />
           </Pressable>
         </View>
@@ -179,7 +193,7 @@ export default function InviteFriends() {
           data={usersArray.filter((user) => user.friends === true)}
           renderItem={({ item }) => {
             return (
-              <InviteUser
+              <InviteUser // Located inside of User
                 tag={item.tag}
                 firstName={item.firstName}
                 lastName={item.lastName}

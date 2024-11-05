@@ -8,7 +8,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function ForgotPassword() {
+export default function ForgotPassword({ navigation }) {
   const insets = useSafeAreaInsets();
 
   const [email, setEmail] = useState("");
@@ -84,7 +84,13 @@ export default function ForgotPassword() {
             },
           ]}
         >
-          <RoundedTextButton text={"Send Email"} color={Colors.pastelPink} />
+          <RoundedTextButton
+            onPress={() => {
+              navigation.navigate("login"); // CHANGE FOR DESIRED ACTION
+            }}
+            text={"Send Email"}
+            color={Colors.pastelPink}
+          />
         </View>
         <View style={styles.bottomTextContainer}>
           <Text
@@ -98,9 +104,9 @@ export default function ForgotPassword() {
             Back to
           </Text>
           <Pressable
-          //   onPress={() => {
-          //     navigate("ForgotPass");
-          //   }}
+            onPress={() => {
+              navigation.navigate("login");
+            }}
           >
             <Text
               style={[

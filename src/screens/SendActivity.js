@@ -9,16 +9,17 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import DateTimePicker from "@react-native-community/datetimepicker";
 import { format, isToday, isTomorrow } from "date-fns";
 import { useState } from "react";
-import { ScrollView, StyleSheet, Text, View, Pressable } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of MainNavigator
+// TODO: - make slide up work and display on top of TopTabNavigatorgator
 //       - fix date and time picker on web and iOS
 //       - compare start and end time
 //       - check invite friends size inconsistency
 //       - KeyboardAwareScrollView
 
-export default function SendActivity() {
+export default function SendActivity({ navigation }) {
   const insets = useSafeAreaInsets();
 
   const [category, setCategory] = useState(null);
@@ -103,7 +104,12 @@ export default function SendActivity() {
       {/* ^ This code should be deleted in the final version */}
 
       <View style={styles.inputContainer}>
-        <View style={styles.slider} />
+        <Pressable
+          onPress={() => {
+            navigation.navigate("topTabNavigator");
+          }}
+          style={styles.slider}
+        />
         <ScrollView
           horizontal={true}
           contentContainerStyle={{
@@ -346,8 +352,11 @@ export default function SendActivity() {
         <View style={{ flexDirection: "row", gap: 8 }}>
           <AddButton
             circleSize={42}
-            crossSize={28}
+            crossSize={26.6} // To keep the same proportions as in TopTabNavigator
             crossColor={Colors.backgroundGrey}
+            onPress={() => {
+              navigation.navigate("inviteFriends");
+            }}
           />
           <AddedFriend />
           <AddedFriend />
@@ -372,6 +381,9 @@ export default function SendActivity() {
             color={Colors.pastelGreen}
             textSize={12}
             paddingHorizontal={16}
+            onPress={() => {
+              navigation.navigate("topTabNavigator");
+            }}
           />
         </View>
         {show && (

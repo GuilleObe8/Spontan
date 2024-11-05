@@ -4,17 +4,17 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import Picture from "./Picture";
 
 export default function Profile({
-  type = "you", // you, other
-  tag = "anna",
-  firstName = "Anna",
-  lastName = "Collin",
-  email = "anna@collin.com",
+  type, // you, other
+  tag = "tag",
+  firstName = "Name",
+  lastName = "Surname",
+  email = "email@email.com",
   picture = "", // URL to database
   activityData = {
     numberOfInvites: 3,
     numberOfAccepted: 1,
     numberOfProposed: 0,
-    favCategory: "Work out",
+    favCategory: "Category",
     totalResponseTime: 232, // seconds
   },
 }) {
@@ -69,7 +69,7 @@ export default function Profile({
       <Text style={[styles.text, { fontSize: 16, marginTop: 16 }]}>
         Favorite category:
       </Text>
-      <Text style={[styles.text, { color: Colors.pastelPurple, marginTop: 2 }]}>
+      <Text style={[styles.text, { color: Colors.pastelPink, marginTop: 2 }]}>
         {activityData.favCategory}
       </Text>
       {type === "other" ? (

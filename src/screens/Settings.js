@@ -3,10 +3,11 @@ import CheckBox from "@components/CheckBox";
 import Profile from "@components/Profile";
 import RoundedTextButton from "@components/RoundedTextButton";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { Pressable, StyleSheet, Text, View, ScrollView } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function Settings() {
+export default function Settings({ navigation, setIsSignedIn }) {
   const insets = useSafeAreaInsets();
 
   return (
@@ -33,6 +34,9 @@ export default function Settings() {
         <Text style={styles.text}>Profile</Text>
         <Pressable
           style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
+          onPress={() => {
+            navigation.navigate("topTabNavigator");
+          }}
         >
           <Ionicons
             name="arrow-forward-outline"
@@ -43,14 +47,18 @@ export default function Settings() {
       </View>
       <View style={styles.inputContainer}>
         <Profile type="you" />
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("editProfile");
+          }}
+        >
           <Text
             style={[
               styles.text,
               {
                 fontSize: 12,
                 fontFamily: "HelveticaNeue-BoldItalic",
-                color: Colors.pastelGreenTransparent,
+                color: Colors.pastelPurple,
                 marginTop: 24,
               },
             ]}
@@ -149,6 +157,9 @@ export default function Settings() {
           textSize={16}
           paddingHorizontal={20}
           elevation={4}
+          onPress={() => {
+            setIsSignedIn(false); // CHANGE FOR DESIRED ACTION
+          }}
         />
       </View>
       <View
@@ -162,6 +173,9 @@ export default function Settings() {
           textSize={16}
           paddingHorizontal={20}
           elevation={4}
+          onPress={() => {
+            setIsSignedIn(false); // CHANGE FOR DESIRED ACTION
+          }}
         />
       </View>
     </ScrollView>
@@ -175,7 +189,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   topContainer: {
-    marginTop: 21, // Adjust depending on Logo size on MainNavigator
+    marginTop: 21, // Adjust depending on Logo size on TopTabNavigatorgator
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

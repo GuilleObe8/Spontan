@@ -3,7 +3,8 @@ import Activity_A from "@components/Activity_A";
 import Activity_B from "@components/Activity_B";
 import { useScrollToTop } from "@react-navigation/native";
 import { useRef, useState } from "react";
-import { Pressable, ScrollView, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 
 // Check strategy for no activities
 

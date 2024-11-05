@@ -19,7 +19,7 @@ const usersData = [
       numberOfInvites: 3,
       numberOfAccepted: 1,
       numberOfProposed: 0,
-      favCategory: "🥊 Work out",
+      favCategory: "Sport",
       totalResponseTime: 232, // seconds
     },
   },
@@ -35,6 +35,7 @@ const usersData = [
       numberOfInvites: 1,
       numberOfAccepted: 0,
       numberOfProposed: 1,
+      favCategory: "Nature",
       totalResponseTime: 14, // seconds
     },
   },
@@ -50,6 +51,7 @@ const usersData = [
       numberOfInvites: 7,
       numberOfAccepted: 4,
       numberOfProposed: 3,
+      favCategory: "Food",
       totalResponseTime: 183, // seconds
     },
   },
@@ -65,6 +67,7 @@ const usersData = [
       numberOfInvites: 2,
       numberOfAccepted: 2,
       numberOfProposed: 0,
+      favCategory: "Drinks",
       totalResponseTime: 37, // seconds
     },
   },
@@ -80,6 +83,7 @@ const usersData = [
       numberOfInvites: 6,
       numberOfAccepted: 2,
       numberOfProposed: 3,
+      favCategory: "Cinema",
       totalResponseTime: 476, // seconds
     },
   },
@@ -95,12 +99,13 @@ const usersData = [
       numberOfInvites: 3,
       numberOfAccepted: 2,
       numberOfProposed: 1,
+      favCategory: "Sport",
       totalResponseTime: 65, // seconds
     },
   },
 ];
 
-export default function Friends() {
+export default function Friends({ navigation }) {
   const [usersArray, setUsersArray] = useState(usersData);
   const updateUserState = ({ tag, prop, value }) => {
     setUsersArray(
@@ -117,7 +122,11 @@ export default function Friends() {
     <View style={styles.container}>
       <View style={styles.horizontalContainer}>
         <Text style={styles.mainText}>Current friends</Text>
-        <Pressable onPress={() => {}}>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("addFriends");
+          }}
+        >
           <View style={{ flexDirection: "row", alignItems: "center", gap: 5 }}>
             <Text style={styles.secondaryText}>Add new friends</Text>
             <Ionicons // only display if friends request

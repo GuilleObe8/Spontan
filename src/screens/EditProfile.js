@@ -7,7 +7,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function EditProfile() {
+export default function EditProfile({ navigation }) {
   const insets = useSafeAreaInsets();
 
   const [firstName, setFirstName] = useState("");
@@ -49,6 +49,9 @@ export default function EditProfile() {
             flexDirection: "row",
             justifyContent: "flex-start",
           }}
+          onPress={() => {
+            navigation.navigate("settings");
+          }}
         >
           <Ionicons
             name="close-outline"
@@ -59,6 +62,9 @@ export default function EditProfile() {
         <Text style={styles.text}>Edit Profile</Text>
         <Pressable
           style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
+          onPress={() => {
+            navigation.navigate("settings");
+          }}
         >
           <Ionicons
             name="checkmark-outline"
@@ -225,7 +231,7 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   topContainer: {
-    marginTop: 21, // Adjust depending on Logo size on MainNavigator
+    marginTop: 21, // Adjust depending on Logo size on TopTabNavigatorgator
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",

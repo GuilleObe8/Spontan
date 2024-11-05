@@ -9,7 +9,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function Register() {
+export default function Register({ navigation }) {
   const insets = useSafeAreaInsets();
 
   const [firstName, setFirstName] = useState("");
@@ -187,7 +187,13 @@ export default function Register() {
             },
           ]}
         >
-          <RoundedTextButton text={"Register"} color={Colors.pastelBlue} />
+          <RoundedTextButton
+            onPress={() => {
+              navigation.navigate("login"); // CHANGE FOR DESIRED ACTION
+            }}
+            text={"Register"}
+            color={Colors.pastelBlue}
+          />
         </View>
         <View style={styles.bottomTextContainer}>
           <Text
@@ -201,9 +207,9 @@ export default function Register() {
             Already have an account?
           </Text>
           <Pressable
-          //   onPress={() => {
-          //     navigate("ForgotPass");
-          //   }}
+            onPress={() => {
+              navigation.navigate("login");
+            }}
           >
             <Text
               style={[

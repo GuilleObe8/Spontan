@@ -15,7 +15,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 const Tab = createMaterialTopTabNavigator();
 
-export default function MainNavigator() {
+export default function TopTabNavigator() {
   const insets = useSafeAreaInsets();
 
   const navigation = useNavigation();
@@ -23,19 +23,6 @@ export default function MainNavigator() {
   const scrollRef = useRef(null);
 
   return (
-    // <KeyboardAwareScrollView
-    //   bounces={false} // for iOS
-    //   // enableOnAndroid={true} // for Android
-    //   contentContainerStyle={[
-    //     styles.container,
-    //     {
-    //       paddingTop: insets.top,
-    //       paddingBottom: insets.bottom,
-    //       paddingLeft: insets.left,
-    //       paddingRight: insets.right,
-    //     },
-    //   ]}
-    // >
     <View
       style={[
         styles.container,
@@ -53,6 +40,9 @@ export default function MainNavigator() {
             flex: 1,
             flexDirection: "row",
             justifyContent: "flex-start",
+          }}
+          onPress={() => {
+            navigation.navigate("settings");
           }}
         >
           <Ionicons name="menu" size={24} color={Colors.secondaryLight} />
@@ -92,9 +82,11 @@ export default function MainNavigator() {
           // bottom: 8,
           bottom: Platform.OS === "ios" ? 28 : 16,
         }}
+        onPress={() => {
+          navigation.navigate("sendActivity");
+        }}
       />
     </View>
-    //  </KeyboardAwareScrollView>
   );
 }
 const styles = StyleSheet.create({

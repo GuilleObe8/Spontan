@@ -2,13 +2,16 @@ import Colors from "@assets/Colors";
 import Logo from "@components/Logo";
 import Profile from "@components/Profile";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, View } from "react-native";
+import { StyleSheet, View, Pressable } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of MainNavigator
+// TODO: - make slide up work and display on top of TopTabNavigatorgator
 
-export default function ProfileDetail() {
+export default function ProfileDetail({ route, navigation }) {
   const insets = useSafeAreaInsets();
+
+  const { tag, firstName, lastName, email, picture, activityData } =
+    route.params;
 
   return (
     <View
@@ -42,8 +45,21 @@ export default function ProfileDetail() {
       {/* ^ This code should be deleted in the final version */}
 
       <View style={styles.inputContainer}>
-        <View style={styles.slider} />
-        <Profile type="other" />
+        <Pressable
+          onPress={() => {
+            navigation.goBack();
+          }}
+          style={styles.slider}
+        />
+        <Profile
+          type="other"
+          tag={tag}
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          picture={picture}
+          activityData={activityData}
+        />
       </View>
     </View>
   );

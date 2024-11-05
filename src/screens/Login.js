@@ -7,18 +7,12 @@ import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
-import {
-  Dimensions,
-  Pressable,
-  ScrollView,
-  StyleSheet,
-  Text,
-  View,
-} from "react-native";
+import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
+import { ScrollView } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function Login() {
+export default function Login({ navigation, setIsSignedIn }) {
   const insets = useSafeAreaInsets();
 
   const [email, setEmail] = useState("");
@@ -114,7 +108,13 @@ export default function Login() {
             { marginTop: emailError || passwordError ? 14 : 30 },
           ]}
         >
-          <RoundedTextButton text={"Log In"} color={Colors.pastelGreen} />
+          <RoundedTextButton
+            onPress={() => {
+              setIsSignedIn(true); // CHANGE FOR DESIRED ACTION
+            }}
+            text={"Log In"}
+            color={Colors.pastelGreen}
+          />
         </View>
         <View style={styles.bottomTextContainer}>
           <Text
@@ -128,9 +128,9 @@ export default function Login() {
             Don't have an account?
           </Text>
           <Pressable
-          //   onPress={() => {
-          //     navigate("ForgotPass");
-          //   }}
+            onPress={() => {
+              navigation.navigate("register");
+            }}
           >
             <Text
               style={[
@@ -145,7 +145,11 @@ export default function Login() {
             </Text>
           </Pressable>
         </View>
-        <Pressable>
+        <Pressable
+          onPress={() => {
+            navigation.navigate("forgotPassword");
+          }}
+        >
           <Text
             style={[
               styles.bottomText,
