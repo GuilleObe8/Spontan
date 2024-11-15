@@ -32,6 +32,7 @@ export default function EditProfile({ navigation }) {
 
   return (
     <KeyboardAwareScrollView
+      bounces={false} // for iOS
       contentContainerStyle={[
         styles.container,
         {
@@ -261,7 +262,6 @@ const styles = StyleSheet.create({
     color: Colors.pastelRed,
     fontFamily: "HelveticaNeue-LightItalic",
     fontSize: 13,
-    lineHeight: 18,
     includeFontPadding: false,
     textAlignVertical: "center",
     marginTop: 8,

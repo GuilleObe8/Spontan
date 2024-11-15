@@ -169,13 +169,21 @@ export default function Login({ navigation, setIsSignedIn }) {
         contentContainerStyle={{ paddingBottom: 16 }} // 4%
         contentOffset={{ x: screenWidth * 0.92 * 1.5 + 12 }}
       >
-        <Activity_A width={0.92 * screenWidth} type="sent" />
+        <Activity_A width={0.92 * screenWidth} type="sent" pressable={false} />
         <View style={{ marginHorizontal: 4 }} />
-        <Activity_A width={0.92 * screenWidth} type="received" />
+        <Activity_A
+          width={0.92 * screenWidth}
+          type="received"
+          pressable={false}
+        />
         <View style={{ marginHorizontal: 4 }} />
-        <Activity_A width={0.92 * screenWidth} type="sent" />
+        <Activity_A width={0.92 * screenWidth} type="sent" pressable={false} />
         <View style={{ marginHorizontal: 4 }} />
-        <Activity_A width={0.92 * screenWidth} type="received" />
+        <Activity_A
+          width={0.92 * screenWidth}
+          type="received"
+          pressable={false}
+        />
       </ScrollView>
     </KeyboardAwareScrollView>
   );
@@ -202,7 +210,6 @@ const styles = StyleSheet.create({
     color: Colors.pastelRed,
     fontFamily: "HelveticaNeue-LightItalic",
     fontSize: 13,
-    lineHeight: 18,
     includeFontPadding: false,
     textAlignVertical: "center",
     marginTop: 8,
@@ -220,7 +227,6 @@ const styles = StyleSheet.create({
     fontFamily: "HelveticaNeue-BoldItalic",
     fontSize: 12,
     alignSelf: "center",
-    lineHeight: 20,
     includeFontPadding: false,
     textAlignVertical: "center",
   },

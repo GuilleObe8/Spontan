@@ -73,7 +73,7 @@ const styles = StyleSheet.create({
     fontFamily: "HelveticaNeue-MediumItalic",
     fontSize: 17,
     marginBottom: 6,
-    lineHeight: 28,
+    lineHeight: 28, // for vertical separation
     includeFontPadding: false,
     textAlignVertical: "center",
   },

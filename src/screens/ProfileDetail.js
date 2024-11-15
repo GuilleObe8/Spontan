@@ -67,7 +67,7 @@ export default function ProfileDetail({ route, navigation }) {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroundBlack,
+    backgroundColor: "transparent", // Colors.backgroundBlack,
     flexGrow: 1,
     alignItems: "center",
   },

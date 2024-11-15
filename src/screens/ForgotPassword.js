@@ -38,7 +38,6 @@ export default function ForgotPassword({ navigation }) {
             color: Colors.mainLight,
             fontFamily: "HelveticaNeue-MediumItalic",
             fontSize: 17,
-            lineHeight: 20,
             includeFontPadding: false,
             textAlignVertical: "center",
             marginBottom: 6,
@@ -51,7 +50,7 @@ export default function ForgotPassword({ navigation }) {
             color: Colors.secondaryLight,
             fontFamily: "HelveticaNeue-LightItalic",
             fontSize: 15,
-            lineHeight: 20,
+            lineHeight: 20, // for more separation between lines
             includeFontPadding: false,
             textAlignVertical: "center",
           }}
@@ -147,7 +146,6 @@ const styles = StyleSheet.create({
     color: Colors.pastelRed,
     fontFamily: "HelveticaNeue-LightItalic",
     fontSize: 13,
-    lineHeight: 18,
     includeFontPadding: false,
     textAlignVertical: "center",
     marginTop: 8,
@@ -165,7 +163,6 @@ const styles = StyleSheet.create({
     fontFamily: "HelveticaNeue-BoldItalic",
     fontSize: 12,
     alignSelf: "center",
-    lineHeight: 20,
     includeFontPadding: false,
     textAlignVertical: "center",
   },

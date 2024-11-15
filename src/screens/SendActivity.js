@@ -13,7 +13,7 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of TopTabNavigatorgator
+// TODO: - make slide up work and display on top of TopTabNavigator
 //       - fix date and time picker on web and iOS
 //       - compare start and end time
 //       - check invite friends size inconsistency
@@ -424,7 +424,7 @@ function AddedFriend() {
 
 const styles = StyleSheet.create({
   container: {
-    backgroundColor: Colors.backgroundBlack,
+    backgroundColor: "transparent", // Colors.backgroundBlack,
     flexGrow: 1,
     alignItems: "center",
   },

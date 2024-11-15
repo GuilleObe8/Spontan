@@ -1,5 +1,4 @@
 import Colors from "@assets/Colors";
-import Logo from "@components/Logo";
 import TextBox from "@components/TextBox";
 import { InviteUser } from "@components/User";
 import Ionicons from "@expo/vector-icons/Ionicons";
@@ -7,8 +6,7 @@ import { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of TopTabNavigatorgator
-//       - check exports in User.js
+// TODO: - check exports in User.js
 
 const usersData = [
   {
@@ -133,43 +131,19 @@ export default function InviteFriends({ navigation }) {
         },
       ]}
     >
-      {/* Just for design stage */}
-      <View style={styles.topContainer}>
-        <Ionicons
-          name="menu"
-          size={24}
-          color={Colors.secondaryLight}
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        />
-        <Logo marginTop={0} />
-        <View
-          style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
-        />
-      </View>
-      {/* ^ This code should be deleted in the final version */}
-
       <View style={styles.inputContainer}>
-        <Pressable
-          onPress={() => {
-            navigation.navigate("topTabNavigator");
-          }}
-          style={styles.slider}
-        />
-        <View style={[styles.horizontalContainer, { marginBottom: 10 }]}>
+        <View style={styles.horizontalContainer}>
           <Text style={styles.mainText}>Invite friends</Text>
-          <Pressable onPress={() => {}}>
+          <Pressable
+            onPress={() => {
+              navigation.goBack();
+            }}
+          >
             <Ionicons
-              // name="checkmark-outline"
               name="chevron-forward-outline"
+              // name="arrow-forward-outline"
               size={24}
               color={Colors.secondaryLight}
-              onPress={() => {
-                navigation.goBack();
-              }}
             />
           </Pressable>
         </View>
@@ -218,32 +192,28 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: "center",
   },
-  topContainer: {
-    opacity: 0.2,
-    marginTop: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "92%",
-    maxWidth: 560,
-  },
   inputContainer: {
     flex: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
-    borderTopLeftRadius: 8,
-    borderTopRightRadius: 8,
-    padding: 20,
-    marginTop: 20,
-  },
-  slider: {
-    backgroundColor: Colors.secondaryLight,
-    width: "20%",
-    height: "0.7%",
     borderRadius: 8,
-    alignSelf: "center",
-    marginBottom: 20,
+    padding: 20,
+    marginVertical: 16, // "4%"
+    elevation: 4,
+    overflow: "hidden",
+  },
+  horizontalContainer: {
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    marginBottom: 10,
+  },
+  separator: {
+    marginVertical: 16,
+    borderBottomWidth: StyleSheet.hairlineWidth,
+    borderBottomColor: Colors.secondaryLightTransparent,
+    borderStyle: "dashed",
   },
   mainText: {
     color: Colors.mainLight,
@@ -251,16 +221,5 @@ const styles = StyleSheet.create({
     fontSize: 24,
     includeFontPadding: false,
     textAlignVertical: "center",
-  },
-  horizontalContainer: {
-    flexDirection: "row",
-    alignItems: "center",
-    justifyContent: "space-between",
-  },
-  separator: {
-    marginVertical: 16,
-    borderBottomWidth: StyleSheet.hairlineWidth,
-    borderBottomColor: Colors.secondaryLightTransparent,
-    borderStyle: "dashed",
   },
 });

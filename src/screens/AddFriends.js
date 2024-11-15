@@ -6,8 +6,6 @@ import { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - Change so it slides from the side
-
 const usersData = [
   {
     tag: "anna",
@@ -220,13 +218,6 @@ const styles = StyleSheet.create({
     color: Colors.mainLight,
     fontFamily: "HelveticaNeue-BoldItalic",
     fontSize: 24,
-    includeFontPadding: false,
-    textAlignVertical: "center",
-  },
-  secondaryText: {
-    color: Colors.secondaryLight,
-    fontFamily: "HelveticaNeue-Italic",
-    fontSize: 12,
     includeFontPadding: false,
     textAlignVertical: "center",
   },

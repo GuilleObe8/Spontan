@@ -21,20 +21,14 @@ import { useEffect } from "react";
 import { LogBox, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
+// TODO: - Configure status bar, splash screen and app icon: https://docs.expo.dev/tutorial/configuration/
+//       - Manage differences between platforms: https://docs.expo.dev/tutorial/platform-differences/
+//       - Fix web version: https://reactnavigation.org/docs/web-support/
+
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
 
-// LogBox.ignoreLogs(["VirtualizedLists should never be nested"]);
-
 SplashScreen.preventAutoHideAsync();
-
-const navTheme = {
-  ...DefaultTheme,
-  colors: {
-    ...DefaultTheme.colors,
-    background: Colors.backgroundBlack,
-  },
-};
 
 export default function App() {
   const [loaded, error] = useFonts({
@@ -63,7 +57,15 @@ export default function App() {
     <View style={{ flex: 1, backgroundColor: Colors.backgroundBlack }}>
       <StatusBar backgroundColor={Colors.backgroundBlack} style="light" />
       <SafeAreaProvider>
-        <NavigationContainer theme={navTheme}>
+        <NavigationContainer
+          theme={{
+            ...DefaultTheme,
+            colors: {
+              ...DefaultTheme.colors,
+              background: Colors.backgroundBlack,
+            },
+          }}
+        >
           <StackNavigator />
 
           {/* <Login /> */}
@@ -73,10 +75,10 @@ export default function App() {
           {/* <AddFriends /> */}
           {/* <Settings /> */}
           {/* <EditProfile /> */}
-          {/* <InviteFriends /> */}
           {/* <ActivityDetail type={"received"} /> */}
           {/* <ProfileDetail /> */}
           {/* <SendActivity /> */}
+          {/* <InviteFriends /> */}
         </NavigationContainer>
       </SafeAreaProvider>
     </View>
