@@ -12,6 +12,7 @@ export default function TextBox({
   autoComplete = "off", // additional-name, address-line1, address-line2, birthdate-day, birthdate-full, birthdate-month, birthdate-year, cc-csc, cc-exp, cc-exp-day, cc-exp-month, cc-exp-year, cc-number, country, current-password, email, family-name, given-name, honorific-prefix, honorific-suffix, name, new-password, off, one-time-code, postal-code, street-address, tel, username
   autoCorrect = false,
   secureTextEntry = false,
+  multiline = false,
   leftIcon,
   paddingLeft = 36,
   rightIcon,
@@ -49,6 +50,7 @@ export default function TextBox({
           //     ? `Enter ${labelText.toLowerCase()}`
           //     : ""
           // } // If the placeholder is passed it's used (placeholder ? placeholder). If it's not, if there is a label, the text Enter + label is used (: labelText ? `Enter ${labelText.toLowerCase()}`). If there is no label, leave empty.
+          multiline={multiline}
           placeholder={placeholder}
           placeholderTextColor={Colors.tertiaryLight}
           cursorColor={Colors.secondaryLight}
@@ -88,9 +90,10 @@ const styles = StyleSheet.create({
     fontSize: 13,
     includeFontPadding: false,
     textAlignVertical: "center",
+    paddingTop: 0, // for Android
+    paddingBottom: 0, // for Android
     fontFamily: "HelveticaNeue-LightItalic",
     color: Colors.secondaryLight,
-    overflow: "scroll",
   },
   leftIcon: {
     position: "absolute",
