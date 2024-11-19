@@ -6,6 +6,7 @@ import StackNavigator from "@routes/StackNavigator";
 import TopTabNavigator from "@routes/TopTabNavigator";
 import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
+import ChangePassword from "@screens/ChangePassword";
 import EditProfile from "@screens/EditProfile";
 import ForgotPassword from "@screens/ForgotPassword";
 import InviteFriends from "@screens/InviteFriends";
@@ -24,6 +25,7 @@ import { SafeAreaProvider } from "react-native-safe-area-context";
 // TODO: - Configure status bar, splash screen and app icon: https://docs.expo.dev/tutorial/configuration/
 //       - Manage differences between platforms: https://docs.expo.dev/tutorial/platform-differences/
 //       - Fix web version: https://reactnavigation.org/docs/web-support/
+//       - Fix cross-platform shadows: https://blog.logrocket.com/applying-box-shadows-in-react-native/
 
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
@@ -71,6 +73,7 @@ export default function App() {
           {/* <Login /> */}
           {/* <Register /> */}
           {/* <ForgotPassword /> */}
+          {/* <ChangePassword /> */}
           {/* <TopTabNavigator /> */}
           {/* <AddFriends /> */}
           {/* <Settings /> */}

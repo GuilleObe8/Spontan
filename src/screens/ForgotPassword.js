@@ -6,6 +6,7 @@ import TextBox from "@components/TextBox";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function ForgotPassword({ navigation }) {
@@ -13,6 +14,8 @@ export default function ForgotPassword({ navigation }) {
 
   const [email, setEmail] = useState("");
   const [emailError, setEmailError] = useState(false);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
 
   return (
     <KeyboardAwareScrollView
@@ -85,7 +88,8 @@ export default function ForgotPassword({ navigation }) {
         >
           <RoundedTextButton
             onPress={() => {
-              navigation.navigate("login"); // CHANGE FOR DESIRED ACTION
+              // ADD DESIRED ACTION
+              setIsModalVisible(true);
             }}
             text={"Send Email"}
             color={Colors.pastelPink}
@@ -121,6 +125,55 @@ export default function ForgotPassword({ navigation }) {
           </Pressable>
         </View>
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        onBackButtonPress={() => {
+          setIsModalVisible(false);
+        }}
+        onBackdropPress={() => {
+          setIsModalVisible(false);
+        }}
+        onModalHide={() => {
+          navigation.navigate("login");
+        }}
+        // backdropColor={Colors.backgroundBlack}
+        // backdropOpacity={0.8}
+        hideModalContentWhileAnimating={true}
+        useNativeDriverForBackdrop={true}
+        backdropTransitionOutTiming={0}
+      >
+        <View
+          style={{
+            flex: 1,
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <View style={styles.modal}>
+            <Text
+              style={{
+                color: Colors.secondaryLight,
+                fontFamily: "HelveticaNeue-LightItalic",
+                fontSize: 15,
+                textAlign: "center",
+                lineHeight: 20, // for more separation between lines
+                includeFontPadding: false,
+                textAlignVertical: "center",
+                marginBottom: 16,
+              }}
+            >
+              Check your inbox and follow the{"\n"}steps to change your password
+            </Text>
+            <RoundedTextButton
+              text={"Ok"}
+              color={Colors.pastelPink}
+              onPress={() => {
+                setIsModalVisible(false);
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
     </KeyboardAwareScrollView>
   );
 }
@@ -165,5 +218,14 @@ const styles = StyleSheet.create({
     alignSelf: "center",
     includeFontPadding: false,
     textAlignVertical: "center",
+  },
+  modal: {
+    backgroundColor: Colors.backgroundGrey,
+    borderRadius: 8,
+    padding: 20,
+    marginHorizontal: 20,
+    maxWidth: 560 - 40,
+    alignItems: "center",
+    elevation: 4,
   },
 });

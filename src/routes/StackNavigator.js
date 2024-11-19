@@ -13,6 +13,7 @@ import { useState } from "react";
 import { Dimensions, Easing } from "react-native";
 import TopTabNavigator from "./TopTabNavigator";
 import { CardStyleInterpolators } from "@react-navigation/stack";
+import ChangePassword from "@screens/ChangePassword";
 
 // TODO: - Check user token
 
@@ -89,6 +90,11 @@ export default function StackNavigator() {
           <Stack.Screen
             name="forgotPassword"
             component={ForgotPassword}
+            options={slideFromRight}
+          />
+          <Stack.Screen
+            name="changePassword"
+            component={ChangePassword}
             options={slideFromRight}
           />
         </>

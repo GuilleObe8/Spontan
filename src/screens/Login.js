@@ -154,6 +154,7 @@ export default function Login({ navigation, setIsSignedIn }) {
             style={[
               styles.bottomText,
               {
+                marginTop: 8,
                 color: Colors.pastelPinkTransparent,
               },
             ]}

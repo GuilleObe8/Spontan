@@ -10,20 +10,8 @@ import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function Register({ navigation }) {
+export default function ChangePassword({ navigation }) {
   const insets = useSafeAreaInsets();
-
-  const [firstName, setFirstName] = useState("");
-  const [firstNameError, setFirstNameError] = useState(false);
-
-  const [lastName, setLastName] = useState("");
-  const [lastNameError, setLastNameError] = useState(false);
-
-  const [tag, setTag] = useState("");
-  const [tagError, setTagError] = useState(false);
-
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState(false);
 
   const [password1, setPassword1] = useState("");
   const [passwordError1, setPasswordError1] = useState(false);
@@ -55,54 +43,7 @@ export default function Register({ navigation }) {
       </View>
       <View style={styles.inputContainer}>
         <TextBox
-          labelText={"First name"}
-          onChangeText={setFirstName}
-          autoCapitalize="words"
-          autoComplete={"given-name"}
-          // validate={() => {
-          //   if (firstName.length < 10)
-          //     setFirstNameError("The first name you entered is incorrect.");
-          //   else setFirstNameError(false);
-          // }}
-        />
-        <View style={{ marginVertical: 8 }} />
-        <TextBox
-          labelText={"Last name"}
-          onChangeText={setLastName}
-          autoCapitalize="words"
-          autoComplete={"family-name"}
-          // validate={() => {
-          //   if (lastName.length < 10)
-          //     setLastNameError("The last name you entered is incorrect.");
-          //   else setLastNameError(false);
-          // }}
-        />
-        <View style={{ marginVertical: 8 }} />
-        <TextBox
-          labelText={"Tag"}
-          onChangeText={setTag}
-          autoComplete={"username"}
-          validate={() => {
-            if (tag.length < 6)
-              setTagError("The tag you entered is incorrect.");
-            else setTagError(false);
-          }}
-        />
-        <View style={{ marginVertical: 8 }} />
-        <TextBox
-          labelText={"Email"}
-          onChangeText={setEmail}
-          keyboardType={"email-address"}
-          autoComplete={"email"}
-          validate={() => {
-            if (email.length < 10)
-              setEmailError("The email address you entered is incorrect.");
-            else setEmailError(false);
-          }}
-        />
-        <View style={{ marginVertical: 8 }} />
-        <TextBox
-          labelText={"Password"}
+          labelText={"New password"}
           onChangeText={setPassword1}
           rightIcon={
             <Pressable onPress={() => setShowPassword1(!showPassword1)}>
@@ -126,7 +67,7 @@ export default function Register({ navigation }) {
         />
         <View style={{ marginVertical: 8 }} />
         <TextBox
-          labelText={"Confirm password"}
+          labelText={"Confirm new password"}
           onChangeText={setPassword2}
           rightIcon={
             <Pressable onPress={() => setShowPassword2(!showPassword2)}>
@@ -149,22 +90,6 @@ export default function Register({ navigation }) {
           }}
         />
         <View>
-          {firstNameError && (
-            <Text style={styles.errorMessage}>{firstNameError}</Text>
-          )}
-        </View>
-        <View>
-          {lastNameError && (
-            <Text style={styles.errorMessage}>{lastNameError}</Text>
-          )}
-        </View>
-        <View>
-          {tagError && <Text style={styles.errorMessage}>{tagError}</Text>}
-        </View>
-        <View>
-          {emailError && <Text style={styles.errorMessage}>{emailError}</Text>}
-        </View>
-        <View>
           {passwordError1 && (
             <Text style={styles.errorMessage}>{passwordError1}</Text>
           )}
@@ -178,15 +103,7 @@ export default function Register({ navigation }) {
           style={[
             styles.button,
             {
-              marginTop:
-                firstNameError ||
-                lastNameError ||
-                tagError ||
-                emailError ||
-                passwordError1 ||
-                passwordError2
-                  ? 14
-                  : 30,
+              marginTop: passwordError1 || passwordError2 ? 14 : 30,
             },
           ]}
         >
@@ -195,8 +112,8 @@ export default function Register({ navigation }) {
               // ADD DESIRED ACTION
               setIsModalVisible(true);
             }}
-            text={"Register"}
-            color={Colors.pastelBlue}
+            text={"Save"}
+            color={Colors.pastelPink}
           />
         </View>
         <View style={styles.bottomTextContainer}>
@@ -208,7 +125,7 @@ export default function Register({ navigation }) {
               },
             ]}
           >
-            Already have an account?
+            Back to
           </Text>
           <Pressable
             onPress={() => {
@@ -266,12 +183,11 @@ export default function Register({ navigation }) {
                 marginBottom: 16,
               }}
             >
-              Check your inbox and follow the{"\n"}steps to activate your
-              account
+              Your password has been{"\n"}successfully updated
             </Text>
             <RoundedTextButton
               text={"Ok"}
-              color={Colors.pastelBlue}
+              color={Colors.pastelPink}
               onPress={() => {
                 setIsModalVisible(false);
               }}
