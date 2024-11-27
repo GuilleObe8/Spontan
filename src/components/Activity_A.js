@@ -5,6 +5,7 @@ import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import ProgressIndicator from "./ProgressIndicator";
 import RoundedTextButton from "./RoundedTextButton";
+import Modal from "react-native-modal";
 
 // Test with very long title and description
 // TODO: - Share state with activityDetail
@@ -31,6 +32,9 @@ export default function Activity_A({
   const [chat, setChat] = useState(false);
 
   const navigation = useNavigation();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [onModalHideDelete, setOnModalHideDelete] = useState(false);
 
   return (
     <View style={[styles.container, { width: width }]}>
@@ -168,10 +172,14 @@ export default function Activity_A({
               </View>
               <View style={styles.horizontalView}>
                 <RoundedTextButton
-                  text={"Delete event"}
+                  text={"Delete"}
                   color={Colors.pastelPink}
                   textSize={12}
                   paddingHorizontal={16}
+                  onPress={() => {
+                    // ADD DESIRED ACTION
+                    setIsModalVisible(true);
+                  }}
                 />
               </View>
             </View>
@@ -296,10 +304,14 @@ export default function Activity_A({
               </View>
               <View style={styles.horizontalView}>
                 <RoundedTextButton
-                  text={"Delete event"}
+                  text={"Delete"}
                   color={Colors.pastelPink}
                   textSize={12}
                   paddingHorizontal={16}
+                  onPress={() => {
+                    // ADD DESIRED ACTION
+                    setIsModalVisible(true);
+                  }}
                 />
               </View>
             </View>
@@ -308,6 +320,69 @@ export default function Activity_A({
           )}
         </View>
       )}
+      <Modal
+        isVisible={isModalVisible}
+        // onBackButtonPress={() => {
+        //   setOnModalHideDelete(false);
+        //   setIsModalVisible(false);
+        // }}
+        // onBackdropPress={() => {
+        //   setOnModalHideDelete(false);
+        //   setIsModalVisible(false);
+        // }}
+        onModalHide={() => {
+          // onModalHideDelete ? navigation.navigate("settings") : null;
+          onModalHideDelete ? console.log("Activity deleted!") : null;
+        }}
+        // backdropColor={Colors.backgroundBlack}
+        // backdropOpacity={0.8}
+        hideModalContentWhileAnimating={true}
+        useNativeDriverForBackdrop
+        backdropTransitionOutTiming={0}
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      >
+        <View style={styles.modal}>
+          <Text
+            style={{
+              color: Colors.secondaryLight,
+              fontFamily: "HelveticaNeue-LightItalic",
+              fontSize: 15,
+              textAlign: "center",
+              lineHeight: 20, // for more separation between lines
+              includeFontPadding: false,
+              textAlignVertical: "center",
+              marginBottom: 16,
+            }}
+          >
+            Are you sure you want to{"\n"}delete this activity?
+          </Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <RoundedTextButton
+              text={"Delete"}
+              color={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideDelete(true);
+                setIsModalVisible(false);
+              }}
+            />
+            <RoundedTextButton
+              text={"Cancel"}
+              color={Colors.backgroundBlack}
+              textColor={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideDelete(false);
+                setIsModalVisible(false);
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -348,4 +423,13 @@ const styles = StyleSheet.create({
   },
   horizontalView: { flexDirection: "row", alignItems: "center", gap: 5 },
   bottomView: { flexDirection: "row", justifyContent: "space-between" },
+  modal: {
+    backgroundColor: Colors.backgroundGrey,
+    borderRadius: 8,
+    padding: 20,
+    marginHorizontal: 20,
+    maxWidth: 560 - 40,
+    alignItems: "center",
+    elevation: 4,
+  },
 });

@@ -168,9 +168,13 @@ export default function Login({ navigation, setIsSignedIn }) {
         showsHorizontalScrollIndicator={false}
         style={styles.horizontalContainer}
         contentContainerStyle={{ paddingBottom: 16 }} // 4%
-        contentOffset={{ x: screenWidth * 0.92 * 1.5 + 12 }}
+        contentOffset={{ x: screenWidth * 0.92 * 1.5 + 16 }}
       >
-        <Activity_A width={0.92 * screenWidth} type="sent" pressable={false} />
+        <Activity_A
+          width={0.92 * screenWidth}
+          type="received"
+          pressable={false}
+        />
         <View style={{ marginHorizontal: 4 }} />
         <Activity_A
           width={0.92 * screenWidth}
@@ -180,11 +184,14 @@ export default function Login({ navigation, setIsSignedIn }) {
         <View style={{ marginHorizontal: 4 }} />
         <Activity_A width={0.92 * screenWidth} type="sent" pressable={false} />
         <View style={{ marginHorizontal: 4 }} />
+
         <Activity_A
           width={0.92 * screenWidth}
           type="received"
           pressable={false}
         />
+        <View style={{ marginHorizontal: 4 }} />
+        <Activity_A width={0.92 * screenWidth} type="sent" pressable={false} />
       </ScrollView>
     </KeyboardAwareScrollView>
   );

@@ -1,10 +1,12 @@
 import Colors from "@assets/Colors";
 import Picture from "@components/Picture";
+import RoundedTextButton from "@components/RoundedTextButton";
 import TextBox from "@components/TextBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function EditProfile({ navigation }) {
@@ -30,6 +32,9 @@ export default function EditProfile({ navigation }) {
   const [passwordError2, setPasswordError2] = useState(false);
   const [showPassword2, setShowPassword2] = useState(false);
 
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [onModalHideNavigate, setOnModalHideNavigate] = useState(false);
+
   return (
     <KeyboardAwareScrollView
       bounces={false} // for iOS
@@ -51,7 +56,8 @@ export default function EditProfile({ navigation }) {
             justifyContent: "flex-start",
           }}
           onPress={() => {
-            navigation.navigate("settings");
+            // ADD DESIRED ACTION
+            setIsModalVisible(true);
           }}
         >
           <Ionicons
@@ -64,6 +70,7 @@ export default function EditProfile({ navigation }) {
         <Pressable
           style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
           onPress={() => {
+            // ADD DESIRED ACTION
             navigation.navigate("settings");
           }}
         >
@@ -221,6 +228,68 @@ export default function EditProfile({ navigation }) {
           )}
         </View>
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        onBackButtonPress={() => {
+          setOnModalHideNavigate(false);
+          setIsModalVisible(false);
+        }}
+        onBackdropPress={() => {
+          setOnModalHideNavigate(false);
+          setIsModalVisible(false);
+        }}
+        onModalHide={() => {
+          onModalHideNavigate ? navigation.navigate("settings") : null;
+        }}
+        // backdropColor={Colors.backgroundBlack}
+        // backdropOpacity={0.8}
+        hideModalContentWhileAnimating={true}
+        useNativeDriverForBackdrop
+        backdropTransitionOutTiming={0}
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      >
+        <View style={styles.modal}>
+          <Text
+            style={{
+              color: Colors.secondaryLight,
+              fontFamily: "HelveticaNeue-LightItalic",
+              fontSize: 15,
+              textAlign: "center",
+              lineHeight: 20, // for more separation between lines
+              includeFontPadding: false,
+              textAlignVertical: "center",
+              marginBottom: 16,
+            }}
+          >
+            Are you sure you want to{"\n"}discard your changes?
+          </Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <RoundedTextButton
+              text={"Discard"}
+              color={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideNavigate(true);
+                setIsModalVisible(false);
+              }}
+            />
+            <RoundedTextButton
+              text={"Cancel"}
+              color={Colors.backgroundBlack}
+              textColor={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideNavigate(false);
+                setIsModalVisible(false);
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
     </KeyboardAwareScrollView>
   );
 }
@@ -265,5 +334,14 @@ const styles = StyleSheet.create({
     includeFontPadding: false,
     textAlignVertical: "center",
     marginTop: 8,
+  },
+  modal: {
+    backgroundColor: Colors.backgroundGrey,
+    borderRadius: 8,
+    padding: 20,
+    marginHorizontal: 20,
+    maxWidth: 560 - 40,
+    alignItems: "center",
+    elevation: 4,
   },
 });

@@ -24,7 +24,7 @@ export default function Settings({ navigation, setIsSignedIn }) {
       ]}
     >
       <View style={styles.topContainer}>
-        <Pressable
+        {/* <Pressable
           style={{
             flex: 1,
             flexDirection: "row",
@@ -39,15 +39,38 @@ export default function Settings({ navigation, setIsSignedIn }) {
             size={24}
             color={Colors.secondaryLight}
           />
-        </Pressable>
-        <Text style={styles.text}>Profile</Text>
+        </Pressable> */}
         <View
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-start",
+          }}
+        />
+        <Text style={styles.text}>Profile</Text>
+        {/* <View
           style={{
             flex: 1,
             flexDirection: "row",
             justifyContent: "flex-end",
           }}
-        />
+        /> */}
+        <Pressable
+          style={{
+            flex: 1,
+            flexDirection: "row",
+            justifyContent: "flex-end",
+          }}
+          onPress={() => {
+            navigation.navigate("topTabNavigator");
+          }}
+        >
+          <Ionicons
+            name="chevron-forward-outline"
+            size={24}
+            color={Colors.secondaryLight}
+          />
+        </Pressable>
       </View>
       <View style={styles.inputContainer}>
         <Profile type="you" />

@@ -139,39 +139,33 @@ export default function ForgotPassword({ navigation }) {
         // backdropColor={Colors.backgroundBlack}
         // backdropOpacity={0.8}
         hideModalContentWhileAnimating={true}
-        useNativeDriverForBackdrop={true}
+        useNativeDriverForBackdrop
         backdropTransitionOutTiming={0}
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
       >
-        <View
-          style={{
-            flex: 1,
-            justifyContent: "center",
-            alignItems: "center",
-          }}
-        >
-          <View style={styles.modal}>
-            <Text
-              style={{
-                color: Colors.secondaryLight,
-                fontFamily: "HelveticaNeue-LightItalic",
-                fontSize: 15,
-                textAlign: "center",
-                lineHeight: 20, // for more separation between lines
-                includeFontPadding: false,
-                textAlignVertical: "center",
-                marginBottom: 16,
-              }}
-            >
-              Check your inbox and follow the{"\n"}steps to change your password
-            </Text>
-            <RoundedTextButton
-              text={"Ok"}
-              color={Colors.pastelPink}
-              onPress={() => {
-                setIsModalVisible(false);
-              }}
-            />
-          </View>
+        <View style={styles.modal}>
+          <Text
+            style={{
+              color: Colors.secondaryLight,
+              fontFamily: "HelveticaNeue-LightItalic",
+              fontSize: 15,
+              textAlign: "center",
+              lineHeight: 20, // for more separation between lines
+              includeFontPadding: false,
+              textAlignVertical: "center",
+              marginBottom: 16,
+            }}
+          >
+            Check your inbox and follow the{"\n"}instructions to reset your
+            password
+          </Text>
+          <RoundedTextButton
+            text={"Ok"}
+            color={Colors.pastelPink}
+            onPress={() => {
+              setIsModalVisible(false);
+            }}
+          />
         </View>
       </Modal>
     </KeyboardAwareScrollView>

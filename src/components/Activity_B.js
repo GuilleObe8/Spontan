@@ -178,7 +178,7 @@ export default function Activity_B({
             </View>
             <View style={styles.horizontalView}>
               <RoundedTextButton
-                text={"Delete event"}
+                text={"Delete"}
                 color={Colors.pastelPink}
                 textSize={12}
                 paddingHorizontal={16}

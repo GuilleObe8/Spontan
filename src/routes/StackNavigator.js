@@ -1,6 +1,10 @@
-import { createStackNavigator } from "@react-navigation/stack";
+import {
+  CardStyleInterpolators,
+  createStackNavigator,
+} from "@react-navigation/stack";
 import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
+import ChangePassword from "@screens/ChangePassword";
 import EditProfile from "@screens/EditProfile";
 import ForgotPassword from "@screens/ForgotPassword";
 import InviteFriends from "@screens/InviteFriends";
@@ -10,10 +14,7 @@ import Register from "@screens/Register";
 import SendActivity from "@screens/SendActivity";
 import Settings from "@screens/Settings";
 import { useState } from "react";
-import { Dimensions, Easing } from "react-native";
 import TopTabNavigator from "./TopTabNavigator";
-import { CardStyleInterpolators } from "@react-navigation/stack";
-import ChangePassword from "@screens/ChangePassword";
 
 // TODO: - Check user token
 
