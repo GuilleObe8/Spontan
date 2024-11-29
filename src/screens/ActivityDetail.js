@@ -6,6 +6,7 @@ import RoundedTextButton from "@components/RoundedTextButton";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 // TODO: - make slide up work and display on top of TopTabNavigator
@@ -33,6 +34,9 @@ export default function ActivityDetail({ route, navigation }) {
   const [yes, setYes] = useState(false);
   const [no, setNo] = useState(false);
   const [chat, setChat] = useState(false);
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [onModalHideDelete, setOnModalHideDelete] = useState(false);
 
   return (
     <View
@@ -267,10 +271,14 @@ export default function ActivityDetail({ route, navigation }) {
               </View>
               <View style={styles.horizontalView}>
                 <RoundedTextButton
-                  text={"Delete event"}
+                  text={"Delete"}
                   color={Colors.pastelPink}
                   textSize={12}
                   paddingHorizontal={16}
+                  onPress={() => {
+                    // ADD DESIRED ACTION
+                    setIsModalVisible(true);
+                  }}
                 />
               </View>
             </View>
@@ -279,6 +287,72 @@ export default function ActivityDetail({ route, navigation }) {
           )}
         </View>
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        // onBackButtonPress={() => {
+        //   setOnModalHideDelete(false);
+        //   setIsModalVisible(false);
+        // }}
+        // onBackdropPress={() => {
+        //   setOnModalHideDelete(false);
+        //   setIsModalVisible(false);
+        // }}
+        onModalHide={() => {
+          // onModalHideDelete ? navigation.navigate("settings") : null;
+          if (onModalHideDelete) {
+            console.log("Activity deleted!");
+            navigation.navigate("activities");
+          } else null;
+        }}
+        // backdropColor={Colors.backgroundBlack}
+        // backdropOpacity={0.8}
+        hideModalContentWhileAnimating={true}
+        useNativeDriverForBackdrop
+        backdropTransitionOutTiming={0}
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      >
+        <View style={styles.modal}>
+          <Text
+            style={{
+              color: Colors.secondaryLight,
+              fontFamily: "HelveticaNeue-LightItalic",
+              fontSize: 15,
+              textAlign: "center",
+              lineHeight: 20, // for more separation between lines
+              includeFontPadding: false,
+              textAlignVertical: "center",
+              marginBottom: 16,
+            }}
+          >
+            Are you sure you want to{"\n"}delete this activity?
+          </Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <RoundedTextButton
+              text={"Delete"}
+              color={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideDelete(true);
+                setIsModalVisible(false);
+              }}
+            />
+            <RoundedTextButton
+              text={"Cancel"}
+              color={Colors.backgroundBlack}
+              textColor={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideDelete(false);
+                setIsModalVisible(false);
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 }
@@ -356,5 +430,14 @@ const styles = StyleSheet.create({
     aspectRatio: 16 / 9,
     backgroundColor: Colors.lightGrey,
     marginVertical: 18,
+  },
+  modal: {
+    backgroundColor: Colors.backgroundGrey,
+    borderRadius: 8,
+    padding: 20,
+    marginHorizontal: 20,
+    maxWidth: 560 - 40,
+    alignItems: "center",
+    elevation: 4,
   },
 });

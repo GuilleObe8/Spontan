@@ -230,14 +230,14 @@ export default function EditProfile({ navigation }) {
       </View>
       <Modal
         isVisible={isModalVisible}
-        onBackButtonPress={() => {
-          setOnModalHideNavigate(false);
-          setIsModalVisible(false);
-        }}
-        onBackdropPress={() => {
-          setOnModalHideNavigate(false);
-          setIsModalVisible(false);
-        }}
+        // onBackButtonPress={() => {
+        //   setOnModalHideNavigate(false);
+        //   setIsModalVisible(false);
+        // }}
+        // onBackdropPress={() => {
+        //   setOnModalHideNavigate(false);
+        //   setIsModalVisible(false);
+        // }}
         onModalHide={() => {
           onModalHideNavigate ? navigation.navigate("settings") : null;
         }}
@@ -266,7 +266,7 @@ export default function EditProfile({ navigation }) {
           <View style={{ flexDirection: "row", gap: 4 }}>
             <RoundedTextButton
               text={"Discard"}
-              color={Colors.pastelPink}
+              color={Colors.pastelPurple}
               textSize={16}
               paddingHorizontal={20}
               elevation={4}
@@ -278,7 +278,7 @@ export default function EditProfile({ navigation }) {
             <RoundedTextButton
               text={"Cancel"}
               color={Colors.backgroundBlack}
-              textColor={Colors.pastelPink}
+              textColor={Colors.pastelPurple}
               textSize={16}
               paddingHorizontal={20}
               elevation={4}

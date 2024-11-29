@@ -3,12 +3,17 @@ import CheckBox from "@components/CheckBox";
 import Profile from "@components/Profile";
 import RoundedTextButton from "@components/RoundedTextButton";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
+import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 export default function Settings({ navigation, setIsSignedIn }) {
   const insets = useSafeAreaInsets();
+
+  const [isModalVisible, setIsModalVisible] = useState(false);
+  const [onModalHideDelete, setOnModalHideDelete] = useState(false);
 
   return (
     <ScrollView
@@ -201,10 +206,91 @@ export default function Settings({ navigation, setIsSignedIn }) {
           paddingHorizontal={20}
           elevation={4}
           onPress={() => {
-            setIsSignedIn(false); // CHANGE FOR DESIRED ACTION
+            // ADD DESIRED ACTION
+            setIsModalVisible(true);
           }}
         />
       </View>
+      <Modal
+        isVisible={isModalVisible}
+        // onBackButtonPress={() => {
+        //   setOnModalHideDelete(false);
+        //   setIsModalVisible(false);
+        // }}
+        // onBackdropPress={() => {
+        //   setOnModalHideDelete(false);
+        //   setIsModalVisible(false);
+        // }}
+        onModalHide={() => {
+          // onModalHideDelete ? navigation.navigate("settings") : null;
+          if (onModalHideDelete) {
+            console.log("Profile deleted!");
+            setIsSignedIn(false);
+          } else null;
+        }}
+        // backdropColor={Colors.backgroundBlack}
+        // backdropOpacity={0.8}
+        hideModalContentWhileAnimating={true}
+        useNativeDriverForBackdrop
+        backdropTransitionOutTiming={0}
+        style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+      >
+        <View style={styles.modal}>
+          <Text
+            style={{
+              color: Colors.secondaryLight,
+              fontFamily: "HelveticaNeue-LightItalic",
+              fontSize: 15,
+              textAlign: "center",
+              lineHeight: 20, // for more separation between lines
+              includeFontPadding: false,
+              textAlignVertical: "center",
+              marginBottom: 16,
+            }}
+          >
+            Are you sure you want to{"\n"}delete your profile?
+          </Text>
+          <Text
+            style={{
+              color: Colors.secondaryLight,
+              fontFamily: "HelveticaNeue-BoldItalic",
+              fontSize: 15,
+              textAlign: "center",
+              lineHeight: 20, // for more separation between lines
+              includeFontPadding: false,
+              textAlignVertical: "center",
+              marginBottom: 16,
+            }}
+          >
+            THIS CANNOT BE UNDONE
+          </Text>
+          <View style={{ flexDirection: "row", gap: 4 }}>
+            <RoundedTextButton
+              text={"Delete"}
+              color={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideDelete(true);
+                setIsModalVisible(false);
+              }}
+            />
+            <RoundedTextButton
+              text={"Cancel"}
+              color={Colors.backgroundBlack}
+              textColor={Colors.pastelPink}
+              textSize={16}
+              paddingHorizontal={20}
+              elevation={4}
+              onPress={() => {
+                setOnModalHideDelete(false);
+                setIsModalVisible(false);
+              }}
+            />
+          </View>
+        </View>
+      </Modal>
     </ScrollView>
   );
 }
@@ -239,6 +325,15 @@ const styles = StyleSheet.create({
     borderRadius: 8,
     padding: 30,
     marginVertical: 24,
+    elevation: 4,
+  },
+  modal: {
+    backgroundColor: Colors.backgroundGrey,
+    borderRadius: 8,
+    padding: 20,
+    marginHorizontal: 20,
+    maxWidth: 560 - 40,
+    alignItems: "center",
     elevation: 4,
   },
 });

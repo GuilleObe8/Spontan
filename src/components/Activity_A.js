@@ -3,9 +3,9 @@ import Ionicons from "@expo/vector-icons/Ionicons";
 import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
+import Modal from "react-native-modal";
 import ProgressIndicator from "./ProgressIndicator";
 import RoundedTextButton from "./RoundedTextButton";
-import Modal from "react-native-modal";
 
 // Test with very long title and description
 // TODO: - Share state with activityDetail
