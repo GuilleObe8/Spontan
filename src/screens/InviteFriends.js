@@ -6,8 +6,6 @@ import { useState } from "react";
 import { FlatList, Pressable, StyleSheet, Text, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - check exports in User.js
-
 const usersData = [
   {
     tag: "anna",

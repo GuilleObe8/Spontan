@@ -1,17 +1,22 @@
 import Colors from "@assets/Colors";
-import Logo from "@components/Logo";
 import Profile from "@components/Profile";
-import Ionicons from "@expo/vector-icons/Ionicons";
-import { StyleSheet, View, Pressable } from "react-native";
+import Slider from "@components/Slider";
+import { useNavigation } from "@react-navigation/native";
+import { StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of TopTabNavigatorgator
-
-export default function ProfileDetail({ route, navigation }) {
+export default function ProfileDetail({
+  tag,
+  firstName,
+  lastName,
+  email,
+  picture,
+  activityData,
+  onPressSlider,
+}) {
   const insets = useSafeAreaInsets();
 
-  const { tag, firstName, lastName, email, picture, activityData } =
-    route.params;
+  const navigation = useNavigation();
 
   return (
     <View
@@ -25,32 +30,8 @@ export default function ProfileDetail({ route, navigation }) {
         },
       ]}
     >
-      {/* Just for design stage */}
-      <View style={styles.topContainer}>
-        <Ionicons
-          name="menu"
-          size={24}
-          color={Colors.secondaryLight}
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        />
-        <Logo marginTop={0} />
-        <View
-          style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
-        />
-      </View>
-      {/* ^ This code should be deleted in the final version */}
-
       <View style={styles.inputContainer}>
-        <Pressable
-          onPress={() => {
-            navigation.goBack();
-          }}
-          style={styles.slider}
-        />
+        <Slider onPress={onPressSlider} />
         <Profile
           type="other"
           tag={tag}
@@ -81,7 +62,8 @@ const styles = StyleSheet.create({
     maxWidth: 560,
   },
   inputContainer: {
-    flex: 1,
+    position: "absolute",
+    bottom: 0,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
@@ -89,13 +71,5 @@ const styles = StyleSheet.create({
     borderTopRightRadius: 8,
     padding: 20,
     marginTop: 20,
-  },
-  slider: {
-    backgroundColor: Colors.secondaryLight,
-    width: "20%",
-    height: "0.7%",
-    borderRadius: 8,
-    alignSelf: "center",
-    marginBottom: 20,
   },
 });

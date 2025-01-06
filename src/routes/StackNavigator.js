@@ -2,7 +2,6 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
-import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
 import ChangePassword from "@screens/ChangePassword";
 import EditProfile from "@screens/EditProfile";
@@ -16,12 +15,10 @@ import Settings from "@screens/Settings";
 import { useState } from "react";
 import TopTabNavigator from "./TopTabNavigator";
 
-// TODO: - Check user token
-
 const Stack = createStackNavigator();
 
 export default function StackNavigator() {
-  const [isSignedIn, setIsSignedIn] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(true);
 
   return (
     <Stack.Navigator
@@ -54,21 +51,21 @@ export default function StackNavigator() {
             component={EditProfile}
             options={slideFromLeft}
           />
-          <Stack.Screen
+          {/* <Stack.Screen
             name="profileDetail"
             component={ProfileDetail}
             options={slideFromBottom}
-          />
-          <Stack.Screen
+          /> */}
+          {/* <Stack.Screen
             name="activityDetail"
             component={ActivityDetail}
             options={slideFromBottom}
-          />
-          <Stack.Screen
+          /> */}
+          {/* <Stack.Screen
             name="sendActivity"
             component={SendActivity}
             options={slideFromBottom}
-          />
+          /> */}
           <Stack.Screen
             name="inviteFriends"
             component={InviteFriends}

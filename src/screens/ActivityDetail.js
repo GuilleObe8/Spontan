@@ -1,35 +1,34 @@
 import Colors from "@assets/Colors";
-import Logo from "@components/Logo";
 import Picture from "@components/Picture";
 import ProgressIndicator from "@components/ProgressIndicator";
 import RoundedTextButton from "@components/RoundedTextButton";
+import Slider from "@components/Slider";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-// TODO: - make slide up work and display on top of TopTabNavigator
-//       - add a timetable prop (?)
-
-export default function ActivityDetail({ route, navigation }) {
-  const {
-    type,
-    tag,
-    firstName,
-    lastName,
-    category,
-    remainingTime,
-    title,
-    description,
-    date,
-    activityTime,
-    place,
-    answeredPeople,
-    numPeople,
-  } = route.params;
-
+export default function ActivityDetail({
+  type,
+  tag,
+  firstName,
+  lastName,
+  category,
+  remainingTime,
+  title,
+  description,
+  date,
+  activityTime,
+  place,
+  answeredPeople,
+  numPeople,
+  onPressSlider,
+}) {
   const insets = useSafeAreaInsets();
+
+  const navigation = useNavigation();
 
   const [yes, setYes] = useState(false);
   const [no, setNo] = useState(false);
@@ -50,36 +49,12 @@ export default function ActivityDetail({ route, navigation }) {
         },
       ]}
     >
-      {/* Just for design stage */}
-      <View style={styles.topContainer}>
-        <Ionicons
-          name="menu"
-          size={24}
-          color={Colors.secondaryLight}
-          style={{
-            flex: 1,
-            flexDirection: "row",
-            justifyContent: "flex-start",
-          }}
-        />
-        <Logo marginTop={0} />
-        <View
-          style={{ flex: 1, flexDirection: "row", justifyContent: "flex-end" }}
-        />
-      </View>
-      {/* ^ This code should be deleted in the final version */}
-
       <View style={styles.inputContainer}>
-        <Pressable
-          onPress={() => {
-            navigation.navigate("topTabNavigator");
-          }}
-          style={styles.slider}
-        />
+        <Slider onPress={onPressSlider} />
         <Pressable
           style={[styles.horizontalView, { gap: 20 }]}
           onPress={() => {
-            navigation.navigate("profileDetail", {});
+            navigation.navigate("profileDetail", {}); // Change for modal
           }}
           // onPress={() => {
           //   console.log(`user "${tag}" clicked`);
@@ -363,32 +338,16 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: "center",
   },
-  topContainer: {
-    opacity: 0.2,
-    marginTop: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "92%",
-    maxWidth: 560,
-  },
   inputContainer: {
-    flex: 1,
+    position: "absolute",
+    bottom: 0,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     padding: 20,
-    marginTop: 20,
-  },
-  slider: {
-    backgroundColor: Colors.secondaryLight,
-    width: "20%",
-    height: "0.7%",
-    borderRadius: 8,
-    alignSelf: "center",
-    marginBottom: 20,
+    paddingBottom: 40,
   },
   mainText: {
     color: Colors.mainLight,

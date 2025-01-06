@@ -22,11 +22,6 @@ import { useEffect } from "react";
 import { LogBox, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
 
-// TODO: - Configure status bar, splash screen and app icon: https://docs.expo.dev/tutorial/configuration/
-//       - Manage differences between platforms: https://docs.expo.dev/tutorial/platform-differences/
-//       - Fix web version: https://reactnavigation.org/docs/web-support/
-//       - Fix cross-platform shadows: https://blog.logrocket.com/applying-box-shadows-in-react-native/
-
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
 

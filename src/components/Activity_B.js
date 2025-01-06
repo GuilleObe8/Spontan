@@ -6,9 +6,6 @@ import { Pressable, StyleSheet, Text, View } from "react-native";
 import ProgressIndicator from "./ProgressIndicator";
 import RoundedTextButton from "./RoundedTextButton";
 
-// Test with very long title and description
-// TODO: - Share state with activityDetail
-
 export default function Activity_B({
   width = "100%",
   type, // "received", "sent"

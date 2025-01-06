@@ -1,10 +1,12 @@
 import Colors from "@assets/Colors";
+import { useNavigation } from "@react-navigation/native";
+import ProfileDetail from "@screens/ProfileDetail";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import Modal from "react-native-modal";
 import CloseButton from "./CloseButton";
 import Picture from "./Picture";
 import RoundedTextButton from "./RoundedTextButton";
-import { useNavigation } from "@react-navigation/native";
 
 export default function User({
   tag = "tag",
@@ -27,17 +29,12 @@ export default function User({
   const [friendsState, setFriendsState] = useState(friends);
   const [acceptState, setAcceptState] = useState(pendingAccept);
 
+  const [showProfileDetail, setShowProfileDetail] = useState(false);
+
   return (
     <Pressable
       onPress={() => {
-        navigation.navigate("profileDetail", {
-          tag,
-          firstName,
-          lastName,
-          email,
-          picture,
-          activityData,
-        });
+        setShowProfileDetail(true);
       }}
       // onPress={() => {
       //   console.log(`user "${tag}" clicked`);
@@ -135,6 +132,36 @@ export default function User({
             </Text>
           )}
       </View>
+      <Modal
+        isVisible={showProfileDetail}
+        onBackButtonPress={() => {
+          setShowProfileDetail(false);
+        }}
+        onBackdropPress={() => {
+          setShowProfileDetail(false);
+        }}
+        onModalWillHide={() => {
+          setShowProfileDetail(false);
+        }}
+        hideModalContentWhileAnimating={true}
+        backdropOpacity={0.5}
+        useNativeDriverForBackdrop
+        backdropTransitionOutTiming={0}
+        swipeDirection={Platform.OS !== "web" ? "down" : null}
+        style={{ flex: 1, margin: 0 }}
+      >
+        <ProfileDetail
+          tag={tag}
+          firstName={firstName}
+          lastName={lastName}
+          email={email}
+          picture={picture}
+          activityData={activityData}
+          onPressSlider={() => {
+            setShowProfileDetail(false);
+          }}
+        />
+      </Modal>
     </Pressable>
   );
 }

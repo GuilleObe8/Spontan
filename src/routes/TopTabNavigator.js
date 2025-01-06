@@ -4,14 +4,15 @@ import Logo from "@components/Logo";
 import TabBar from "@components/TabBar";
 import Ionicons from "@expo/vector-icons/Ionicons";
 import { createMaterialTopTabNavigator } from "@react-navigation/material-top-tabs";
-import { useNavigation } from "@react-navigation/native";
 import Activities from "@screens/Activities";
 import Friends from "@screens/Friends";
 import Main from "@screens/Main";
-import { useRef } from "react";
-import { Pressable, StyleSheet, View, Platform } from "react-native";
-import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
+import { useRef, useState } from "react";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import SendActivity from "@screens/SendActivity";
+import { useNavigation } from "@react-navigation/native";
 
 const Tab = createMaterialTopTabNavigator();
 
@@ -21,6 +22,8 @@ export default function TopTabNavigator() {
   const navigation = useNavigation();
 
   const scrollRef = useRef(null);
+
+  const [showSendActivity, setShowSendActivity] = useState(false);
 
   return (
     <View
@@ -83,9 +86,58 @@ export default function TopTabNavigator() {
           bottom: Platform.OS === "ios" ? 28 : 16,
         }}
         onPress={() => {
-          navigation.navigate("sendActivity");
+          setShowSendActivity(true);
         }}
       />
+      <Modal
+        isVisible={showSendActivity}
+        onBackButtonPress={() => {
+          setShowSendActivity(false);
+        }}
+        onBackdropPress={() => {
+          setShowSendActivity(false);
+        }}
+        onModalWillHide={() => {
+          setShowSendActivity(false);
+        }}
+        hideModalContentWhileAnimating={true}
+        backdropOpacity={0.5}
+        useNativeDriverForBackdrop
+        backdropTransitionOutTiming={0}
+        swipeDirection={Platform.OS !== "web" ? "down" : null}
+        style={{ flex: 1, margin: 0 }}
+      >
+        <SendActivity
+          onPressSlider={() => {
+            setShowSendActivity(false);
+          }}
+        />
+        {/* <View
+          style={{
+            backgroundColor: "transparent", // Colors.backgroundBlack,
+            flexGrow: 1,
+            alignItems: "center",
+
+            borderWidth: 5,
+            borderColor: "green",
+          }}
+        >
+          <View
+            style={{
+              position: "absolute",
+              bottom: 0,
+
+              width: 300,
+              height: 600,
+              backgroundColor: "blue",
+              borderWidth: 5,
+              borderColor: "red",
+            }}
+          >
+            <Text>MODAL</Text>
+          </View>
+        </View> */}
+      </Modal>
     </View>
   );
 }
@@ -104,16 +156,12 @@ const styles = StyleSheet.create({
     maxWidth: 560,
   },
   navigatorContainer: {
-    // borderColor: "pink",
-    // borderWidth: 1,
     backgroundColor: Colors.backgroundBlack,
     marginTop: 24,
     width: "92%",
     maxWidth: 560,
   },
   screenContainer: {
-    // borderColor: "orange",
-    // borderWidth: 1,
     backgroundColor: Colors.backgroundBlack,
     // marginBottom: 44,
     marginBottom: Platform.OS === "ios" ? 22 : 44,

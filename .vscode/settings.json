@@ -1,0 +1,27 @@
+{
+  "colorMyText.configurations": [
+    {
+      "paths": ["todo.txt"],
+      "rules": [
+        {
+          "patterns": ["\\[!\\]"],
+          "color": "BrightBlue"
+        },
+        {
+          "patterns": ["\\[!!\\]"],
+          "color": "BrightYellow"
+        },
+        {
+          "patterns": ["\\[!!!\\]"],
+          "color": "BrightRed"
+        },
+        {
+          "patterns": ["\\b\\w*\\.js\\b"],
+          "color": "BrightGreen"
+        }
+      ]
+    }
+  ]
+}
+
+// Black, Blue, BrightBlack, BrightBlue, BrightCyan, BrightGreen, BrightMagenta, BrightRed, BrightWhite, BrightYellow, Cyan, Green, Magenta, Red, White, and Yellow
