@@ -4,6 +4,8 @@ import RoundedTextButton from "@components/RoundedTextButton";
 import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "firebaseConfig";
 import { useState } from "react";
 import { Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
@@ -35,6 +37,26 @@ export default function Register({ navigation }) {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
+  const handleRegister = () => {
+    createUserWithEmailAndPassword(auth, email, password2)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          console.log("email:", user.email, "uid:", user.uid);
+          setIsModalVisible(true);
+        } else {
+          console.log(user);
+          Alert.alert("Register failed", user);
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        Alert.alert("Register failed", errorMessage);
+      });
+  };
+
   return (
     <KeyboardAwareScrollView
       bounces={false} // for iOS
@@ -56,6 +78,7 @@ export default function Register({ navigation }) {
       <View style={styles.inputContainer}>
         <TextBox
           labelText={"First name"}
+          value={firstName}
           onChangeText={setFirstName}
           autoCapitalize="words"
           autoComplete={"given-name"}
@@ -68,6 +91,7 @@ export default function Register({ navigation }) {
         <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Last name"}
+          value={lastName}
           onChangeText={setLastName}
           autoCapitalize="words"
           autoComplete={"family-name"}
@@ -80,29 +104,32 @@ export default function Register({ navigation }) {
         <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Tag"}
+          value={tag}
           onChangeText={setTag}
           autoComplete={"username"}
-          validate={() => {
-            if (tag.length < 6)
-              setTagError("The tag you entered is incorrect.");
-            else setTagError(false);
-          }}
+          // validate={() => {
+          //   if (tag.length < 6)
+          //     setTagError("The tag you entered is incorrect.");
+          //   else setTagError(false);
+          // }}
         />
         <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Email"}
+          value={email}
           onChangeText={setEmail}
           keyboardType={"email-address"}
           autoComplete={"email"}
-          validate={() => {
-            if (email.length < 10)
-              setEmailError("The email address you entered is incorrect.");
-            else setEmailError(false);
-          }}
+          // validate={() => {
+          //   if (email.length < 10)
+          //     setEmailError("The email address you entered is incorrect.");
+          //   else setEmailError(false);
+          // }}
         />
         <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Password"}
+          value={password1}
           onChangeText={setPassword1}
           rightIcon={
             <Pressable onPress={() => setShowPassword1(!showPassword1)}>
@@ -118,15 +145,16 @@ export default function Register({ navigation }) {
             </Pressable>
           }
           secureTextEntry={!showPassword1}
-          validate={() => {
-            if (password1.length < 2)
-              setPasswordError1("The password you entered is incorrect.");
-            else setPasswordError1(false);
-          }}
+          // validate={() => {
+          //   if (password1.length < 2)
+          //     setPasswordError1("The password you entered is incorrect.");
+          //   else setPasswordError1(false);
+          // }}
         />
         <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Confirm password"}
+          value={password2}
           onChangeText={setPassword2}
           rightIcon={
             <Pressable onPress={() => setShowPassword2(!showPassword2)}>
@@ -142,11 +170,11 @@ export default function Register({ navigation }) {
             </Pressable>
           }
           secureTextEntry={!showPassword2}
-          validate={() => {
-            if (!(password2 === password1))
-              setPasswordError2("The passwords do not match.");
-            else setPasswordError2(false);
-          }}
+          // validate={() => {
+          //   if (!(password2 === password1))
+          //     setPasswordError2("The passwords do not match.");
+          //   else setPasswordError2(false);
+          // }}
         />
         <View>
           {firstNameError && (
@@ -191,10 +219,7 @@ export default function Register({ navigation }) {
           ]}
         >
           <RoundedTextButton
-            onPress={() => {
-              // ADD DESIRED ACTION
-              setIsModalVisible(true);
-            }}
+            onPress={handleRegister}
             text={"Register"}
             color={Colors.pastelBlue}
           />

@@ -2,6 +2,7 @@ import {
   CardStyleInterpolators,
   createStackNavigator,
 } from "@react-navigation/stack";
+import ActivityDetail from "@screens/ActivityDetail";
 import AddFriends from "@screens/AddFriends";
 import ChangePassword from "@screens/ChangePassword";
 import EditProfile from "@screens/EditProfile";
@@ -18,7 +19,8 @@ import TopTabNavigator from "./TopTabNavigator";
 const Stack = createStackNavigator();
 
 export default function StackNavigator() {
-  const [isSignedIn, setIsSignedIn] = useState(true);
+  const [loading, setLoading] = useState(false);
+  const [isSignedIn, setIsSignedIn] = useState(false);
 
   return (
     <Stack.Navigator
@@ -51,21 +53,21 @@ export default function StackNavigator() {
             component={EditProfile}
             options={slideFromLeft}
           />
-          {/* <Stack.Screen
+          <Stack.Screen
             name="profileDetail"
             component={ProfileDetail}
             options={slideFromBottom}
-          /> */}
-          {/* <Stack.Screen
+          />
+          <Stack.Screen
             name="activityDetail"
             component={ActivityDetail}
             options={slideFromBottom}
-          /> */}
-          {/* <Stack.Screen
+          />
+          <Stack.Screen
             name="sendActivity"
             component={SendActivity}
             options={slideFromBottom}
-          /> */}
+          />
           <Stack.Screen
             name="inviteFriends"
             component={InviteFriends}
@@ -168,5 +170,6 @@ const slideFromLeft = {
 
 const slideFromBottom = {
   transitionSpec: transitionSpec,
-  cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS, // forHorizontalIOS, forVerticalIOS, forModalPresentationIOS, forFadeFromBottomAndroid, forRevealFromBottomAndroid
+  // cardStyleInterpolator: CardStyleInterpolators.forVerticalIOS, // forHorizontalIOS, forVerticalIOS, forModalPresentationIOS, forFadeFromBottomAndroid, forRevealFromBottomAndroid
+  cardStyleInterpolator: CardStyleInterpolators.forModalPresentationIOS,
 };

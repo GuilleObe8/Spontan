@@ -1,8 +1,8 @@
 import Colors from "@assets/Colors";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import ActivityDetail from "@screens/ActivityDetail";
+import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
+import { Pressable, StyleSheet, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import ProgressIndicator from "./ProgressIndicator";
 import RoundedTextButton from "./RoundedTextButton";
@@ -28,6 +28,8 @@ export default function Activity_A({
   const [no, setNo] = useState(false);
   const [chat, setChat] = useState(false);
 
+  const navigation = useNavigation();
+
   const [isModalVisible, setIsModalVisible] = useState(false);
   const [onModalHideDelete, setOnModalHideDelete] = useState(false);
 
@@ -37,9 +39,23 @@ export default function Activity_A({
     <View style={[styles.container, { width: width }]}>
       {pressable && (
         <Pressable
-          onPress={() => {
-            setShowActivityDetail(true);
-          }}
+          onPress={() =>
+            navigation.navigate("activityDetail", {
+              type,
+              tag,
+              firstName,
+              lastName,
+              category,
+              remainingTime,
+              title,
+              description,
+              date,
+              activityTime,
+              place,
+              answeredPeople,
+              numPeople,
+            })
+          }
         >
           <View style={styles.topInfoView}>
             {type === "received" ? (
@@ -303,68 +319,6 @@ export default function Activity_A({
           )}
         </View>
       )}
-      <Modal
-        isVisible={showActivityDetail}
-        onBackButtonPress={() => {
-          setShowActivityDetail(false);
-        }}
-        onBackdropPress={() => {
-          setShowActivityDetail(false);
-        }}
-        onModalWillHide={() => {
-          setShowActivityDetail(false);
-        }}
-        hideModalContentWhileAnimating={true}
-        backdropOpacity={0.5}
-        useNativeDriverForBackdrop
-        backdropTransitionOutTiming={0}
-        swipeDirection={Platform.OS !== "web" ? "down" : null}
-        style={{ flex: 1, margin: 0 }}
-      >
-        <ActivityDetail
-          type={type}
-          tag={tag}
-          firstName={firstName}
-          lastName={lastName}
-          category={category}
-          remainingTime={remainingTime}
-          title={title}
-          description={description}
-          date={date}
-          activityTime={activityTime}
-          place={place}
-          answeredPeople={answeredPeople}
-          numPeople={numPeople}
-          onPressSlider={() => {
-            setShowActivityDetail(false);
-          }}
-        />
-        {/* <View
-          style={{
-            backgroundColor: "transparent", // Colors.backgroundBlack,
-            flexGrow: 1,
-            alignItems: "center",
-
-            borderWidth: 5,
-            borderColor: "blue",
-          }}
-        >
-          <View
-            style={{
-              position: "absolute",
-              bottom: 0,
-
-              width: 300,
-              height: 600,
-              backgroundColor: "red",
-              borderWidth: 5,
-              borderColor: "green",
-            }}
-          >
-            <Text>MODAL</Text>
-          </View>
-        </View> */}
-      </Modal>
       <Modal
         isVisible={isModalVisible}
         // onBackButtonPress={() => {

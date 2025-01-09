@@ -4,31 +4,29 @@ import ProgressIndicator from "@components/ProgressIndicator";
 import RoundedTextButton from "@components/RoundedTextButton";
 import Slider from "@components/Slider";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { useNavigation } from "@react-navigation/native";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Platform, Pressable, StyleSheet, Text, View } from "react-native";
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function ActivityDetail({
-  type,
-  tag,
-  firstName,
-  lastName,
-  category,
-  remainingTime,
-  title,
-  description,
-  date,
-  activityTime,
-  place,
-  answeredPeople,
-  numPeople,
-  onPressSlider,
-}) {
+export default function ActivityDetail({ route, navigation }) {
   const insets = useSafeAreaInsets();
 
-  const navigation = useNavigation();
+  const {
+    type,
+    tag,
+    firstName,
+    lastName,
+    category,
+    remainingTime,
+    title,
+    description,
+    date,
+    activityTime,
+    place,
+    answeredPeople,
+    numPeople,
+  } = route.params;
 
   const [yes, setYes] = useState(false);
   const [no, setNo] = useState(false);
@@ -50,7 +48,11 @@ export default function ActivityDetail({
       ]}
     >
       <View style={styles.inputContainer}>
-        <Slider onPress={onPressSlider} />
+        <Slider
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <Pressable
           style={[styles.horizontalView, { gap: 20 }]}
           onPress={() => {
@@ -339,15 +341,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputContainer: {
-    position: "absolute",
-    bottom: 0,
+    // position: "absolute",
+    // bottom: 0,
+    flex: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     padding: 20,
-    paddingBottom: 40,
+    marginTop: Platform.OS === "web" ? 20 : 0,
   },
   mainText: {
     color: Colors.mainLight,

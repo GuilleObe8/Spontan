@@ -1,22 +1,14 @@
 import Colors from "@assets/Colors";
 import Profile from "@components/Profile";
 import Slider from "@components/Slider";
-import { useNavigation } from "@react-navigation/native";
-import { StyleSheet, View } from "react-native";
+import { Platform, StyleSheet, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function ProfileDetail({
-  tag,
-  firstName,
-  lastName,
-  email,
-  picture,
-  activityData,
-  onPressSlider,
-}) {
+export default function ProfileDetail({ route, navigation }) {
   const insets = useSafeAreaInsets();
 
-  const navigation = useNavigation();
+  const { tag, firstName, lastName, email, picture, activityData } =
+    route.params;
 
   return (
     <View
@@ -31,7 +23,11 @@ export default function ProfileDetail({
       ]}
     >
       <View style={styles.inputContainer}>
-        <Slider onPress={onPressSlider} />
+        <Slider
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <Profile
           type="other"
           tag={tag}
@@ -52,24 +48,16 @@ const styles = StyleSheet.create({
     flexGrow: 1,
     alignItems: "center",
   },
-  topContainer: {
-    opacity: 0.2,
-    marginTop: 12,
-    flexDirection: "row",
-    justifyContent: "space-between",
-    alignItems: "center",
-    width: "92%",
-    maxWidth: 560,
-  },
   inputContainer: {
-    position: "absolute",
-    bottom: 0,
+    // position: "absolute",
+    // bottom: 0,
+    flex: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     padding: 20,
-    marginTop: 20,
+    marginTop: Platform.OS === "web" ? 20 : 0,
   },
 });

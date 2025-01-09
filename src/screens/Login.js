@@ -6,8 +6,17 @@ import RoundedTextButton from "@components/RoundedTextButton";
 import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { auth } from "firebaseConfig";
 import { useState } from "react";
-import { Dimensions, Pressable, StyleSheet, Text, View } from "react-native";
+import {
+  Alert,
+  Dimensions,
+  Pressable,
+  StyleSheet,
+  Text,
+  View,
+} from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -28,6 +37,26 @@ export default function Login({ navigation, setIsSignedIn }) {
     Dimensions.get("window").width > 560
       ? 560 * 1.08
       : Dimensions.get("window").width;
+
+  const handleLogin = () => {
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        const user = userCredential.user;
+        if (user) {
+          console.log("email:", user.email, "uid:", user.uid);
+          setIsSignedIn(true);
+        } else {
+          console.log(user);
+          Alert.alert("Login failed", user);
+        }
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        console.log(errorMessage);
+        Alert.alert("Login failed", errorMessage);
+      });
+  };
 
   return (
     <KeyboardAwareScrollView
@@ -51,18 +80,20 @@ export default function Login({ navigation, setIsSignedIn }) {
         <TextBox
           labelText={"Tag or email"}
           // placeholder={"e.g. mail@mail.com"}
+          value={email}
           onChangeText={setEmail}
           keyboardType={"email-address"}
           autoComplete={"email"}
           validate={() => {
-            if (email.length < 1)
-              setEmailError("The email address you entered is incorrect.");
-            else setEmailError(false);
+            // if (email.length < 1)
+            //   setEmailError("The email address you entered is incorrect.");
+            // else setEmailError(false);
           }}
         />
         <View style={{ marginVertical: 8 }} />
         <TextBox
           labelText={"Password"}
+          value={password}
           onChangeText={setPassword}
           autoComplete={"current-password"}
           rightIcon={
@@ -80,9 +111,9 @@ export default function Login({ navigation, setIsSignedIn }) {
           }
           secureTextEntry={!showPassword} // Default secure set to true
           validate={() => {
-            if (password.length < 2)
-              setPasswordError("The password you entered is incorrect.");
-            else setPasswordError(false);
+            // if (password.length < 2)
+            //   setPasswordError("The password you entered is incorrect.");
+            // else setPasswordError(false);
           }}
         />
         <View style={{ marginVertical: 8 }} />
@@ -109,9 +140,7 @@ export default function Login({ navigation, setIsSignedIn }) {
           ]}
         >
           <RoundedTextButton
-            onPress={() => {
-              setIsSignedIn(true); // CHANGE FOR DESIRED ACTION
-            }}
+            onPress={handleLogin}
             text={"Log In"}
             color={Colors.pastelGreen}
           />

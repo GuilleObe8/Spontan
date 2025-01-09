@@ -23,8 +23,6 @@ export default function TopTabNavigator() {
 
   const scrollRef = useRef(null);
 
-  const [showSendActivity, setShowSendActivity] = useState(false);
-
   return (
     <View
       style={[
@@ -86,33 +84,10 @@ export default function TopTabNavigator() {
           bottom: Platform.OS === "ios" ? 28 : 16,
         }}
         onPress={() => {
-          setShowSendActivity(true);
+          navigation.navigate("sendActivity");
         }}
       />
-      <Modal
-        isVisible={showSendActivity}
-        onBackButtonPress={() => {
-          setShowSendActivity(false);
-        }}
-        onBackdropPress={() => {
-          setShowSendActivity(false);
-        }}
-        onModalWillHide={() => {
-          setShowSendActivity(false);
-        }}
-        hideModalContentWhileAnimating={true}
-        backdropOpacity={0.5}
-        useNativeDriverForBackdrop
-        backdropTransitionOutTiming={0}
-        swipeDirection={Platform.OS !== "web" ? "down" : null}
-        style={{ flex: 1, margin: 0 }}
-      >
-        <SendActivity
-          onPressSlider={() => {
-            setShowSendActivity(false);
-          }}
-        />
-        {/* <View
+      {/* <View
           style={{
             backgroundColor: "transparent", // Colors.backgroundBlack,
             flexGrow: 1,
@@ -137,7 +112,6 @@ export default function TopTabNavigator() {
             <Text>MODAL</Text>
           </View>
         </View> */}
-      </Modal>
     </View>
   );
 }

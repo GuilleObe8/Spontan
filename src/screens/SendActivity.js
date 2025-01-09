@@ -6,17 +6,14 @@ import RoundedTextButton from "@components/RoundedTextButton";
 import Slider from "@components/Slider";
 import TextBox from "@components/TextBox";
 import DateTimePicker from "@react-native-community/datetimepicker";
-import { useNavigation } from "@react-navigation/native";
 import { format, isToday, isTomorrow } from "date-fns";
 import { useState } from "react";
-import { StyleSheet, Text, View } from "react-native";
+import { Platform, StyleSheet, Text, View } from "react-native";
 import { ScrollView } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-export default function SendActivity({ onPressSlider }) {
+export default function SendActivity({ navigation }) {
   const insets = useSafeAreaInsets();
-
-  const navigation = useNavigation();
 
   const [category, setCategory] = useState(null);
 
@@ -81,7 +78,11 @@ export default function SendActivity({ onPressSlider }) {
       ]}
     >
       <View style={styles.inputContainer}>
-        <Slider onPress={onPressSlider} />
+        <Slider
+          onPress={() => {
+            navigation.goBack();
+          }}
+        />
         <ScrollView
           horizontal={true}
           contentContainerStyle={{
@@ -401,15 +402,16 @@ const styles = StyleSheet.create({
     alignItems: "center",
   },
   inputContainer: {
-    position: "absolute",
-    bottom: 0,
+    // position: "absolute",
+    // bottom: 0,
+    flex: 1,
     backgroundColor: Colors.backgroundGrey,
     width: "92%",
     maxWidth: 560,
     borderTopLeftRadius: 8,
     borderTopRightRadius: 8,
     padding: 20,
-    marginTop: 20,
+    marginTop: Platform.OS === "web" ? 20 : 0,
   },
   separator: {
     borderBottomWidth: StyleSheet.hairlineWidth,
