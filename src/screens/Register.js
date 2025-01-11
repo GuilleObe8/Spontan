@@ -4,13 +4,12 @@ import RoundedTextButton from "@components/RoundedTextButton";
 import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { createUserWithEmailAndPassword } from "firebase/auth";
-import { auth } from "firebaseConfig";
 import { useState } from "react";
-import { Pressable, StyleSheet, Text, View } from "react-native";
+import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { supabase } from "supabaseConfig";
 
 export default function Register({ navigation }) {
   const insets = useSafeAreaInsets();
@@ -37,25 +36,29 @@ export default function Register({ navigation }) {
 
   const [isModalVisible, setIsModalVisible] = useState(false);
 
-  const handleRegister = () => {
-    createUserWithEmailAndPassword(auth, email, password2)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        if (user) {
-          console.log("email:", user.email, "uid:", user.uid);
-          setIsModalVisible(true);
-        } else {
-          console.log(user);
-          Alert.alert("Register failed", user);
-        }
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        Alert.alert("Register failed", errorMessage);
-      });
-  };
+  const [loading, setLoading] = useState(false);
+
+  // CHANGE CONFIG IN SUPABASE TO CONFIRM EMAIL
+  async function handleRegister() {
+    setLoading(true);
+    const {
+      data: { session },
+      error,
+    } = await supabase.auth.signUp({
+      email: email,
+      password: password2,
+    });
+
+    if (error) {
+      console.log(error);
+      Alert.alert(error.message);
+    }
+    if (!session) {
+      // Non registered used and no error
+      setIsModalVisible(true);
+    }
+    setLoading(false);
+  }
 
   return (
     <KeyboardAwareScrollView
@@ -219,6 +222,7 @@ export default function Register({ navigation }) {
           ]}
         >
           <RoundedTextButton
+            disabled={loading}
             onPress={handleRegister}
             text={"Register"}
             color={Colors.pastelBlue}

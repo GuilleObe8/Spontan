@@ -19,7 +19,6 @@ import TopTabNavigator from "./TopTabNavigator";
 const Stack = createStackNavigator();
 
 export default function StackNavigator() {
-  const [loading, setLoading] = useState(false);
   const [isSignedIn, setIsSignedIn] = useState(false);
 
   return (

@@ -24,7 +24,16 @@
     "web": {
       "favicon": "./assets/favicon.png"
     },
-    "plugins": ["expo-font"],
-    "newArchEnabled": false // ENABLE WHEN STABLE
+    "plugins": [
+      "expo-font",
+      [
+        "expo-secure-store",
+        {
+          "configureAndroidBackup": true,
+          "faceIDPermission": "Allow $(PRODUCT_NAME) to access your Face ID biometric data."
+        }
+      ]
+    ],
+    "newArchEnabled": false
   }
 }

@@ -10,11 +10,17 @@ export default function RoundedTextButton({
   textColor = Colors.backgroundBlack,
   paddingHorizontal = 26,
   elevation = 3,
+  disabled,
 }) {
   return (
     <Pressable
+      disabled={disabled}
       onPress={onPress}
-      style={{ borderRadius: 16, elevation: elevation, backgroundColor: color }}
+      style={{
+        borderRadius: 16,
+        elevation: elevation,
+        backgroundColor: disabled ? Colors.lightGrey : color,
+      }}
     >
       <View style={styles.container}>
         <Text

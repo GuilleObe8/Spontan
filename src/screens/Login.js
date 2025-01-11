@@ -6,8 +6,6 @@ import RoundedTextButton from "@components/RoundedTextButton";
 import Slogan from "@components/Slogan";
 import TextBox from "@components/TextBox";
 import Ionicons from "@expo/vector-icons/Ionicons";
-import { signInWithEmailAndPassword } from "firebase/auth";
-import { auth } from "firebaseConfig";
 import { useState } from "react";
 import {
   Alert,
@@ -20,6 +18,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { supabase } from "supabaseConfig";
 
 export default function Login({ navigation, setIsSignedIn }) {
   const insets = useSafeAreaInsets();
@@ -33,30 +32,29 @@ export default function Login({ navigation, setIsSignedIn }) {
 
   const [isChecked, setChecked] = useState(false);
 
+  const [loading, setLoading] = useState(false);
+
   let screenWidth =
     Dimensions.get("window").width > 560
       ? 560 * 1.08
       : Dimensions.get("window").width;
 
-  const handleLogin = () => {
-    signInWithEmailAndPassword(auth, email, password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        if (user) {
-          console.log("email:", user.email, "uid:", user.uid);
-          setIsSignedIn(true);
-        } else {
-          console.log(user);
-          Alert.alert("Login failed", user);
-        }
-      })
-      .catch((error) => {
-        const errorCode = error.code;
-        const errorMessage = error.message;
-        console.log(errorMessage);
-        Alert.alert("Login failed", errorMessage);
-      });
-  };
+  async function handleLogin() {
+    setLoading(true);
+    const { data, error } = await supabase.auth.signInWithPassword({
+      email: email,
+      password: password,
+    });
+
+    if (error) {
+      console.log(error);
+      Alert.alert(error.message);
+    } else {
+      console.log(data.user.email, data.user.id);
+      setIsSignedIn(true);
+    }
+    setLoading(false);
+  }
 
   return (
     <KeyboardAwareScrollView
@@ -140,6 +138,7 @@ export default function Login({ navigation, setIsSignedIn }) {
           ]}
         >
           <RoundedTextButton
+            disabled={loading}
             onPress={handleLogin}
             text={"Log In"}
             color={Colors.pastelGreen}
