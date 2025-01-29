@@ -22,7 +22,7 @@ export default function TabBar({ state, navigation, marginBottom }) {
           useEffect(() => {
             scale.value = withSpring(
               typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused,
-              { duration: 150, dampingRatio: 0.8 }
+              { duration: 150, dampingRatio: 0.8 },
             );
           }, [scale, isFocused]);
 

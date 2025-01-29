@@ -18,7 +18,7 @@ import {
 import { ScrollView } from "react-native-gesture-handler";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { supabase } from "supabaseConfig";
+import { supabase } from "@config/supabaseConfig";
 
 export default function Login({ navigation, setIsSignedIn }) {
   const insets = useSafeAreaInsets();

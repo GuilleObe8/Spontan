@@ -112,8 +112,8 @@ export default function AddFriends({ navigation }) {
   const updateUserState = ({ tag, prop, value }) => {
     setUsersArray(
       usersArray.map((user) =>
-        user.tag === tag ? { ...user, [prop]: value } : user
-      )
+        user.tag === tag ? { ...user, [prop]: value } : user,
+      ),
     );
   };
 

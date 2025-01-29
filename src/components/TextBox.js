@@ -38,10 +38,13 @@ export default function TextBox({
                   },
                 ]
               : leftIcon
-              ? [styles.textInput, { paddingLeft: paddingLeft, width: width }]
-              : rightIcon
-              ? [styles.textInput, { paddingRight: paddingRight, width: width }]
-              : [styles.textInput, { width: width }]
+                ? [styles.textInput, { paddingLeft: paddingLeft, width: width }]
+                : rightIcon
+                  ? [
+                      styles.textInput,
+                      { paddingRight: paddingRight, width: width },
+                    ]
+                  : [styles.textInput, { width: width }]
           }
           // placeholder={
           //   placeholder

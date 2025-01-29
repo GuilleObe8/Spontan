@@ -20,7 +20,7 @@ export default function SendActivity({ navigation }) {
   const [date, setDate] = useState(new Date());
   const [startTime, setStartTime] = useState(new Date());
   const [endTime, setEndTime] = useState(
-    new Date(new Date().getTime() + 3600 * 1000)
+    new Date(new Date().getTime() + 3600 * 1000),
   ); // By default 1 hour
   const [timeLimit, setTimeLimit] = useState("15 minutes");
   const [mode, setMode] = useState("date");

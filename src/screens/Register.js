@@ -9,7 +9,7 @@ import { Alert, Pressable, StyleSheet, Text, View } from "react-native";
 import { KeyboardAwareScrollView } from "react-native-keyboard-aware-scroll-view";
 import Modal from "react-native-modal";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { supabase } from "supabaseConfig";
+import { supabase } from "@config/supabaseConfig";
 
 export default function Register({ navigation }) {
   const insets = useSafeAreaInsets();

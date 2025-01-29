@@ -37,10 +37,10 @@ export default function Activity_B({
           borderColor: yes
             ? Colors.pastelGreen
             : no
-            ? Colors.pastelPink
-            : chat
-            ? Colors.pastelBlue
-            : Colors.backgroundGrey,
+              ? Colors.pastelPink
+              : chat
+                ? Colors.pastelBlue
+                : Colors.backgroundGrey,
           borderWidth: yes || no || chat ? 2 : 0,
           padding: yes || no || chat ? 18 : 20,
         },

@@ -51,7 +51,7 @@ export default function Profile({
       <Text style={[styles.text, { color: Colors.pastelYellow, marginTop: 2 }]}>
         {formatTime(
           activityData.totalResponseTime,
-          activityData.numberOfInvites
+          activityData.numberOfInvites,
         )}
       </Text>
       <Text style={[styles.text, { fontSize: 16, marginTop: 16 }]}>

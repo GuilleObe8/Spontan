@@ -2,8 +2,12 @@
 // https://firebase.google.com/docs/web/setup#available-libraries
 import AsyncStorage from "@react-native-async-storage/async-storage";
 import { initializeApp } from "firebase/app";
-import { initializeAuth, getAuth } from "firebase/auth"; // getReactNativePersistence
-import { getReactNativePersistence } from "@firebase/auth/dist/rn/index.js"; // https://github.com/firebase/firebase-js-sdk/issues/7584
+import {
+  initializeAuth,
+  getAuth,
+  getReactNativePersistence,
+} from "firebase/auth";
+// import { getReactNativePersistence } from "@firebase/auth/dist/rn/index.js"; // https://github.com/firebase/firebase-js-sdk/issues/7584
 
 // Your web app's Firebase configuration
 // For Firebase JS SDK v7.20.0 and later, measurementId is optional

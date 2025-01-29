@@ -14,3 +14,5 @@ export const supabase = createClient(supabaseUrl, supabaseAnonKey, {
     detectSessionInUrl: false,
   },
 });
+
+// https://supabase.com/dashboard/project/wmvnfkqxeyhuleaanutz/auth/users

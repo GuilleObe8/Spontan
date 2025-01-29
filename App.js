@@ -1,7 +1,9 @@
 import "./gesture-handler";
 
+/* eslint-disable */
 import Colors from "@assets/Colors";
-import { NavigationContainer, DefaultTheme } from "@react-navigation/native";
+import "@expo/metro-runtime"; // to enable fast refresh on web
+import { DefaultTheme, NavigationContainer } from "@react-navigation/native";
 import StackNavigator from "@routes/StackNavigator";
 import TopTabNavigator from "@routes/TopTabNavigator";
 import ActivityDetail from "@screens/ActivityDetail";
@@ -21,6 +23,7 @@ import { StatusBar } from "expo-status-bar";
 import { useEffect } from "react";
 import { LogBox, View } from "react-native";
 import { SafeAreaProvider } from "react-native-safe-area-context";
+/* eslint-enable */
 
 // To prevent warnings from showing up
 // LogBox.ignoreAllLogs(true);
@@ -75,7 +78,7 @@ export default function App() {
           {/* <EditProfile /> */}
           {/* <ActivityDetail type={"received"} /> */}
           {/* <ProfileDetail /> */}
-          {/* <SendActivity /> */}
+          {/* {/* <SendActivity /> */}
           {/* <InviteFriends /> */}
         </NavigationContainer>
       </SafeAreaProvider>
