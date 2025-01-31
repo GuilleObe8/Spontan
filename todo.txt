@@ -1,0 +1,52 @@
+App.js:
+- [!] Configure status bar, splash screen and app icon: https://docs.expo.dev/tutorial/configuration/
+- [!] Manage differences between platforms: https://docs.expo.dev/tutorial/platform-differences/
+- [!] Fix web version: https://reactnavigation.org/docs/web-support/
+- [!] Fix cross-platform shadows: https://blog.logrocket.com/applying-box-shadows-in-react-native/
+- [!!!] Fix iOS version
+
+Activity_A.js / Activity_B.js:
+- [!] Test with very long title and description
+- [!!] Share state with activityDetail
+- [!!] Check if onModalWillHide is correct
+- [!!!] Show list of people that answered
+
+User.js:
+- [!!] Check if onModalWillHide is correct
+- [!!!] Check exports with two functions
+
+StackNavigator.js:
+- [!!] Check loading useState()
+
+ActivityDetail.js:
+- [!] Add a opening hours prop of the place (i.e. Monday: 10:00 - 14:00, Tuesday: ...)
+- [!!!] Show list of people that answered
+
+InviteFriends.js -> User.js: 
+- [!!!] Check <InviteUser> usage
+
+SendActivity.js:
+- [!!!] Fix Invite friends bug double back
+- [!!] Fix date and time picker on web and iOS
+- [!!] Compare start and end time
+- [!] Check invite friends size inconsistency
+- [!!] Add KeyboardAwareScrollView
+
+AddFriends.js:
+- [!] Add sent request button
+
+Login.js:
+- [!!] Login with tag -> Supabase
+
+Register.js:
+- [!!] Store other user data on Supabase (firstName, lastName, tag...)
+
+ForgotPassword.js:
+- [!!] Change password on Supabase
+
+Settings.js:
+- [!!] Log out behavior
+- [!!] Delete account behavior -> Supabase
+
+supabaseConfig.js:
+- [!] Encrypting the user session (especially on web) + OAuth, magic links and deep-linking https://supabase.com/blog/react-native-authentication
